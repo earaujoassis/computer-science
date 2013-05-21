@@ -1,0 +1,37 @@
+[
+  {
+    "file" : "tests/expressao1.z",
+    "status" : 0,
+    "unexpected" : "This file should PASS"
+  },
+  {
+    "file" : "tests/expressao2.z",
+    "status" : 0,
+    "unexpected" : "This file should PASS"
+  },
+  {
+    "file" : "tests/expressao3.z",
+    "status" : 0,
+    "unexpected" : "This file should PASS"
+  },
+  {
+    "file" : "tests/selection-sort.z",
+    "status" : 0,
+    "unexpected" : "This file should PASS"
+  },
+  {
+    "file" : "tests/fatorial.z",
+    "status" : 0,
+    "unexpected" : "This file should PASS"
+  },
+  {
+    "file" : "tests/comment-error.z",
+    "status" : 1,
+    "unexpected" : "This file should FAIL for a comment error"
+  },
+  {
+    "file" : "tests/string-error.z",
+    "status" : 1,
+    "unexpected" : "This file should FAIL for a string error"
+  }
+]
