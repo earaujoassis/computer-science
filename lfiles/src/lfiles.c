@@ -23,8 +23,8 @@ Options:\n\
 -h\t\t\t\t\tPrint this help message\n\
 -s <size in bytes> <folder root>\tGenerate a histogram for files; <size in bytes>\n\
 \t\t\t\t\tdetermines each class\n\
--i\t\t\t\t\tSearch for all i-nodes with estrict connections\n\
-\t\t\t\t\twith 2 as value; list all those files related\n\
+-i\t\t\t\t\tSearch for all files with two hard links;\n\
+\t\t\t\t\tlist all those files related\n\
 -l (<dirname>)+\t\t\t\tShow files for every <dirname> listed\n\n"
 
 int

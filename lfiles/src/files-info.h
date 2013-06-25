@@ -108,6 +108,7 @@ generate_histogram (const size_t bytes_class, const char *folder_root)
 int
 inode_files ()
 {
+  fprintf (stderr, "Not implemented.\n", );
   return 0;
 }
 
