@@ -7,7 +7,10 @@ default:
 	$(info )
 build:
 	$(CC) src/lfiles.c -o lfiles $(CFLAGS)
+	$(CC) src/shrink.c -o shrink $(CFLAGS)
 debug:
 	$(CC) src/lfiles.c -o lfiles $(CFLAGS) $(DEBUG)
+	$(CC) src/shrink.c -o shrink $(CFLAGS) $(DEBUG)
 clean:
 	rm -f lfiles
+	rm -f shrink
