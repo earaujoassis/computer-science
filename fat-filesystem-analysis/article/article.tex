@@ -5,6 +5,10 @@
 \usepackage[ruled]{algorithm2e}
 \usepackage{mathabx}
 \usepackage{hyperref}
+\usepackage{paralist}
+\usepackage{algorithmic}
+\usepackage{booktabs}
+\usepackage{rotating}
 \begin{document}
 \title{Análise dos sistemas de arquivos FAT 16 e FAT 32}
 \author{Beatriz P. Martis, Eduardo S. Lira, Ewerton A. Assis}
@@ -22,11 +26,11 @@ A tabela de arquivos FAT é situada no início do volume. São armazenadas duas tab
 
 Originalmente o sistema FAT foi desenvolvido para máquinas com arquitetura IBM PC, por isso os bytes das entradas FAT são armazenados em ``little endian'', assim, ao utilizar uma máquina ``big endian'' é preciso traduzí-los ao serem movidos dados do disco ou para outro disco \cite{fatgen103}.
 
-Cada volume tem seu próprio FAT, o qual contém informações de alocação para cada arquivo no volume através de listas ligadas de unidades de alocação, isto é, \emph{clusters} formados por setores em potência de 2. Por meio disso, o sistema também pode indicar quais são as unidade livres para serem utilizadas por um arquivo sendo criado ou extendido \cite{FAT_File_System}.
+Cada volume tem seu próprio FAT, o qual contém informações de alocação para cada arquivo no volume através de listas ligadas de unidades de alocação, isto é, \emph{clusters} formados por setores em potência de 2. Por meio disso, o sistema também pode indicar quais são as unidade livres para serem utilizadas por um arquivo sendo criado ou extendido \cite{filesystemanalysis}.
 
 Desconsiderando os \emph{clusters} reservados, o FAT16 é limitado por $2^{16}$ ou 65.536 \emph{clusters}, já o FAT32 por $2^{32}$ ou mais de 4 bilhões de \emph{clusters} \cite{examining} (mais detalhes na Seção 5 - Particionamento de disco). O conceito básico do sistema FAT, como pode ser visto na Figura \ref{fig1}, é que, para cada arquivo ou diretório, é alocado uma estrutura de dados, chamada entrada de diretório, que contém o nome do arquivo, tamanho, endereço de início e outros metadados; seu conteúdo é guardado em um ou mais \emph{clusters}, que podem ser encontrados através da tabela FAT, a qual identifica o próximo \emph{cluster} e identifica o status de alocação dos \emph{clusters} \cite{filesystemanalysis}.
 
-O FAT surgiu como uma boa solução para o gerenciamento de disco, principalmente porque a tabela era pequena o suficiente para caber na memória, permitindo um acesso aleatório rápido, mas se tornou inviável com o aumento do tamanho da tabela em discos fixos, o que exigia paginação. Outro problema é que a informação a respeito de espaço livre era espalhada entre os setores do FAT, resultando numa alta fragmentação: para \emph{clusters} grandes, era desperdiçado, em média, metade de um \emph{cluster} em cada arquivo \cite{FAT_File_System}.
+O FAT surgiu como uma boa solução para o gerenciamento de disco, principalmente porque a tabela era pequena o suficiente para caber na memória, permitindo um acesso aleatório rápido, mas se tornou inviável com o aumento do tamanho da tabela em discos fixos, o que exigia paginação. Outro problema é que a informação a respeito de espaço livre era espalhada entre os setores do FAT, resultando numa alta fragmentação: para \emph{clusters} grandes, era desperdiçado, em média, metade de um \emph{cluster} em cada arquivo \cite{filesystemanalysis}.
 
 \section{Estrutura do volume e particionamento} % Beatriz + Ewerton
 \label{particionamentoDisco}
@@ -34,40 +38,136 @@ Um sistema FAT geralmente é organizado da seguinte forma \cite{chapter17}: um se
 
 Na versão FAT12/16 o diretório \emph{root} ou raíz encontra-se no início da área de dados; enquanto na versão FAT32 o diretório raíz pode estar em qualquer parte da área de dados --- tal situação é considerada rara, tendo como padrão o uso da atribuição da versão FAT12/16 \cite{filesystemanalysis}.
 
-O sistema de arquivos é alocado em \emph{clusters}, unidades de dados do sistema de arquivo \cite{chapter17}, que são um grupo consecutivo de setores --- o número de setores geralmente é em base 2 (1, 2, 4, 8, 16, 32 ou 64) e o número (``endereço'') do \emph{cluster} deve ser representável em até 16 bits. Curiosamente, os números de \emph{cluster} começam com o número 2: não existem os \emph{clusters} 0 e 1; além destes estarem todos na área de dados. O tamanho de um \emph{cluster} é determinado, geralmente, pelo tamanho do volume de armazenamento. Essas restrições limitam o tamanho máximo de um volume de armazenamento para até 4GB, já que o tamanho mínimo do \emph{cluster} --- e, portanto, do setor --- é de 512 bytes e o tamanho máximo de um \emph{cluster} é de 64 kilobytes \cite{chapter17} --- embora em outra fonte o tamanho máximo de um \emph{cluster} seja 32 kilobytes \cite{filesystemanalysis}. Cada \emph{cluster} é identificado como ``não-usado'', ``em uso'', ``\emph{bad cluster}'' ou ``último \emph{cluster} em um arquivo''; informações que estão disponíveis na tabela de alocação (mais detalhes na seção \ref{tabelaAlocacao}).
+O sistema de arquivos é alocado em \emph{clusters}, unidades de dados do sistema de arquivo \cite{chapter17}, que são um grupo consecutivo de setores --- o número de setores geralmente é em base 2 (1, 2, 4, 8, 16, 32 ou 64) e o número (``endereço'') do \emph{cluster} deve ser representável em até 12 bits na FAT12, em até 16 bits na FAT16 e em até 32 bits na FAT32 (embora apenas 28 bits sejam realmente usados) \cite{filesystemanalysis}. Curiosamente, os números de \emph{cluster} começam com o número 2: não existem os \emph{clusters} 0 e 1; além destes estarem todos na área de dados. O tamanho de um \emph{cluster} é determinado, geralmente, pelo tamanho do volume de armazenamento. Essas restrições limitam o tamanho máximo de um volume de armazenamento para até 4GB, já que o tamanho mínimo do \emph{cluster} --- e, portanto, do setor --- é de 512 bytes e o tamanho máximo de um \emph{cluster} é de 64 kilobytes \cite{chapter17} --- embora em outra fonte o tamanho máximo de um \emph{cluster} seja 32 kilobytes \cite{filesystemanalysis}. Cada \emph{cluster} é identificado como ``não-usado'', ``em uso'', ``\emph{bad cluster}'' ou ``último \emph{cluster} em um arquivo/diretório''; informações que estão disponíveis na tabela de alocação (mais detalhes na seção \ref{tabelaAlocacao}).
 
-Como as áreas FAT e o setor de boot não usam a estrutura de \emph{cluster}, determinar a localização do primeiro \emph{cluster} não é uma tarefa fácil \cite{filesystemanalysis}. Na versão FAT12/16 o primeiro \emph{cluster} é o primeiro setor do diretório raíz, que é alocado quando o sistema de arquivo é criado; na versão FAT32, o primeiro \emph{cluster} é o primeiro setor da área de dados.
+Como as áreas FAT e o setor de boot não usam a estrutura de \emph{cluster}, determinar a localização do primeiro \emph{cluster} não é uma tarefa fácil \cite{filesystemanalysis}. Na versão FAT12/16 o primeiro \emph{cluster} é o primeiro setor do diretório raíz, que é alocado quando o sistema de arquivo é criado; na versão FAT32, o primeiro \emph{cluster} é o primeiro setor da área de dados. Descobrir o endereço S de um setor a partir do número C de um \emph{cluster}, ou vice-versa, pode ser obtido a partir dos seguintes cálculos \cite{filesystemanalysis}:\\\\
+$S = (C - 2) \times ($ número de setores por \emph{cluster} $) + ($ setor do \emph{cluster} 2 $)$;\\\\ e\\\\
+$C = ((S -$ setor do \emph{cluster} 2 $) / ($ número de setores por \emph{cluster} $)+ 2$.
 
-O diretório raíz contém entradas para cada arquivo e directório na raíz; o que distingue o diretório raíz dos demais diretórios é sua posição no volume e seu tamanho fixo: 512 entradas para volumes em disco rígido e um tamanho varíavel para disquetes, dependendo do tamanho do volume.  Como será apresentado na seção \ref{estrutudadeDiretorio} (página \pageref{estrutudadeDiretorio}), diretórios são estruturas semelhantes aos arquivos, com estruturas próprias que os distinguem.
+O diretório raíz contém entradas para cada arquivo e diretório na raíz; o que distingue o diretório raíz dos demais diretórios é sua posição no volume e seu tamanho fixo: 512 entradas para volumes em disco rígido e um tamanho varíavel para disquetes, dependendo do tamanho do volume.  Como será apresentado na seção \ref{estrutudadeDiretorio} (página \pageref{estrutudadeDiretorio}), diretórios são estruturas semelhantes aos arquivos, com estruturas próprias que os distinguem.
 
 \subsection{Setor de boot} % Ewerton
 \label{setorBoot}
-O setor de boot, como em geral é encontrado em outros sistemas de arquivos, tem como finalidade armazenar código que será executado pela BIOS do sistema computacional durante a inicialização do disco. Localizado no primeiro setor do volume, além de conter código de execução, esta área do sistema de arquivos contém informações sobre o próprio sistema, como o tamanho das tabelas de alocação (áreas FAT) e demais informações sensíveis ao funcionamento do sistema \cite{filesystemanalysis}: o número de estruturas FAT e o tamanho destas estruturas; tamanho das estruturas de diretório; tamanho do \emph{cluster}; dentre outras informações. Geralmente a versão é marcada por tag, em formato \emph{string}, com os possíveis valores ``FAT12'', ``FAT16'', ``FAT32'' ou apenas ``FAT''. Fora esse marcador, não existe, dentre as informações do setor de boot, qualquer dado acurado para a versão do sistema de arquivos FAT; essa informação só pode ser obtida a partir de cálculos feito nas informações armazenadas \cite{filesystemanalysis}.
+O setor de boot, como em geral é encontrado em outros sistemas de arquivos, tem como finalidade armazenar código que será executado pela BIOS do sistema computacional durante a inicialização do disco. Localizado no primeiro setor do volume, além de conter código de execução, esta área do sistema de arquivos contém informações sobre o próprio sistema, como o tamanho das tabelas de alocação (áreas FAT) e demais informações sensíveis ao funcionamento do sistema \cite{filesystemanalysis}: o número de estruturas FAT e o tamanho destas estruturas; tamanho das estruturas de diretório; tamanho do \emph{cluster}; dentre outras informações. Geralmente a versão é marcada por tag, em formato \emph{string}, com os possíveis valores ``FAT12'', ``FAT16'', ``FAT32'' ou apenas ``FAT''. Fora esse marcador, não existe, dentre as informações do setor de boot, qualquer dado acurado para a versão do sistema de arquivos FAT; essa informação só pode ser obtida a partir de cálculos feitos sobre as informações armazenadas \cite{filesystemanalysis}.
 
 Na versão FAT12/16, o setor de boot ocupa um único setor, enquanto na versão FAT32 muitos outros setores podem ser armazenados. Na versão FAT32 é possível encontrar informações sobre o próximo \emph{cluster} disponível e a quantidade de \emph{clusters} disponíveis (na estrutura de dados FSINFO); o endereço do setor com uma cópia de segurança (\emph{backup}) do setor de boot, geralmente no setor 6, que pode ser usado por ferramentas quando o setor original estiver corrompido; e o endereço do setor de início do diretório raíz.
 
-Outras informações não essencias estão também disponíveis no setor de boot: o nome OEM (\emph{OEM name} \cite{filesystemanalysis}), usado para indicar a ferramenta que criou o sistema de arquivos; um número serial de 4 bytes que determina quando o sistema de arquivo foi criado; e, como já mencionado, uma tag para determinar qual a versão do sistema de arquivo, embora tal informação não seja objetivamente correta. Outra informação importante, a qual é também armazenada no diretório raíz, é o rótulo do volume do sistema de arquivos e um rótulo do sistema de arquivo.
+Outras informações não essencias estão também disponíveis no setor de boot: o nome OEM (\emph{OEM name} \cite{filesystemanalysis}), usado para indicar a ferramenta que criou o sistema de arquivos; um número serial de 4 bytes que determina quando o sistema de arquivos foi criado; e, como já mencionado, uma tag para determinar qual a versão do sistema de arquivo, embora tal informação não seja objetivamente correta. Outra informação importante, a qual é também armazenada no diretório raíz, é o rótulo do volume do sistema de arquivos e um rótulo do sistema de arquivo.
 
-O código de execução, anteriormente mencionado, são instruções de \emph{JUMP} que levam a máquina a executar os códigos de execução, armazenados nos bytes 62 a 509 na versão FAT12/16 e nos bytes 90 a 509 na versão FAT32. Sistemas FAT geralmente apresentam código de execução, mesmo que estes volumes não sejam inicializáveis (\emph{bootable}). A MBR, geralmente no início do disco ou dispositivo e fora da responsabilidade do sistema de arquivo, é responsável por inicializar a execução do código presente no setor de boot.
+O código de execução, anteriormente mencionado, são instruções de \emph{JUMP} que levam a máquina a executar os códigos de execução, armazenados nos bytes 62 a 509 nas versões FAT12 e FAT16 e nos bytes 90 a 509 na versão FAT32. Sistemas FAT geralmente apresentam código de execução, mesmo que estes volumes não sejam inicializáveis (\emph{bootable}). A MBR, geralmente no início do disco ou dispositivo de armazenamento e fora da responsabilidade do sistema de arquivo, é responsável por inicializar a execução do código presente no setor de boot.
 
 \section{Tabela de alocação} % Ewerton
 \label{tabelaAlocacao}
-A tabela de alocação no sistema FAT tem uma relevância chave na arquitetura deste sistema de arquivo; como o próprio nome do sistema de arquivos indica (FAT é acrônimo para \emph{File allocation table}, ou tabela de alocação de arquivos, em tradução livre).
+A tabela de alocação no sistema FAT tem uma relevância chave na arquitetura deste sistema de arquivo --- como o próprio nome do sistema de arquivos indica (FAT é acrônimo para \emph{File allocation table}, ou tabela de alocação de arquivos, em tradução livre) --- ao controlar o uso dos \emph{clusters}.
 
-Como foi apresentado na seção \ref{particionamentoDisco} (página \pageref{particionamentoDisco}), as tabelas de alocação são armazenadas nas áreas de disco FAT1 e FAT2, as quais, como mencionado, não usam a estrutura lógica dos \emph{clusters}. A FAT2 é uma replicação do FAT1 e tem por finalidade atender certo nível de segurança ao indicar possíveis inconsistências que possam surgir no sistema de arquivo. O tamanho da área FAT é geralmente calculado pelo tamanho da estrutura FAT e a quantidade de \emph{clusters} no sistema.
+Como foi apresentado na seção \ref{particionamentoDisco} (página \pageref{particionamentoDisco}), as tabelas de alocação são armazenadas nas áreas de disco FAT1 e FAT2, as quais, como também supracitado, não usam a estrutura lógica dos \emph{clusters}. A FAT2 é uma replicação da FAT1 e tem por finalidade atender certo nível de segurança ao indicar possíveis inconsistências que possam surgir no sistema de arquivo. O tamanho da área FAT é geralmente calculado pelo tamanho da estrutura FAT e a quantidade de \emph{clusters} no sistema, informações armazenadas no setor de boot. O número exato de FATs é geralmente obtido a partir do setor de boot.
 
-As tabelas de alocação armazenadas na área FAT têm por finalidade indicar o status dos \emph{clusters} da área de dados.
+As tabelas de alocação armazenadas na área FAT têm por finalidade indicar o status dos \emph{clusters} da área de dados e como os arquivos e directórios são armazenados na área de dados. Cada entrada na tabela representa um \emph{cluster} na área de dados: quando determinado \emph{cluster} está disponível, seu valor na tabela é marcado com o valor 0; quando o \emph{cluster} é marcado como danificado, os valores $0xff7$, $0xfff7$ e $0x0ffffff7$ são marcados na tabela para as versões FAT12, FAT16 e FAT32, respectivamente. Qualquer outro valor na tabela de alocação indica que o \emph{cluster} está alocado, podendo ser o endereço de outro \emph{cluster} da ``cadeia de \emph{clusters}'' (``\emph{clusters chain}'') ou ser apenas um marcador de ``final de estrutura'' (diretório ou arquivo; ``\emph{end of file}'' ou simplesmente \emph{EOF}).
 
+A estrutura de armazenamento das tabelas de alocação FAT assemelha-se a um vetor unidimensional, com tamando igual e fixo para todas as entradas. O vetor tem como quantidade de células o número de \emph{clusters} da área de dados. O tamanho de cada célula varia de acordo com a versão do sistema de arquivo, como supracitado: 12 bits para FAT12, 16 bits para FAT16 e 32 bits para FAT32.
 
+Os \emph{clusters} endereçáveis começam a partir do \emph{cluster} 2. As entradas 0 e 1 armazenam, tipica e respectivamente, uma cópia do tipo do dispositivo e o ``estado sujo'' (``dirty status'') do sistema de arquivo, este indicando se houve um desligamento inapropriado do sistema ou erros de superfície encontrados --- estes valores podem não ser acurados já que não são essenciais.
+
+Os tópicos apresentados nessa seção englobam conceitos apresentados em \cite{filesystemanalysis}.
 
 \section{Estrutura de diretório} % Eduardo
 \label{estrutudadeDiretorio}
+Em se tratando da estrutura dos diretórios FAT, deve-se analisar dois aspectos: entradas de diretórios curtas, associadas a nomes de arquivos curtos,  e longas, associadas a nome de arquivos longos. Uma entrada de diretório é uma estrutura que é alocada para cada arquivo e diretório. Ela tem 32 bytes de tamanho, e contém os atributos do arquivo, tamanho, cluster inicial, datas e horários. Entradas de diretório podem existir em qualquer lugar na área de dados, pois elas são guadadas nos clusters alocados para um diretório. No sistema de arquivos FAT, um diretório é considerado um tipo especial de arquivo. Serão tratadas aqui, primeiramente, as entradas curtas, e posteriormente as longas.
+
+O único diretório especial, que deve estar sempre presente, é o diretório raiz. No FAT16, o diretório raiz está em um lugar fixo no disco, imediatamente depois da última tabela de alocação de arquivos, e tem um número fixo de setores. Já no FAT32, o diretório raiz pode ter um tamanho variável e é uma ``cadeia de clusters'', assim como qualquer outro diretório. \cite{examining}
+
+Quando um novo arquivo ou diretório é criado, uma entrada de diretório no diretório pai é alocada para ele. Como a entrada de diretório tem um tamanho fixo, pode-se imaginar que o conteúdo de um diretório é uma tabela de entrada de diretórios. Diferente do que é feito com os clusters, não é dado um número único às entradas de diretórios para identificá-las. Em vez disso, o único padrão para endereçar uma entrada de diretório é o uso do nome completo do arquivo, ou diretório, alocado a ela. Além disso, na criação do diretório, um cluster também é alocado, e é todo preenchido com zeros. O campo de tamanho do diretório não é usado, e deve sempre ser zero. O único método para determinar o tamanho do diretório é percorrer a lista estruturada pelo tabela de alocação de arquivos, partindo do diretório, até o marcador de final de arquivo ser encontrado.
+
+Se o diretório em questão não for o diretório raiz, as duas primeiras entradas em um são para os diretórios ``.'', usado para endereçar o diretório atual, e ``..'', utilizado para endereçar o diretório pai. \cite{filesystemanalysis}
+
+Diferente de outros diretórios, o diretório raiz não tem marcação de data (time stamp), e não contem ``.'' e ``..'' como as duas primeiras entradas no diretório.
+
+A figura \ref{figuraEdu7A} especifica a estrutura das entradas de um diretório FAT
+
+\begin{figure}[h!]
+\label{figuraEdu7A}
+\centering
+\includegraphics[width=1\textwidth]{estrutura-arquivo-1.jpg}
+\caption{Estrutura da Entrada de Diretório (adaptada de \cite{fatgen103} - página 23)}
+\end{figure}
+
+Algumas observações sobre o primeiro byte (DIR\_Name[0]) de uma entrada de diretório FAT:\\
+\begin{itemize}
+\item DIR\_Name[0] = 0xE5 - diretório vazio (não existe um nome de arquivo ou diretório nesta entrada);
+\item DIR\_Name[0] = 0x00 - diretório vazio (como em 0xE5) e todos os bytes DIR\_Name[0] de todas as estradas após esta também estão setados como 0, ou seja, não há diretórios alocados depois deste;
+\item DIR\_Name[0] = 0x05 - o verdadeiro valor para este byte é 0xE5. 0xE5 representa um caracter válido no Japão, então quando este deve ser escrito, 0x05 se torna seu alias.
+\end{itemize}
+
+Na prática, o campo DIR\_Name é quebrado em duas partes: uma principal, de 8 caracteres, contendo o nome, e uma secundária, de 3 caracteres, contendo a extensão.\\
+
+\textbf{Curiosidades}:
+\begin{itemize}
+\item DIR\_Name[0]  não pode ser os caracteres: 0x20, 0x22, 0x2A, 0x2B, 0x2C, 0x2E, 0x2F, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F, 0x5B, 0x5C, 0x5D e 0x7C. Além disso, não são aceitos caracteres minúsculos;
+\item Há um ``.'' implícito entre a parte principal e a parte secundária do nome que não está presente em DIR\_Name;
+\item Nos diretórios FAT, todos os nomes são únicos.\\
+\end{itemize}
+
+DIR\_Attr especifica atributos do arquivo:\\
+ATTR\_READ\_ONLY - arquivo somente leitura, qualquer tentativa de escrita irá falhar;\\
+ATTR\_HIDDEN - os pedidos de listagem ``regulares'' deste diretório não devem mostrar este arquivo;\\
+ATTR\_SYSTEM - arquivo do sistema operacional;\\
+ATTR\_VOLUME\_ID - deve haver apenas um ``arquivo'' no volume que tem este atributo setado, e este arquivo deve estar no diretório raiz. O nome deste arquivo é na verdade o nome que se dá ao volume. DIR\_FstClusHL e DIR\_FstClusLO devem sempre ser 0 para este arquivo.\\
+ATTR\_ARCHIVE - indica para o sistema quais arquivos sofreram modificação desde o último backup do sistema.
+
+A combinação de bits do atributo ATTR\_LONG\_NAME indica que o ``arquivo'' é, na verdade, parte da entrada de um nome longo de outro arquivo. Mais a frente neste texto isso será melhor explicado.
+
+As entradas longas de diretório são definidas como ``entradas curtas com um atributo especial''. Como dito anteriormente, uma entrada longa é uma entrada regular na qual o atributo ATT\_LONG\_NAME tem o valor ATTR\_READ\_ONLY | ATTR\_HIDDEN | ATTR\_SYSTEM | ATTR\_VOLUME\_ID verdadeiro. Quando uma entrada de diretório desta forma é encontrada, ela é tratada de forma diferenciada pelo sistema: ela é vista como uma parte de um conjunto de entradas de diretório que são associadas a uma única entrada curta. \cite{fatgen103}
+
+Um conjunto de entradas longas está sempre associado a uma entrada curta, que eles sempre precedem imediatamente. Entradas longas são pareadas com entradas curtas por uma razão: apenas entradas curtas são visíveis a versões anteriores do MS-DOS/Windows. Uma entrada longa nunca existe sozinha, por regra. Se uma entrada longa é encontrada sem ser pareada com uma entrada curta, ela é chamada de ``orfã''.
+
+A tabela 5.1 mostra um conjunto de n diretórios com entradas longas, associados a uma única entrada curta.
+
+\begin{center}
+\begin{tabular}{| 1 | 1 |}
+\hline
+ \textbf{Entrada} & \textbf{Saída} \\
+\hline
+n-ésima entrada longa & LAST\_LONG\_ENTRY (0X40) | N \\
+$...$ entradas longas adicionais & $...$ \\
+primeira entrada longa & $1$ \\
+entrada curta associada com as entradas precedentes & (não se aplica) \\ 
+\hline
+\end{tabular}
+\caption{Tabela 5.1: Sequência de entradas de diretório longas}
+\end{center}
+
+Primeiro, cada membro de um conjunto de entradas longas é unicamente numerada, e o último membro do conjunto contém uma flag indicando que ele é de fato o último membro.
 
 \section{Nomes de arquivos} % Beatriz
 
-\section{Operações com arquivos} % Beatriz
+\section{Recuperação e segurança}
+Uma desvantagem do sistema de arquivos FAT16 e FAT32 é a questão de segurança. Diferente de outros sistemas amplamente utilizados no mercado, como NTFS e EXT. O que é feito para tentar minimizar esse fator, é a utilização de uma cópia de backup da tabela de alocação como ``sistema de segurança'' para corrompimentos. Entretanto, este procedimento é ineficiente, pois uma queda de energia durante uma operação que modifique os metadados, pode tornar a partição inacessível, ou corromper severamente diversos arquivos. \cite{Wikipedia}
 
-\section{Aspectos de segurança}
+A seguir será discutida a recuperação de arquivos, e a checagem de consistência no sistema de arquivos.
+
+\subsection{Recuperação de Arquivos}
+Apesar de existirem ferramentas para a recuperação de arquivos no sistema de arquivos FAT há muito tempo, a documentação sobre este tópico é bem escassa, e a teoria é pouca quando se procura ``o que deveria ser feito''.
+
+Quando um arquivo é deletado, a entrada de diretório é marcada como inutilizada, e as entradas na tabela de alocação para o cluster são setadas para zero. Para recuperar o arquivo, é necessário saber onde o arquivo começa, e o tamanho dele.
+
+Pode-se tentar recuperar os dados lendo-se os mesmos a partir do cluster inicial, já conhecido. Uma ferramenta de recuperação tem duas opções quando a questão é escolher entre os clusters seguintes a ler. Pode-se ler cegamente a quantidade de dados necessária para o tamanho do arquivo, e ignorar o status de alocação dos dados, ou pode-se ler somente dos clusters não alocados. A segunda opção vai ser melhor sucedida que a primeira um maior número de vezes, pois ela vai recuperar alguns arquivos fragmentados. \cite{filesystemanalysis}
+
+Observe a Figura \ref{figuraEdu8}, que mostra seis clusters de um sistema de arquivo, em três cenários diferentes. O arquivo tem 7094 bytes de tamanho, e cada cluster tem 2048 bytes, então o arquivo ocupa quatro clusters. O cluster inicial é o 56.
+
+\begin{figure}[h!]
+\label{figuraEdu8}
+\centering
+\includegraphics[width=0.7\textwidth]{rec.png}
+\caption{Exemplos de Cenários para Recuperação de Arquivos (adaptada de \cite{filesystemanalysis} pg. 182)}
+\end{figure}
+
+No primeiro cenário, os quatro clusters estão alocados de forma consecutiva. Neste caso, ambas opções irão recuperar corretamente os clusters de 56 a 59. No segundo caso, o arquivo foi fragmentado em três grupos, e os clusters entre os fragmentos, 57 e 60, estão alocados para outro arquivo na hora que o processo de recuperação é iniciado. Neste cenário, a opção 1 irá recuperar os clusters de 56 a 59, incorretamente incluindo o cluster 57. A opção 2 irá recuperar corretamente os clusters 56, 58, 59 e 61. Finalmente, no último caso, tem-se um cenário onde o arquivo está alocado nos mesmos clusters que anteriormente, mas os clusters entre os fragmentos não estão alocados quando o processo de recuperação é iniciado. Aqui, ambas opções irão incorretamente recuperar os clusters de 56 a 59.
+
+Outros testes podem ser feitos, com diferentes cenários, e irá se observar que a opção 2, onde o status de alocação dos clusters é levado em consideração, pode recuperar arquivos deletados em mais casos que a opção 1. \cite{filesystemanalysis} Como a alocação de clusters é feita por demanda, é muito provável que os diretórios estarão fragmentados no disco. Assim, diretórios são mais difíceis de se recuperar, a menos que ele seja o resultado de uma cópia, ou se o sistema de arquivos tiver sido desfragmentado recentemente.
+
+Quando está se investigando um sistema de arquivos, é de grande valia realizar alguns testes de consistência para identificar arquivos de sistema corrompidos, ou dados que estão ocultos. No setor de boot, e em outras estruturas de dados na área reservada de um sistema de arquivos FAT, o teste de consistência deve verificar que alguns valores definidios estão em um intervalo apropriado, e também verificar os espaços não utilizados, procurando valores diferentes de zero. Por exemplo, existem vários setores na área reservada que não são usados em nenhum sistema de arquivos. Se um setor de boot de backup estiver disponível para o sistema de arquivos FAT32, uma checagem de consistência pode comparar os dois, e reportar qualquer diferença. A FAT de backup e a primária devem ser comparadas para verificar se elas possuem o mesmo valor. Cada entrada que é marcada como ``bad'' deve ser examinada pois a maioria dos discos conserta erros antes do sistema operacional notá-los.
+
+O diretório raiz e seus subdiretórios devem ser examinados, e cada cadeia de clusters na FAT deve ser testada para se ter certeza que uma entrada de diretório alocada aponta para o início do um diretório. O teste reverso também deve ser feito para ter certeza que entradas de diretórios alocadas apontam para clusters alocados. Se múltiplas entradas de diretório apontam para uma cadeia de clusters, é recomendado que todas sejam copiadas para uma nova localidade, e que os originais sejam deletados. O tamanho de uma cadeia de clusters deve ser o número de clusters necessários para o tamanho do arquivo.\cite{filesystemanalysis}
 
 \section{Conclusão}
 
