@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage[latin1]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{graphicx}
+\usepackage[ruled]{algorithm2e}
+\usepackage{mathabx}
+\usepackage{hyperref}
+\begin{document}
+\title{Análise dos sistemas de arquivos FAT 16 e FAT 32}
+\author{Beatriz P. Martis, Eduardo S. Lira, Ewerton A. Assis}
+
+\maketitle
+
+\begin{abstract}
+O presente trabalho, que comporá nota parcial na disciplina de Sistemas Operacionais 2, ministrada pelo professor Eduardo S. de Albuquerque, no Instituto de Informática da Universidade Federal de Goiás, tem como objetivo apresentar os sitesmas de arquivos FAT 16 e FAT 32; sistemas de arquivo de relevância histórica, inicialmente apresentados no sistema operacional Microsoft MS-DOS. A análise se pautará em suas questões arquiteturais e em alguns detalhes de implementação.
+\end{abstract}
+
+\section{Introdução} % Beatriz
+
+\section{Características do sistema FAT} % Beatriz
+A tabela de arquivos FAT é situada no início do volume. São armazenadas duas tabelas para o caso de uma ser danificada, além disso as tabelas e o diretório \emph{root} ou raíz devem ser armazenados num local fixo para que os arquivos necessários para a inicialização do sistema sejam localizados corretamente \cite{examining}.
+
+Originalmente o sistema FAT foi desenvolvido para máquinas com arquitetura IBM PC, por isso os bytes das entradas FAT são armazenados em ``little endian'', assim, ao utilizar uma máquina ``big endian'' é preciso traduzí-los ao serem movidos dados do disco ou para outro disco \cite{fatgen103}.
+
+Cada volume tem seu próprio FAT, o qual contém informações de alocação para cada arquivo no volume através de listas ligadas de unidades de alocação, isto é, \emph{clusters} formados por setores em potência de 2. Por meio disso, o sistema também pode indicar quais são as unidade livres para serem utilizadas por um arquivo sendo criado ou extendido \cite{FAT_File_System}.
+
+Desconsiderando os \emph{clusters} reservados, o FAT16 é limitado por $2^{16}$ ou 65.536 \emph{clusters}, já o FAT32 por $2^{32}$ ou mais de 4 bilhões de \emph{clusters} \cite{examining} (mais detalhes na Seção 5 - Particionamento de disco). O conceito básico do sistema FAT, como pode ser visto na Figura \ref{fig1}, é que, para cada arquivo ou diretório, é alocado uma estrutura de dados, chamada entrada de diretório, que contém o nome do arquivo, tamanho, endereço de início e outros metadados; seu conteúdo é guardado em um ou mais \emph{clusters}, que podem ser encontrados através da tabela FAT, a qual identifica o próximo \emph{cluster} e identifica o status de alocação dos \emph{clusters} \cite{filesystemanalysis}.
+
+O FAT surgiu como uma boa solução para o gerenciamento de disco, principalmente porque a tabela era pequena o suficiente para caber na memória, permitindo um acesso aleatório rápido, mas se tornou inviável com o aumento do tamanho da tabela em discos fixos, o que exigia paginação. Outro problema é que a informação a respeito de espaço livre era espalhada entre os setores do FAT, resultando numa alta fragmentação: para \emph{clusters} grandes, era desperdiçado, em média, metade de um \emph{cluster} em cada arquivo \cite{FAT_File_System}.
+
+\section{Estrutura do volume e particionamento} % Beatriz + Ewerton
+\label{particionamentoDisco}
+Um sistema FAT geralmente é organizado da seguinte forma \cite{chapter17}: um setor de boot, no início do volume (veja a subseção \ref{setorBoot}); as tabelas de alocação FAT1 e FAT2, sendo esta última uma redundância da primeira (veja mais detalhes na seção \ref{tabelaAlocacao}); o diretório \emph{root} ou raíz; e por fim outros diretórios e todos os arquivos representados. As áreas FAT1 e FAT2 geralmente são agrupadas arquiteturalmente sob o título de área FAT e as áreas do diretório \emph{root} e dos demais diretórios e arquivos sob o título de área de dados \cite{filesystemanalysis}.
+
+Na versão FAT12/16 o diretório \emph{root} ou raíz encontra-se no início da área de dados; enquanto na versão FAT32 o diretório raíz pode estar em qualquer parte da área de dados --- tal situação é considerada rara, tendo como padrão o uso da atribuição da versão FAT12/16 \cite{filesystemanalysis}.
+
+O sistema de arquivos é alocado em \emph{clusters}, unidades de dados do sistema de arquivo \cite{chapter17}, que são um grupo consecutivo de setores --- o número de setores geralmente é em base 2 (1, 2, 4, 8, 16, 32 ou 64) e o número (``endereço'') do \emph{cluster} deve ser representável em até 16 bits. Curiosamente, os números de \emph{cluster} começam com o número 2: não existem os \emph{clusters} 0 e 1; além destes estarem todos na área de dados. O tamanho de um \emph{cluster} é determinado, geralmente, pelo tamanho do volume de armazenamento. Essas restrições limitam o tamanho máximo de um volume de armazenamento para até 4GB, já que o tamanho mínimo do \emph{cluster} --- e, portanto, do setor --- é de 512 bytes e o tamanho máximo de um \emph{cluster} é de 64 kilobytes \cite{chapter17} --- embora em outra fonte o tamanho máximo de um \emph{cluster} seja 32 kilobytes \cite{filesystemanalysis}. Cada \emph{cluster} é identificado como ``não-usado'', ``em uso'', ``\emph{bad cluster}'' ou ``último \emph{cluster} em um arquivo''; informações que estão disponíveis na tabela de alocação (mais detalhes na seção \ref{tabelaAlocacao}).
+
+Como as áreas FAT e o setor de boot não usam a estrutura de \emph{cluster}, determinar a localização do primeiro \emph{cluster} não é uma tarefa fácil \cite{filesystemanalysis}. Na versão FAT12/16 o primeiro \emph{cluster} é o primeiro setor do diretório raíz, que é alocado quando o sistema de arquivo é criado; na versão FAT32, o primeiro \emph{cluster} é o primeiro setor da área de dados.
+
+O diretório raíz contém entradas para cada arquivo e directório na raíz; o que distingue o diretório raíz dos demais diretórios é sua posição no volume e seu tamanho fixo: 512 entradas para volumes em disco rígido e um tamanho varíavel para disquetes, dependendo do tamanho do volume.  Como será apresentado na seção \ref{estrutudadeDiretorio} (página \pageref{estrutudadeDiretorio}), diretórios são estruturas semelhantes aos arquivos, com estruturas próprias que os distinguem.
+
+\subsection{Setor de boot} % Ewerton
+\label{setorBoot}
+O setor de boot, como em geral é encontrado em outros sistemas de arquivos, tem como finalidade armazenar código que será executado pela BIOS do sistema computacional durante a inicialização do disco. Localizado no primeiro setor do volume, além de conter código de execução, esta área do sistema de arquivos contém informações sobre o próprio sistema, como o tamanho das tabelas de alocação (áreas FAT) e demais informações sensíveis ao funcionamento do sistema \cite{filesystemanalysis}: o número de estruturas FAT e o tamanho destas estruturas; tamanho das estruturas de diretório; tamanho do \emph{cluster}; dentre outras informações. Geralmente a versão é marcada por tag, em formato \emph{string}, com os possíveis valores ``FAT12'', ``FAT16'', ``FAT32'' ou apenas ``FAT''. Fora esse marcador, não existe, dentre as informações do setor de boot, qualquer dado acurado para a versão do sistema de arquivos FAT; essa informação só pode ser obtida a partir de cálculos feito nas informações armazenadas \cite{filesystemanalysis}.
+
+Na versão FAT12/16, o setor de boot ocupa um único setor, enquanto na versão FAT32 muitos outros setores podem ser armazenados. Na versão FAT32 é possível encontrar informações sobre o próximo \emph{cluster} disponível e a quantidade de \emph{clusters} disponíveis (na estrutura de dados FSINFO); o endereço do setor com uma cópia de segurança (\emph{backup}) do setor de boot, geralmente no setor 6, que pode ser usado por ferramentas quando o setor original estiver corrompido; e o endereço do setor de início do diretório raíz.
+
+Outras informações não essencias estão também disponíveis no setor de boot: o nome OEM (\emph{OEM name} \cite{filesystemanalysis}), usado para indicar a ferramenta que criou o sistema de arquivos; um número serial de 4 bytes que determina quando o sistema de arquivo foi criado; e, como já mencionado, uma tag para determinar qual a versão do sistema de arquivo, embora tal informação não seja objetivamente correta. Outra informação importante, a qual é também armazenada no diretório raíz, é o rótulo do volume do sistema de arquivos e um rótulo do sistema de arquivo.
+
+O código de execução, anteriormente mencionado, são instruções de \emph{JUMP} que levam a máquina a executar os códigos de execução, armazenados nos bytes 62 a 509 na versão FAT12/16 e nos bytes 90 a 509 na versão FAT32. Sistemas FAT geralmente apresentam código de execução, mesmo que estes volumes não sejam inicializáveis (\emph{bootable}). A MBR, geralmente no início do disco ou dispositivo e fora da responsabilidade do sistema de arquivo, é responsável por inicializar a execução do código presente no setor de boot.
+
+\section{Tabela de alocação} % Ewerton
+\label{tabelaAlocacao}
+A tabela de alocação no sistema FAT tem uma relevância chave na arquitetura deste sistema de arquivo; como o próprio nome do sistema de arquivos indica (FAT é acrônimo para \emph{File allocation table}, ou tabela de alocação de arquivos, em tradução livre).
+
+Como foi apresentado na seção \ref{particionamentoDisco} (página \pageref{particionamentoDisco}), as tabelas de alocação são armazenadas nas áreas de disco FAT1 e FAT2, as quais, como mencionado, não usam a estrutura lógica dos \emph{clusters}. A FAT2 é uma replicação do FAT1 e tem por finalidade atender certo nível de segurança ao indicar possíveis inconsistências que possam surgir no sistema de arquivo. O tamanho da área FAT é geralmente calculado pelo tamanho da estrutura FAT e a quantidade de \emph{clusters} no sistema.
+
+As tabelas de alocação armazenadas na área FAT têm por finalidade indicar o status dos \emph{clusters} da área de dados.
+
+
+
+\section{Estrutura de diretório} % Eduardo
+\label{estrutudadeDiretorio}
+
+\section{Nomes de arquivos} % Beatriz
+
+\section{Operações com arquivos} % Beatriz
+
+\section{Aspectos de segurança}
+
+\section{Conclusão}
+
+\bibliographystyle{inf-ufg}
+\bibliography{bibliograph}
+\end{document}
