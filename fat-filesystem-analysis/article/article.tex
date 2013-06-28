@@ -20,6 +20,11 @@ O presente trabalho, que comporá nota parcial na disciplina de Sistemas Operacio
 \end{abstract}
 
 \section{Introdução} % Beatriz
+O sistema de arquivos FAT foi inventado em 1977 por Bill Gates e Marc McDonald baseando-se nos produtos da Microsoft e no sistema operacional CP/M da Digital Research; posteriormente ficou conhecido por ser utilizado no sistema operacional MS-DOS e nas duas versões iniciais do OS/2 \cite{filesystemanalysis}. Um computador pode acessar os arquivos de uma partição primária ou de uma unidade lógica FAT \cite{chapter17} através de qualquer Windows e da maioria dos Unix. Esse sistema é relativamente simples, sendo, também, muito utilizado em pen drives \cite{filesystemanalysis} e é ideal para disquetes e cartões de memória, além de ser conveniente para compartilhamento de dados num ambiente dual boot \cite{examining}.
+
+FAT é uma abreviação para File Allocation Table (ou Tabela de Alocação de Arquivos) já que utiliza uma tabela em seu método de organização de arquivos \cite{examining}. Atualmente existem três subtipos FAT: FAT12, FAT16 e FAT32 \cite{fatgen103}, os quais serão abordados, com foco primordial nas versões FAT16 e FAT32.
+
+Na seção 2 o sistema FAT será analisado em mais detalhes, em termos globais; na seção 3 é apresentada a estrutura do sistema com seu particionamento lógico; na seção 4 são apresentadas considerações sobre a tabela de alocação; na seção 5 a estrutura dos diretórios são consideradas; na seção 6 regras e convenções envolvendo nomes de arquivos é tratada; na seção 7, por fim, é tratado sobre recuperação e segurança.
 
 \section{Características do sistema FAT} % Beatriz
 A tabela de arquivos FAT é situada no início do volume. São armazenadas duas tabelas para o caso de uma ser danificada, além disso as tabelas e o diretório \emph{root} ou raíz devem ser armazenados num local fixo para que os arquivos necessários para a inicialização do sistema sejam localizados corretamente \cite{examining}.
@@ -28,7 +33,14 @@ Originalmente o sistema FAT foi desenvolvido para máquinas com arquitetura IBM P
 
 Cada volume tem seu próprio FAT, o qual contém informações de alocação para cada arquivo no volume através de listas ligadas de unidades de alocação, isto é, \emph{clusters} formados por setores em potência de 2. Por meio disso, o sistema também pode indicar quais são as unidade livres para serem utilizadas por um arquivo sendo criado ou extendido \cite{filesystemanalysis}.
 
-Desconsiderando os \emph{clusters} reservados, o FAT16 é limitado por $2^{16}$ ou 65.536 \emph{clusters}, já o FAT32 por $2^{32}$ ou mais de 4 bilhões de \emph{clusters} \cite{examining} (mais detalhes na Seção 5 - Particionamento de disco). O conceito básico do sistema FAT, como pode ser visto na Figura \ref{fig1}, é que, para cada arquivo ou diretório, é alocado uma estrutura de dados, chamada entrada de diretório, que contém o nome do arquivo, tamanho, endereço de início e outros metadados; seu conteúdo é guardado em um ou mais \emph{clusters}, que podem ser encontrados através da tabela FAT, a qual identifica o próximo \emph{cluster} e identifica o status de alocação dos \emph{clusters} \cite{filesystemanalysis}.
+Desconsiderando os \emph{clusters} reservados, o FAT16 é limitado por $2^{16}$ ou 65.536 \emph{clusters}, já o FAT32 por $2^{32}$ ou mais de 4 bilhões de \emph{clusters} \cite{examining} (mais detalhes na seção \ref{particionamentoDisco}). O conceito básico do sistema FAT, como pode ser visto na Figura \ref{figuraBia1}, é que, para cada arquivo ou diretório, é alocado uma estrutura de dados, chamada entrada de diretório, que contém o nome do arquivo, tamanho, endereço de início e outros metadados; seu conteúdo é guardado em um ou mais \emph{clusters}, que podem ser encontrados através da tabela FAT, a qual identifica o próximo \emph{cluster} e identifica o status de alocação dos \emph{clusters} \cite{filesystemanalysis}.
+
+\begin{figure}[h!]
+\label{figuraBia1}
+\centering
+\includegraphics[width=0.9\textwidth]{estrutura-intro.jpg}
+\caption{Organização dos dados com o sistema FAT \cite{filesystemanalysis}}
+\end{figure}
 
 O FAT surgiu como uma boa solução para o gerenciamento de disco, principalmente porque a tabela era pequena o suficiente para caber na memória, permitindo um acesso aleatório rápido, mas se tornou inviável com o aumento do tamanho da tabela em discos fixos, o que exigia paginação. Outro problema é que a informação a respeito de espaço livre era espalhada entre os setores do FAT, resultando numa alta fragmentação: para \emph{clusters} grandes, era desperdiçado, em média, metade de um \emph{cluster} em cada arquivo \cite{filesystemanalysis}.
 
@@ -139,6 +151,18 @@ entrada curta associada com as entradas precedentes & (não se aplica) \\
 Primeiro, cada membro de um conjunto de entradas longas é unicamente numerada, e o último membro do conjunto contém uma flag indicando que ele é de fato o último membro.
 
 \section{Nomes de arquivos} % Beatriz
+O FAT não separa endereço de nome de arquivo do endereço de metadados \cite{filesystemanalysis}. No sistema de arquivos FAT16/32, arquivos e pastas são chamados entradas de diretório. Existem nomes curtos (SFN ou Short File Name) e longos (LFN ou Long File Name) de entradas, um SFN possui 8 caracteres para o nome e mais 3 caracteres para a extensão no formato ASCII \cite{and0006}, com um ``.'' entre eles \cite{fatgen103}, porém também é possível ter valores de páginas de símbolos da comunidade internacional através dos 128 caracteres ASCII não utilizados no inglês americano \cite{filesystemanalysis}. LFN possui extensão para até 255 caracteres, com suporte UTF-16 \cite{and0006}.
+
+Se um nome de arquivo contém mais de 8 caracteres ou um valor especial, uma entrada de diretório com tipo LFN é adicionada. Arquivos com LFN também possuem uma entrada de diretório SFN já que entradas LFN não contém informações de horário, tamanho e cluster inicial. Todas as entradas LFN precedem a entrada SFN no diretório e têm um checksum usado para correlacionar as entradas LFN com a SFN. Além disso, as entradas LFN ficam em ordem reversa para que a primeira parte do nome do arquivo seja próximo a entrada SFN.
+
+A Figura \ref{figuraBia5} mostra três arquivos, sendo que um possui um nome de arquivo grande, assim suas duas entradas LFN precedem a entrada SFN, além disso o nome é guardado em ordem inversa e o checksum de cada LFN é baseado no SFN \cite{filesystemanalysis}.
+
+\begin{figure}[h!]
+\label{figuraBia5}
+\centering
+\includegraphics[width=0.7\textwidth]{nome-arquivo.jpg}
+\caption{Entrada de diretório de 3 arquivos, sendo um com nome longo.}
+\end{figure}
 
 \section{Recuperação e segurança}
 Uma desvantagem do sistema de arquivos FAT16 e FAT32 é a questão de segurança. Diferente de outros sistemas amplamente utilizados no mercado, como NTFS e EXT. O que é feito para tentar minimizar esse fator, é a utilização de uma cópia de backup da tabela de alocação como ``sistema de segurança'' para corrompimentos. Entretanto, este procedimento é ineficiente, pois uma queda de energia durante uma operação que modifique os metadados, pode tornar a partição inacessível, ou corromper severamente diversos arquivos. \cite{Wikipedia}
@@ -170,6 +194,9 @@ Quando está se investigando um sistema de arquivos, é de grande valia realizar a
 O diretório raiz e seus subdiretórios devem ser examinados, e cada cadeia de clusters na FAT deve ser testada para se ter certeza que uma entrada de diretório alocada aponta para o início do um diretório. O teste reverso também deve ser feito para ter certeza que entradas de diretórios alocadas apontam para clusters alocados. Se múltiplas entradas de diretório apontam para uma cadeia de clusters, é recomendado que todas sejam copiadas para uma nova localidade, e que os originais sejam deletados. O tamanho de uma cadeia de clusters deve ser o número de clusters necessários para o tamanho do arquivo.\cite{filesystemanalysis}
 
 \section{Conclusão}
+O sistema de arquivos FAT tem sua relevância em termos históricos por ter seu desenvolvido em meados da década de 1980 e ter seu uso até hoje conciso em dispositivos diversos, notavelmente PenDrives e cartões de memória. Sua estrutura simples permite que seja aplicado em sistemas diversos, mas suas limitações, quanto ao espaço endereçável em disco e mesmo às limitações com nomes de arquivos e a falta de técnicas de segurança mais atuais, como \emph{journaling} \cite{filesystemanalysis}, não tornaram o FAT interessante para o uso em sistemas computacionais mais avançados e com requisitos de uso mais exigentes.
+
+Ainda assim, tem seu valor notável na história da computação, presente em grandes lançamentos de sua criadora, a Microsoft, --- até ser substituído pelo NTFS, com estruturas e arquiteturas mais modernas e políticas de segurança mais concisas \cite{filesystemanalysis} ---, e até mesmo sendo usável a partir de outros sistemas, como sistemas operacionais \emph{Unix-like}.
 
 \bibliographystyle{inf-ufg}
 \bibliography{bibliograph}
