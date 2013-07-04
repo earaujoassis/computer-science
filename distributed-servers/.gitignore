@@ -1,0 +1,3 @@
+src/clang/
+*.pyc
+*.class
