@@ -78,10 +78,15 @@ def main (args):
     server.subprocess.kill()
     registry.subprocess.terminate()
     registry.subprocess.kill()
-  exit(0)
+  os._exit(0)
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(description='Test distributed-servers builds')
   parser.add_argument('solution', choices=['java-rmi', 'py-crbc'], help='run either the Java RMI or the Python CRBC solution')
   args = parser.parse_args()
-  main(args)
+  try:
+    main(args)
+  except:
+    print("Did you execute 'make build' first?")
+#    import traceback
+#    traceback.print_exc()
