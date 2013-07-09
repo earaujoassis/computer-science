@@ -1,5 +1,5 @@
-lfiles and shrink
-=========
+Linux Files
+===========
 
 Files tool written for Unix-like systems.
 

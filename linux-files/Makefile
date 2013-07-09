@@ -6,11 +6,17 @@ default:
 	$(info <make build> to create the lfiles binary at .)
 	$(info )
 build:
-	$(CC) src/lfiles.c -o lfiles $(CFLAGS)
-	$(CC) src/shrink.c -o shrink $(CFLAGS)
+	mkdir -p bin
+	$(CC) src/lfiles.c -o bin/lfiles $(CFLAGS)
+	$(CC) src/shrink.c -o bin/shrink $(CFLAGS)
+	$(CC) src/finfo.c -o bin/finfo $(CFLAGS)
 debug:
-	$(CC) src/lfiles.c -o lfiles $(CFLAGS) $(DEBUG)
-	$(CC) src/shrink.c -o shrink $(CFLAGS) $(DEBUG)
+	mkdir -p bin
+	$(CC) src/lfiles.c -o bin/lfiles $(CFLAGS) $(DEBUG)
+	$(CC) src/shrink.c -o bin/shrink $(CFLAGS) $(DEBUG)
+	$(CC) src/finfo.c -o bin/finfo $(CFLAGS) $(DEBUG)
 clean:
-	rm -f lfiles
-	rm -f shrink
+	rm -f bin/lfiles
+	rm -f bin/shrink
+	rm -f bin/finfo
+	rm -fr bin
