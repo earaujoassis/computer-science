@@ -23,9 +23,78 @@
 #include <limits.h>
 #include <string.h>
 #include <math.h>
+#include <ftw.h>
+
+/* It shouldn't be here, but I can't figure out how to solve it */
+enum
+{
+  FTW_PHYS = 1,
+#define FTW_PHYS FTW_PHYS
+  FTW_DEPTH = 8
+#define FTW_DEPTH FTW_DEPTH
+};
+
+typedef struct {
+  size_t regular_files;
+  size_t directories;
+  size_t symbolic_links;
+  size_t none;
+} htree_counter_t;
+
+static htree_counter_t *htree_aux = NULL;
+
+void
+set_htree_counter ()
+{
+  if (htree_aux == NULL)
+    {
+      htree_aux = (htree_counter_t *) malloc (sizeof (htree_counter_t));
+      htree_aux->regular_files = 0;
+      htree_aux->directories = 0;
+      htree_aux->symbolic_links = 0;
+      htree_aux->none = 0;
+    }
+}
+
+void
+unset_htree_counter ()
+{
+  if (htree_aux != NULL)
+    {
+      free (htree_aux);
+      htree_aux = NULL;
+    }
+}
+
+void
+print_htree_counter (FILE *stream)
+{
+  if (htree_aux != NULL)
+    {
+      fprintf (stream, "Regular files: %d\n", htree_aux->regular_files);
+      fprintf (stream, "Directories: %d\n", htree_aux->directories);
+      fprintf (stream, "Symbolic links: %d\n", htree_aux->symbolic_links);
+      fprintf (stream, "None of them: %d\n\n", htree_aux->none);
+      return;
+    }
+  fprintf (stream, "Nothing to print.\n");
+}
+
+static int
+compute_htree_info (const char *fpath,
+                    const struct stat *sb,
+                    int tflag,
+                    struct FTW *ftwbuf)
+{
+  (tflag == FTW_F) ? htree_aux->regular_files++ :
+    (tflag == FTW_D) ? htree_aux->directories++ :
+    (tflag == FTW_SL) ? htree_aux->symbolic_links++ : htree_aux->none++;
+  return 0;
+}
 
 int
-generate_histogram (const size_t bytes_class, const char *folder_root)
+generate_histogram (const size_t bytes_class,
+                    const char *folder_root)
 {
   int i, index;
   char current_dir_alloc_flag = 0;
@@ -113,7 +182,9 @@ inode_files (void)
 }
 
 int
-list_directories (int argc_begin, int argc_final, const char **argv)
+list_directories (int argc_begin,
+                  int argc_final,
+                  const char **argv)
 {
   int i;
   char final_slash_flag;

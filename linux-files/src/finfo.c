@@ -19,7 +19,7 @@
 #include <string.h>
 #include <time.h>
 
-#define USAGE "Usage: lfiles <option> [file-name]\n\
+#define USAGE "Usage: finfo <option> [file-name]\n\
 Options:\n\
 -h\t\t\tPrint this help message and exit\n\
 [file-name]\t\tPrint information about [file-name] file\n\
