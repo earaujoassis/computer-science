@@ -18,8 +18,8 @@ from crbc.net import CRBCDummyNode
 
 message = "In the face of ambiguity, refuse the temptation to guess."
 registration_server = ("localhost", 9999)
-client_addr = ("localhost", 9998)
-client = CRBCDummyNode("localhost", 9998, "stub-client")
+client_addr = ("localhost", 7070)
+client = CRBCDummyNode(client_addr[0], client_addr[1], "stub-client")
 client.registration_process(*registration_server)
 print("{} is now writing as a client".format(client_addr))
 response = client.send_message("stub-server", message)

@@ -31,7 +31,7 @@ class UpperCaseMessage(CRBCDummyNode):
       response = CRBCWhatThaHeck(name=datagram.name)
     return response
 
-server_addr = ("localhost", 9996)
+server_addr = ("localhost", 8080)
 server = UpperCaseMessage(server_addr[0], server_addr[1], "stub-server")
 server.registration_process("localhost", 9999, edict={ 'Time-to-live' : 600 })
 print("{} is now listening as a server".format(server_addr))
