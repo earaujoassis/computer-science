@@ -1,0 +1,9 @@
+programa {
+  int a;
+  1 > 2 ? 'a' : 0;
+  se (1 + 2 > 0) entao {
+    enquanto (4 > 8) execute {
+      novalinha;
+    }
+  }
+}

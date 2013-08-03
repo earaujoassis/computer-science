@@ -1,0 +1,36 @@
+Professor,
+
+Para visualizar a árvore de sintaxe abstrata, basta realizar os seguintes
+comandos:
+
+make debug
+./cafezinho <nome_do_arquivo>.z
+
+Com o fim de testar algumas das análises semânticas disponíveis:
+
+make build
+./cafezinho <nome_do_arquivo>.z
+
+Ou ainda:
+
+make build
+make test
+
+Eu acabei introduzindo um problema no analisador semântico o qual eu não
+consegui resolver à tempo, antes da submissão. Acredito que não haverá perda
+significativas da qualidade do trabalho.
+
+O maior destaque dessa submissão é a visualização da construção da árvore
+de sintaxe abstrata. A checagem de tipo está acontecendo normalmente para
+constantes (como somar 1 + 'a', ou realizar o operador ternário
+1 > 2 ? 1 : 'a'). A única dificuldade existente é na criação de declaração
+de variáveis e funções: os nós de declaração não estão sendo alcançados e não
+consegui encontrar um motivo e, consequentemente, uma solução.
+
+Agradeço a oportunidade de desenvolver esse trabalho. Sempre bom ter uma 
+oportunidade de desenvolver minhas habilidades em programação; ainda mais em
+C/C++. Como comentado em sua sala, não deixarei o projeto morrer e tentarei
+chegar até o objetivo final que é a geração de código executável.
+
+Obrigado pela paciência e atenção dedicados nesse semestre.
+Att., Ewerton Assis.

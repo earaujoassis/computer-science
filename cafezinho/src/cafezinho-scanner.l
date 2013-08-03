@@ -32,7 +32,7 @@ LETTER [A-Za-z_]
 
 {WS}        { ; }
 \n          { yylineno++; }
-"programa"  { yylval.lxval = new std::string (yytext); return MAIN; }
+"programa"  { yylval.lxval = new std::string (yytext); return PROGRAM; }
 "int"       { return INT; }
 "car"       { return CHAR; }
 "retorne"   { return RETURN; }
@@ -45,7 +45,7 @@ LETTER [A-Za-z_]
 "enquanto"  { return WHILE; }
 "execute"   { return DO; }
 
-[-!(){}<>+*/%=;,] { return *yytext; }
+[-!(){}<>+*/%=?:;,] { return *yytext; }
 "["  { return *yytext; }
 "]"  { return *yytext; }
 "==" { return EQUAL; }
