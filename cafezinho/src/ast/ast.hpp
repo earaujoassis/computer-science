@@ -637,9 +637,12 @@ class AssignExpr : public Expr
         Expr *right = static_cast<Expr*>(child[1]);
         if (left->getVarType () != right->getType ())
           {
-            std::string message = "Atribuição feita entre identificador e " +
-             "expressão de tipos diferentes: " + getTextType (left->getVarType ()) +
-             " e " + getTextType (right->getType ()) + ".";
+            //TODO An error occurs when one expression is made
+            std::string message = "Atribuição feita entre identificador e ";
+            message = message + "expressão de tipos diferentes: ";
+            message = message + getTextType (left->getVarType ());
+            message = message + " e ";
+            message = message + getTextType (right->getType ()) + ".";
             yyerror (message.c_str (), code_location);
           }
         else
