@@ -1,0 +1,12 @@
+8
+taillard
+/home/earaujo/personal/coding/metaheuristics/scheduling/jobshop/exercises/instances/taillard
+tai15_15.txt
+tai20_15.txt
+tai20_20.txt
+tai30_15.txt
+tai30_20.txt
+tai50_15.txt
+tai50_20.txt
+tai100_20.txt
+

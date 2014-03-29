@@ -1,0 +1,1084 @@
+\documentclass[relatorio,nocolorlinks]{inf-ufg}
+\usepackage[utf8]{inputenc}
+\usepackage[utf8x]{inputenc}
+\usepackage{paralist}
+\usepackage{algorithmic}
+\usepackage{booktabs}
+\usepackage{rotating}
+\begin{document}
+\autor{\'{E}werton Carlos de Ara\'{u}jo Assis}
+\autorR{Assis, \'{E}werton Carlos de Ara\'{u}jo}
+\titulo{Heur\'{i}sticas e metaheur\'{i}sticas aplicadas ao Problema de Escalonamento Job-Shop}
+\subtitulo{Um algoritmo evolucion\'{a}rio h\'{i}brido baseado na fertiliza\c{c}\~{a}o in vitro para solucionar problemas de escalonamento job-shop}
+\cidade{Goi\^{a}nia}
+\dia{19}
+\mes{12}
+\ano{2011}
+\orientador{Prof. Celso Gon\c{c}alves Camilo J\'{u}nior}
+\universidade{Universidade Federal de Goi\'{a}s}
+\uni{UFG}
+\unidade{Instituto de Inform\'{a}tica}
+\concentracao{Otimiza\c{c}\~{a}o e Intelig\^{e}ncia Artificial}
+\capa
+\publica
+\rosto
+
+\begin{aprovacao}
+\banca{Anderson da Silva Soares}{Instituto de Inform\'{a}tica -- UFG}
+\end{aprovacao}
+
+\chaves{Otimiza\c{c}\~{a}o combinat\'{o}ria, problema de escalonamento job-shop, heur\'{i}sticas, metaheur\'{i}sticas, algoritmos gen\'{e}ticos,
+algoritmo evolucion\'{a}rio, computa\c{c}\~{a}o evolucion\'{a}ria}
+\begin{resumo}
+Existem diversas solu\c{c}\~{o}es, heur\'{i}sticas e metaheur\'{i}sticas, para o problema de escalonamento job-shop. O presente trabalho tem por
+objetivo analisar algumas destas solu\c{c}\~{o}es encontradas na literatura, com foco primordial nas metaheur\'{i}sticas e nos padr\~{o}es
+encontrados nessas solu\c{c}\~{o}es. O objetivo n\~{a}o \'{e} realizar uma revis\~{a}o de todas as solu\c{c}\~{o}es que foram desenvolvidas, mas as
+solu\c{c}\~{o}es recentes e que s\~{a}o preponderantemente referenciadas pela literatura por sua qualidade ou conceitos inovadores apresentados.
+A partir das an\'{a}lises feitas, prop\~{o}em-se analisar os efeitos de uma nova solu\c{c}\~{a}o metaheur\'{i}stica, um algoritmo evolucion\'{a}rio
+h\'{i}brido baseado na fertiliza\c{c}\~{a}o in vitro, tamb\'{e}m aplicado na mesma classe de problemas. A efici\^{e}ncia e efetividade do
+algoritmo desenvolvido \'{e} analisada sobre inst\^{a}ncias geralmente utilizadas pela literatura --- inst\^{a}ncias disponibilizadas pela OR-Library.
+A solu\c{c}\~{a}o evolucion\'{a}ria h\'{i}brida baseada na fertiliza\c{c}\~{a}o in vitro apresenta resultados de qualidade, compar\'{a}veis aos
+resultados obtidos por outras solu\c{c}\~{o}es encontradas na literatura. Alguns operadores de sele\c{c}\~{a}o e de variabilidade utilizados em
+solu\c{c}\~{o}es evolucion\'{a}rias s\~{a}o analizados e obt\'{e}m-se uma an\'{a}lise comparativa de configura\c{c}\~{o}es distintas, corroborando
+com o que \'{e} defendido pela literatura sobre a import\^{a}ncia da escolha dos mec\^{a}nismos de sele\c{c}\~{a}o e de variabilidade. A partir de
+27 configura\c{c}\~{o}es distintas, 18 inst\^{a}ncias da OR-Library s\~{a}o exercitadas, obtendo-se um comparativo da solu\c{c}\~{a}o
+evolucion\'{a}ria h\'{i}brida frente a uma solu\c{c}\~{a}o evolucion\'{a}ria baseada em conceitos can\^{o}nicos.
+\end{resumo}
+
+\keys{Combinatorial optimization, Job-shop scheduling problem, Heuristics, Metaheuristics, Genetic Algorithms, Evolutionary algorithm,
+Evolutionary computation}
+\begin{abstract}{Heuristics and  Metaheuristics applied to the Job-shop scheduling problem: a hybrid evolutionary algorithm based on
+in vitro fertilization to solve job-shop scheduling problems}
+There are several solutions, heuristics and metaheuristics, to solve the job-shop scheduling problem. The present work aims to analyse some of
+these solutions found in literature, with primary focus on metaheuristics and patterns found in these solutions. The goal is not to conduct
+a review of all the solutions that have been developed, but the recent ones that are referenced in the literature mainly for their quality and
+their innovative concepts presented. From the analysis made​​, we propose to analyze the effects of a new metaheuristic solution, a hybrid
+evolutionary algorithm based on in vitro fertilization, also applied in the same class of problems. The efficiency and the effectiveness of the
+developed algorithm is analyzed through instances commonly used in the literature --- instances available from OR-Library. The evolutionary hybrid
+solution based on in vitro fertilization presents results of quality comparable to results obtained by other solutions in the literature. Some
+selection and variability operators used in evolutionary solutions are analyzed and a comparative analysis of different configurations is obtained;
+confirming what is advocated by the literature on the importance of the choice of selection mechanisms and variability. From 27 different
+configurations, 18 instances of the OR-Library are exercised, resulting in a comparative study between the hybrid evolutionary solution and a
+solution based on canonical evolutionary concepts.
+\end{abstract}
+
+\tabelas[tabalg]
+
+\chapter{Introdu\c{c}\~{a}o}
+
+Solu\c{c}\~{o}es heur\'{i}sticas e metaheur\'{i}sticas s\~{a}o amplamente utilizadas como meio de solucionar problemas em otimiza\c{c}\~{a}o
+\cite{Gendreau2010} \cite{DeJong2006}. Muitas delas s\~{a}o amplamente utilizadas, em suas formas can\^{o}nicas ou h\'{i}bridas, para solucionar
+inst\^{a}ncias de problemas de escalonamento job-shop \cite{Chen2011}. Solu\c{c}\~{o}es baseadas em algoritmos evolucion\'{a}rias s\~{a}o comuns
+nesse panorama e s\~{a}o frequentemente comparadas a outras abordagens metaheur\'{i}sticas com o fim de legitimar a qualidade das solu\c{c}\~{o}es
+propostas ou mesmo evidenciar limita\c{c}\~{o}es e superar defici\^{e}ncias \cite{Gendreau2010}.
+
+Com a evid\^{e}ncia de limita\c{c}\~{o}es e defici\^{e}ncias em algoritmos evolucion\'{a}rios, como o tempo de converg\^{e}ncia e os diversos
+efeitos que a aleatoriedade causa sobre a solu\c{c}\~{a}o algor\'{i}tmica, \'{e} comum que novas abordagens, ditas h\'{i}bridas, emerjam com o fim de
+superar essas defici\^{e}ncias e explorar qualidades espec\'{i}ficas a cada abordagem algor\'{i}tmica. Assim surge o algoritmo auxiliar
+paralelo baseado na fertiliza\c{c}\~{a}o in vitro, inicialmente aplicado em algoritmos gen\'{e}ticos, que tem por finalidade
+explorar os mec\^{a}nismos de variabilidade dos algoritmos gen\'{e}ticos e superar as defici\^{e}ncias quanto a efetividade do algoritmo e o
+tempo de converg\^{e}ncia do mesmo. Como essa abordagem h\'{i}brida \'{e} nova \cite{Camilo2011}, considera\c{c}\~{o}es pr\'{a}ticas sobre esta
+ainda s\~{a}o raras na literatura.
+
+\section{Objetivo}
+
+O presente trabalho tem por objetivo propor uma solu\c{c}\~{a}o algor\'{i}tmica baseada nos algoritmos evolucion\'{a}rios, notavelmente os
+algoritmos gen\'{e}ticos e as estrat\'{e}gias evolutivas, em conjunto com o algoritmo auxiliar paralelo baseado na fertiliza\c{c}\~{a}o in vitro,
+com o fim de analisar a aplicabilidade dessa abordagem h\'{i}brida em um contexto espec\'{i}fico (problemas de escalonamento job-shop), e os efeitos
+que operadores de variabilidade e de sele\c{c}\~{a}o t\^{e}m sobre a mesma.
+
+\section{Organiza\c{c}\~{a}o da monografia}
+
+O texto divide-se em cap\'{i}tulos, sendo o Cap\'{i}tulo \ref{jobshop} respons\'{a}vel por apresentar defini\c{c}\~{o}es e conceitos relacionados
+a problemas de escalonamento job-shop; o Cap\'{i}tulo \ref{solucoes} apresenta as defini\c{c}\~{o}es pertinentes a heur\'{i}sticas e
+metaheur\'{i}sticas e como estas abordagens est\~{a}o sendo aplicadas para resolver problemas de escalonamento job-shop; o Cap\'{i}tulo \ref{meta}
+esbo\c{c}a os conceitos que norteiam a solu\c{c}\~{a}o algor\'{i}tmica proposta; o Cap\'{i}tulo \ref{solucao} apresenta a solu\c{c}\~{a}o
+algor\'{i}tmica e as decis\~{o}es de projeto envolvidas; o Cap\'{i}tulo \ref{resultados} apresenta os resultados obtidos a partir da solu\c{c}\~{a}o
+algor\'{i}tmica e quais s\~{a}o as considera\c{c}\~{o}es observ\'{a}veis a partir dos resultados; por fim, o Cap\'{i}tulo \ref{conclusao} apresenta
+a conclus\~{a}o e trabalhos futuros.
+
+\chapter{Problemas de escalonamento job-shop}
+\label{jobshop}
+
+Problemas de escalonamento remontam desde a necessidade de organizar meios de produ\c{c}\~{a}o para melhor satisfazerem a demanda de consumo dos
+mercados. A partir da Revolu\c{c}\~{a}o Industrial houve uma crescente necessidade pela sistematiza\c{c}\~{a}o e otimiza\c{c}\~{a}o dos meios de
+produ\c{c}\~{a}o, com fins de diminuir o tempo de produ\c{c}\~{a}o e fazer melhor uso de recursos despendidos na manufatura. Problemas de
+escalonamento job-shop emergem nesse contexto de manufaturas, no qual tarefas ou produtos (\textit{jobs}) devem ser processados por m\'{a}quinas
+a fim de que todas as tarefas sejam conclu\'{i}das. Contudo, problemas de escalonamento job-shop n\~{a}o se prendem a estes contextos de
+manufaturas; diversos problemas e contextos podem ser modelados e melhor compreendidos a partir dessa perspectiva.
+
+\section{Defini\c{c}\~{a}o do problema de escalonamento job-shop}
+
+A defini\c{c}\~{a}o formal de um problema de escalonamento job-shop tradicional \cite{French1982} \'{e} feita a seguir: s\~{a}o
+dadas $n$ tarefas (ou \textit{jobs}) $ \{ J_{1}, J_{2}, ..., J_{n} \} $ a serem processadas por $m$ m\'{a}quinas $ \{ M_{1}, M_{2}, ..., M_{m} \}
+$ --- cada tarefa deve ser processada por cada m\'{a}quina uma \'{u}nica vez. O processamanto de uma tarefa em uma m\'{a}quina \'{e} denominado
+opera\c{c}\~{a}o: a opera\c{c}\~{a}o da tarefa $i$ na m\'{a}quina $j$ \'{e} denotada por $o_{ij}$. Restri\c{c}\~{o}es tecnol\'{o}gicas determinam
+a ordem de processamento de cada tarefa atrav\'{e}s das $m$ m\'{a}quinas. As tarefas em um problema de escalonamento job-shop n\~{a}o compartilham
+uma mesma ordem de processamento atrav\'{e}s das m\'{a}quinas, como acontece em problemas de escalonamento flow-shop, no qual todas as tarefas
+compartilham uma mesma ordem de processamento. O ambiente analisado em um problema de escalonamento job-shop \'{e} geralmente denotado por oficina
+(\textit{workshop}).
+
+Cada tarefa $i$  ($J_{i}$) apresenta um tempo de processamento para cada m\'{a}quina, i.e. para cada opera\c{c}\~{a}o $o_{ij}$, opera\c{c}\~{a}o
+da tarefa $i$ na m\'{a}quina $j$, h\'{a} um tempo de processamento $p_{ij}$. Qualquer tempo de ajuste ou de carregamento (\textit{set-up time})
+da m\'{a}quina para processar a opera\c{c}\~{a}o $o_{ij}$ \'{e} inclu\'{i}do em $p_{ij}$. Al\'{e}m do tempo de processamento para cada
+opera\c{c}\~{a}o, cada tarefa $i$ ($J_{i}$) pode apresentar um tempo de lan\c{c}amento, denotado por $r_{i}$, que determina a partir de quanto
+tempo ou em qual momento a tarefa $J_{i}$ estar\'{a} dispon\'{i}vel para processamento pelas $m$ m\'{a}quinas da oficina.
+
+A partir dessas restri\c{c}\~{o}es e defini\c{c}\~{o}es surge a necessidade de construir um escalonador de tarefas de forma a agendar as $n$
+tarefas atrav\'{e}s das $m$ m\'{a}quinas de forma que o tempo total de processamento seja o menor poss\'{i}vel. Al\'{e}m desse crit\'{e}rio de
+otimiza\c{c}\~{a}o, outros crit\'{e}rios s\~{a}o usualmente estabelecidos, os quais ser\~{a}o apresentados a seguir. Com base nessa
+defini\c{c}\~{a}o cl\'{a}ssica do problema de escalonamento job-shop, outras defini\c{c}\~{o}es tamb\'{e}m foram feitas, como extens\~{a}o, as
+quais ser\~{a}o apresentadas em seguida.
+
+O problema de escalonamento job-shop \'{e} considerado um problema numericamente intrat\'{a}vel, NP-dif\'{i}cil (para $m \geq 2$) \cite{French1982}
+e que apresenta um limite superior de $(n!)^{m}$ solu\c{c}\~{o}es poss\'{i}veis; portanto, objetivamente, a enumera\c{c}\~{a}o de todas as
+solu\c{c}\~{o}es poss\'{i}veis para inst\^{a}ncias com dimens\~{a}o relevante (por exemplo, $10 \times 15$ ou 10 tarefas, 15 m\'{a}quinas) \'{e}
+impratic\'{a}vel \cite{Rondon2009}.
+
+\section{Crit\'{e}rios de otimiza\c{c}\~{a}o}
+
+A partir da defini\c{c}\~{a}o preliminar do problema de escalonamento job-shop podemos extend\^{e}-la de forma a obter outros crit\'{e}rios de
+otimiza\c{c}\~{a}o. Essa defini\c{c}\~{a}o b\'{a}sica geralmente \'{e} extendida da seguinte forma \cite{French1982} \cite{Rondon2009}:
+
+\begin{description}
+\item[$d_{i}$] \'{e} a data de vencimento ou a data de entrega da tarefa $J_{i}$, o tempo ideal para que a tarefa seja completada;
+\item[$a_{i}$] \'{e} a janela de tempo no qual a tarefa $J_{i}$ pode ser processada, denotada por $a_{i} = d_{i} - r_{i}$;
+\item[$W_{ik}$] \'{e} o tempo de espera da tarefa $J_{i}$ no processamento da opera\c{c}\~{a}o $k$. N\~{a}o necessariamente a $k$-\'{e}sima
+opera\c{c}\~{a}o refere-se \`{a} m\'{a}quina $M_{k}$; refere-se \`{a} $k$-\'{e}sima opera\c{c}\~{a}o da ordem de processamento da tarefa
+$J_{i}$ (determinada pelas restri\c{c}\~{o}es tecnol\'{o}gicas da inst\^{a}ncia espec\'{i}fica);
+\item[$W_{i}$] \'{e} o tempo total de espera da tarefa $J_{i}$, ou $W_{i} = \sum_{k=1}^{m}W_{ik}$;
+\item[$C_{i}$] \'{e} o tempo total de processamento da tarefa $J_{i}$, ou $C_{i} = r_{i} + \sum_{k=1}^{m}(W_{ik} + p_{ij(k)})$;
+\item[$F_{i}$] \'{e} o tempo total de processamento da tarefa $J_{i}$ sem levar em conta o tempo de lan\c{c}amento desta, i.e. \'{e} o tempo
+total em que a tarefa passou pelas m\'{a}quinas e, assim, permaneceu na oficina ($F_{i} = C_{i} - r_{i}$);
+\item[$L_{i}$] \'{e} o atraso no processamento da tarefa $J_{i}$ ($L_{i} = C_{i} - d_{i}$). Quando a tarefa \'{e} completada antes do previsto
+na data de entrega (antecipa\c{c}\~{a}o), $L_{i}$ ser\'{a} negativo. Portanto, a partir de $L_{i}$ s\~{a}o definidas duas outras vari\'{a}veis
+de an\'{a}lise:
+$T_{i} = \textit{max}\{C_{i} - d_{i} , 0\}$, o atraso da tarefa $J_{i}$; e
+$E_{i} = \textit{max}\{d_{i} - C_{i} , 0\}$, a atencipa\c{c}\~{a}o da tarefa $J_{i}$;
+\item[$I_{j}$] \'{e} o tempo de ociosidade da m\'{a}quina $M_{j}$.
+\end{description}
+
+
+% TODO COLOCAR UM DIAGRAMA DE GANTT AQUI
+
+
+Estas defini\c{c}\~{o}es t\^{e}m como prop\'{o}sito formalizar os crit\'{e}rios de otimiza\c{c}\~{a}o usualmente estabelecidos para problemas de
+escalonamento job-shop. O crit\'{e}rio b\'{a}sico, comumente adotado pela literatura em problemas de escalonamento \cite{Chen2011}, tem como objetivo
+minimizar o $C_{max}$ (\textit{makespan}), i.e. minimizar o tempo total da tarefa de maior tempo de processamento. Em problemas nos quais as
+tarefas n\~{a}o t\^{e}m um tempo de lan\c{c}amento, estas j\'{a} est\~{a}o todas preparadas para serem executadas pelas m\'{a}quinas,
+$C_{max} = F_{max}$ , sendo $F_{max}$ o tempo total de processamento da tarefa que permaneceu por mais tempo na oficina (passou por todas as
+m\'{a}quinas). Em contexto distinto, no qual algumas tarefas apresentam algum tempo de lan\c{c}amento, podemos ter $C_{max} \neq F_{max}$;
+portanto, outro crit\'{e}rio de otimiza\c{c}\~{a}o \'{e} a minimiza\c{c}\~{a}o do valor $F_{max}$, o tempo gasto pelas tarefas na oficina,
+referente \`{a} tarefa com maior tempo de processamento pelas m\'{a}quinas. Estes dois crit\'{e}rios de otimiza\c{c}\~{a}o s\~{a}o denotados
+como crit\'{e}rios baseados no tempo de conclus\~{a}o das tarefas \cite{French1982}. Outros crit\'{e}rios s\~{a}o apresentados a seguir.
+
+\section{Crit\'{e}rios baseados na data de entrega}
+
+A partir da defini\c{c}\~{a}o de $L_{i}$ alguns crit\'{e}rios de otimiza\c{c}\~{a}o baseados na data de entrega podem ser estabelecidos
+\cite{French1982}, notadamente $T_{max}$ e $E_{max}$, respectivamente, o atraso m\'{a}ximo e a antecipa\c{c}\~{a}o m\'{a}xima. A
+minimiza\c{c}\~{a}o do valor $T_{max}$ \'{e} apropriada em contextos nos quais o atraso no processamento de tarefas apresenta alguma penalidade.
+J\'{a} no caso de minimiza\c{c}\~{a}o do valor $E_{max}$, esta abordagem \'{e} apropriada nos contextos em que h\'{a} um benef\'{i}cio ao
+antecipar-se o processamento das tarefas.
+
+Por fim, outra abordagem de minimiza\c{c}\~{a}o relativa \`{a} data de entrega \'{e} a minimiza\c{c}\~{a}o do n\'{u}mero de tarefas atrasadas
+($n_{T}$). Esta abordagem \'{e} apropriada em contextos cr\'{i}ticos, nos quais tarefas atrasadas apresentam um alto valor de penalidade.
+
+\section{Crit\'{e}rios baseados em custos}
+
+Em alguns ambientes m\'{a}quinas ociosas podem representar recursos ociosos ou, ainda, o processamento das tarefas est\'{a} sujeito \`{a}
+disponibilidade de recursos para cada opera\c{c}\~{a}o. Nestes contextos, outros crit\'{e}rios de otimiza\c{c}\~{a}o surgem. Esses crit\'{e}rios
+de otimiza\c{c}\~{a}o levam em conta as seguintes vari\'{a}veis, para um determinado tempo $t$ \cite{French1982}:
+
+\begin{description}
+\item[$N_{w(t)}$] o n\'{u}mero de tarefas esperando para serem processadas por alguma m\'{a}quina ou tarefas que ainda n\~{a}o est\~{a}o prontas
+para serem processadas;
+\item[$N_{p(t)}$] o n\'{u}mero de tarefas sendo processadas no tempo $t$;
+\item[$N_{c(t)}$] o n\'{u}mero de tarefas completadas no tempo $t$;
+\item[$N_{u(t)}$] o n\'{u}mero de tarefas a serem ainda completadas no tempo $t$.
+\end{description}
+
+Assim, alguns crit\'{e}rios de otimiza\c{c}\~{a}o estabelecidos a partir destas vari\'{a}veis s\~{a}o:
+
+\begin{enumerate}
+\item minimizar o n\'{u}mero m\'{e}dio de tarefas esperando para serem processadas ($\bar{N}_{w}$) ou minimizar o n\'{u}mero m\'{e}dio de
+tarefas n\~{a}o completadas ($\bar{N}_{u}$) de forma a minimizar os custos de invent\'{a}rio;
+\item minimizar o n\'{u}mero m\'{e}dio de tarefas completadas ($\bar{N}_{c}$), de forma a reduzir os custos dos bens produzidos;
+\item maximizar o n\'{u}mero m\'{e}dio de tarefas sendo processadas ($\bar{N}_{p}$) com o intuito de realizar um uso eficiente das m\'{a}quinas.
+Essa maximiza\c{c}\~{a}o do valor $\bar{N}_{p}$ relaciona-se \`{a} minimiza\c{c}\~{a}o do valor $I_{max}$, ou a minimiza\c{c}\~{a}o do tempo
+m\'{a}ximo que uma m\'{a}quina fica ociosa.
+\end{enumerate}
+
+\section{Pressupostos em problemas de escalonamento job-shop}
+
+Pelas defini\c{c}\~{o}es at\'{e} ent\~{a}o feitas \'{e} poss\'{i}vel identificar a complexidade do problema de escalonamento job-shop e o quanto
+este pode se tornar complexo em ambientes reais, nos quais tarefas podem surgir aleatoriamente (ambientes din\^{a}micos) ou mesmo o tempo de
+processamento das tarefas pode n\~{a}o ser conhecido \`{a} priori (ambientes estoc\'{a}sticos) \cite{French1982}. Assim, alguns pressupostos
+gerais s\~{a}o assumidos ao identificar e analisar problemas de escalonamento job-shop tradicionais \cite{French1982}. Como ser\'{a} apresentado
+adiante, esses pressupostos podem ser ignorados ou modificados em extens\~{o}es feitas ao problema de escalonamento job-shop tradicional.
+
+\begin{description}
+\item[cada tarefa \'{e} uma entidade] as opera\c{c}\~{o}es de uma determinada tarefa n\~{a}o podem ser processadas simultaneamente, i.e. cada
+opera\c{c}\~{a}o constituinte de uma determinada tarefa deve ser processada isoladamente, sem paralelismo, em cada m\'{a}quina;
+\item[n\~{a}o existe preemp\c{c}\~{a}o] enquanto uma opera\c{c}\~{a}o \'{e} processada em uma m\'{a}quina, esta continuar\'{a} indispon\'{i}vel
+at\'{e} que a opera\c{c}\~{a}o seja conclu\'{i}da --- n\~{a}o \'{e} admiss\'{i}vel nesse contexto a interrup\c{c}\~{a}o do processamento;
+\item[cada tarefa \'{e} constitu\'{i}da de $m$ opera\c{c}\~{o}es distintas, uma para cada m\'{a}quina] esse pressuposto \'{e} uma consequ\^{e}ncia
+da defini\c{c}\~{a}o anteriormente dada. Assim, temos que uma opera\c{c}\~{a}o (ou, ainda, neste contexto, uma tarefa) n\~{a}o pode ser processada
+mais de uma vez em uma determinada m\'{a}quina; e cada tarefa deve ser processada uma \'{u}nica vez em cada m\'{a}quina;
+\item[tarefas n\~{a}o s\~{a}o canceladas] cada tarefa deve ser processada pelas m\'{a}quinas;
+\item[o tempo de processamento \'{e} independente da agenda constru\'{i}da] o objetivo final do problema de escalonamento job-shop \'{e} a
+constru\c{c}\~{a}o de uma agenda na qual as tarefas sejam escalonadas, i.e. uma ordem de processamento das tarefas ser\'{a} definida atendendo os
+crit\'{e}rios de otimiza\c{c}\~{a}o estabelecidos e as restri\c{c}\~{o}es envolvidas. Contudo, a agenda definida n\~{a}o influenciar\'{a} os
+valores necess\'{a}rios para escalonar as tarefas; assim, o tempo de carregamento da tarefa ou o tempo de prepara\c{c}\~{a}o para o processamento
+de uma tarefa n\~{a}o ser\'{a} influenciado pela agenda definida. Esse pressuposto caracteriza essa defini\c{c}\~{a}o tradicional como
+independente da sequ\^{e}ncia ou agenda (\textit{sequence-independent});
+\item[tarefas podem ter que esperar para serem processadas] este cen\'{a}rio pode ocorrer j\'{a} que, como n\~{a}o \'{e} admiss\'{i}vel a
+preemp\c{c}\~{a}o ou o cancelamento de tarefas, e como o tempo de processamento ($p_{ij}$) \'{e} vari\'{a}vel (entre tarefas e m\'{a}quinas
+distintas), em alguns contextos tarefas podem ter que esperar para serem processadas em alguma m\'{a}quina ocupada;
+\item[existe apenas um \'{u}nico tipo de cada m\'{a}quina] n\~{a}o existe diversas op\c{c}\~{o}es da mesma m\'{a}quina na oficina analisada. Esse
+pressuposto elimina a possibilidade de evitar esperas entre as tarefas;
+\item[m\'{a}quinas podem estar ociosas] j\'{a} que as diversas tarefas podem n\~{a}o ter conclu\'{i}do seu processamento em alguma das outras
+m\'{a}quinas ou est\~{a}o \`{a} espera de outras m\'{a}quinas para serem processadas;
+\item[as m\'{a}quinas n\~{a}o podem processar qualquer tarefa mais de uma vez]
+\item[as m\'{a}quinas da oficina est\~{a}o sempre dispon\'{i}veis para processamento das tarefas]
+\item[as restri\c{c}\~{o}es tecnol\'{o}gicas s\~{a}o imut\'{a}veis e previamente conhecidas] a ordem de processamento das opera\c{c}\~{o}es de
+cada tarefa por cada m\'{a}quina \'{e} previamente estabelecida e imut\'{a}vel ao longo do processo de escalonamento;
+\item[n\~{a}o existe aleatoriedade] o n\'{u}mero de tarefas, o n\'{u}mero de m\'{a}quinas, o tempo de processamento de cada opera\c{c}\~{a}o, o
+tempo de lan\c{c}amento de cada tarefa e outros valores usados para modelar um problema espec\'{i}fico s\~{a}o previamente conhecidos e fixos.
+\end{description}
+
+Vale ressaltar que os pressupostos aqui estabelecidos aplicam-se todos ao problema de escalonamento job-shop tradicional, conforme definido em
+\cite{French1982}. Sugestivamente, alguns destes pressupostos n\~{a}o s\~{a}o admiss\'{i}veis em contextos e ambientes reais. As defini\c{c}\~{o}es
+extendidas, apresentadas a seguir, geralmente modificam, extendem ou eliminam alguns destes pressupostos.
+
+\section{Extens\~{o}es \`{a} defini\c{c}\~{a}o tradicional}
+
+Com base na defini\c{c}\~{a}o tradicional dos problemas de escalonamento job-shop, outras defini\c{c}\~{o}es s\~{a}o feitas extendendo ou
+reinterpretando as restri\c{c}\~{o}es e defini\c{c}\~{o}es aplicadas ao problema. Algumas dessas extens\~{o}es s\~{a}o o problema de
+escalonamento job-shop flex\'{i}vel (FJSSP) e o problema de escalonamento job-shop multi-objetivo (MOJSSP).
+
+\begin{description}
+\item[Problema de escalonamento job-shop flex\'{i}vel (FJSSP)] Essa extens\~{a}o faz uma reinterpreta\c{c}\~{a}o do que representa cada
+m\'{a}quina e, consequentemente, aumenta o espa\c{c}o de busca do problema. Al\'{e}m dos crit\'{e}rios de otimiza\c{c}\~{a}o analisados, um
+outro objetivo \'{e} acrescentado: al\'{e}m de determinar a ordem de execu\c{c}\~{a}o das tarefas, o escalonador deve determinar em qual
+das m\'{a}quinas determinada tarefa ser\'{a} executada em dado momento. Assim, n\~{a}o existe restri\c{c}\~{o}es tecnol\'{o}gicas quanto \`{a}
+ordem que as tarefas devem ser processadas pelas diversas m\'{a}quinas. Por consequ\^{e}ncia, o espa\c{c}o de busca \'{e} aumentado.
+\cite{Liouane2007} \cite{Saidi2007} \cite{Xing2010} \cite{Zhang2009} \cite{Ma2010} \cite{Zhang2010} \cite{Zhang2010b}
+
+\item[Problema de escalonamento job-shop multi-objetivo (MOJSSP)] Essa extens\~{a}o na verdade \'{e} uma categoriza\c{c}\~{a}o de problemas
+de escalonamento job-shop que estabelecem mais de um crit\'{e}rio de otimiza\c{c}\~{a}o no modelo do problema a ser solucionado. Portanto,
+existem algumas abordagens que podem ser estabelecidas para guiar a solu\c{c}\~{a}o, como por exemplo estabelecer um sistema de pesos dentre
+os diversos crit\'{e}rios a fim de obter uma \'{u}nica fun\c{c}\~{a}o objetiva; ou a abordagem da efici\^{e}ncia \`{a} Pareto na
+resolu\c{c}\~{a}o de problemas multi-objetivos. \cite{Adibi2010} \cite{Manikas2009} \cite{Zhang2009} \cite{Zhang2010} \cite{Wang2010}
+\end{description}
+
+Estas extens\~{o}es apresentadas n\~{a}o t\^{e}m como prop\'{o}sito serem definitivas, j\'{a} que outras defini\c{c}\~{o}es podem ser obtidas
+a partir de outras considera\c{c}\~{o}es sobre os pressupostos e restri\c{c}\~{o}es apresentadas.
+
+\section{Classifica\c{c}\~{a}o das agendas}
+
+Como foi supracitado, o espa\c{c}o de busca do problema de escalonamento job-shop \'{e} consideravelmente grande at\'{e} mesmo para pequenas
+inst\^{a}ncias do problema ($m \geq 2$). Assim, \'{e} encontrado na literatura uma categoriza\c{c}\~{a}o das solu\c{c}\~{o}es com base em
+alguns dos crit\'{e}rios de otimiza\c{c}\~{a}o analisados. A seguir s\~{a}o apresentadas as categoriza\c{c}\~{o}es mais usuais:
+
+\begin{description}
+\item[agendas ativas] s\~{a}o agendas nas quais n\~{a}o \'{e} poss\'{i}vel escalonar tarefas (ou opera\c{c}\~{o}es) para serem processadas
+antecipadamente sem violar algumas das restri\c{c}\~{o}es tecnol\'{o}gicas \cite{Brucker2007}. Outra defini\c{c}\~{a}o apresenta agendas ativas como
+agendas nas quais n\~{a}o \'{e} poss\'{i}vel ter ao menos uma tarefa terminando antecipadamente e nenhuma tarefa atrasada \cite{Pinedo2008};
+\item[agendas semiativas] s\~{a}o agendas nas quais existe tempo ocioso e que n\~{a}o pode ser eliminado, i.e. algumas m\'{a}quinas estar\~{a}o
+ociosas \cite{Rondon2009}. Outra defini\c{c}\~{a}o afirma que agendas semiativas s\~{a}o aquelas nas quais tarefas (ou opera\c{c}\~{o}es) n\~{a}o
+podem ser processadas antecipadamente sem modificar a ordem de processamento ou violar as restri\c{c}\~{o}es tecnol\'{o}gicas \cite{Brucker2007}
+\cite{Pinedo2008};
+\item[agendas sem atraso] s\~{a}o agendas nas quais n\~{a}o existe tempo ocioso, i.e. m\'{a}quinas nunca est\~{a}o ociosas \cite{Rondon2009};
+\item[agendas \'{o}timas] as agendas \'{o}timas s\~{a}o parte de um subconjunto das agendas sem atraso e que minimizam o tempo de processamento
+de todas as tarefas, i.e. minimizam o tempo da tarefa com maior tempo de processamento ($C_{max}$) \cite{Rondon2009}.
+\end{description}
+
+Essa categoriza\c{c}\~{a}o tem como objetivo clarificar quais s\~{a}o os objetivos a serem almejados em uma solu\c{c}\~{a}o proposta, al\'{e}m
+de delimitar o espa\c{c}o de busca que est\'{a} sendo usado como ambiente de busca e quais as agendas que podem ser efetivamente constru\'{i}das
+em determinada abordagem de solu\c{c}\~{a}o.
+
+\chapter{Solu\c{c}\~{o}es heur\'{i}sticas e metaheur\'{i}sticas}
+\label{solucoes}
+
+O termo heur\'{i}stica origina-se do termo grego $\epsilon\upsilon\rho\acute{\iota}\sigma\kappa\omega$ (\textit{heurisk\={o}}), que significa
+``a arte de descobrir novas estrat\'{e}gias (...) para solucionar problemas'' (tradu\c{c}\~{a}o livre) \cite{Talbi2009}. Dada a complexidade do
+problema de escalonamento job-shop, por exemplo, os m\'{e}todos de solu\c{c}\~{a}o trivialmente utilizados para outros problemas similares, ou o
+conhecimento utilizado para resolver outros problemas semelhantemente complexos (como a classe de problemas combinatoriais), n\~{a}o s\~{a}o
+facilmente empregados neste tipo de problema, dada a sua complexidade e caracter\'{i}sticas pr\'{o}prias e o fato de n\~{a}o ser solucion\'{a}vel
+em tempo polinomial (dado que o problema de escalonamento job-shop \'{e} NP-dif\'{i}cil). Portanto, heur\'{i}sticas s\~{a}o desenvolvidas --- a
+partir da an\'{a}lise das caracter\'{i}sticas do problema e de como contornar a necessidade de enumerar e verificar as solu\c{c}\~{o}es
+poss\'{i}veis no espa\c{c}o de busca --- com o fim de apresentar solu\c{c}\~{o}es aceit\'{a}veis em tempo tamb\'{e}m aceit\'{a}vel. Geralmente
+s\~{a}o feitas an\'{a}lises das int\^{a}ncias do problema, e os resultados obtidos atrav\'{e}s destas servem como est\'{i}mulo para melhorar a
+solu\c{c}\~{a}o heur\'{i}stica proposta. Solu\c{c}\~{o}es heur\'{i}sticas s\~{a}o geralmente vistas como prop\'{i}cias a serem enganadas por
+\'{o}timos locais \cite{Glover1986}.
+
+Michel Gendreau, no livro \textit{Handbook of Metaheuristics}, apresenta metaheur\'{i}sticas como ``m\'{e}todos de solu\c{c}\~{a}o que orquestram
+uma intera\c{c}\~{a}o entre procedimentos de melhora local e estrat\'{e}gias de alto n\'{i}vel com o fim de criar um processo capaz de escapar
+de \'{o}timos locais e realizar uma busca robusta em um espa\c{c}o de busca'' (tradu\c{c}\~{a}o livre) \cite{Gendreau2010}. Metaheur\'{i}sticas
+``prov\^{e}m resultados aceit\'{a}veis, em um tempo razo\'{a}vel, como solu\c{c}\~{a}o de problemas dif\'{i}ceis e complexos, nas Ci\^{e}ncias
+e na Engenharia'' (tradu\c{c}\~{a}o livre) \cite{Talbi2009}. O prefixo \textit{meta} aplicado ao termo heur\'{i}stica denota que estas
+solu\c{c}\~{o}es s\~{a}o como modelos para que solu\c{c}\~{o}es heur\'{i}sticas sejam facilmente constru\'{i}das a partir de modifica\c{c}\~{o}es
+m\'{i}nimas nas metaheur\'{i}sticas. O termo metaheur\'{i}stica foi inicialmente apresentado por Glover \cite{Glover1986} \cite{Talbi2009}.
+
+Metaheur\'{i}sticas auxiliam na constru\c{c}\~{a}o de solu\c{c}\~{o}es para diversos problemas complexos por apresentarem um arcabou\c{c}o geral
+e flex\'{i}vel (a partir de estrat\'{e}gias de alto n\'{i}vel), que tornam a customiza\c{c}\~{a}o da solu\c{c}\~{a}o para necessidades
+espec\'{i}ficas do problema relativamente simples (procedimentos de melhora local, como supracitado). Estas caracter\'{i}sticas, analisadas a
+seguir, tornaram as metaheur\'{i}sticas ferramentas importantes para solucionar problemas complexos e que apresentam inst\^{a}ncias de tamanho
+consider\'{a}vel.
+
+\section{M\'{e}todos e abordagens de otimiza\c{c}\~{a}o aplicados ao problema de escalonamento job-shop}
+
+V\'{a}rias abordagens t\^{e}m sido utilizadas para apresentar solu\c{c}\~{o}es ao problema de escalonamento job-shop \cite{Chen2011}. Esses
+m\'{e}todos de resolu\c{c}\~{a}o s\~{a}o usualmente caracterizados como m\'{e}todos exatos, m\'{e}todos com regras de prioridade, m\'{e}todos
+heur\'{i}sticos e metaheur\'{i}sticos e m\'{e}todos da intelig\^{e}ncia artificial \cite{Chen2011}. Al\'{e}m do uso isolado desses m\'{e}todos,
+\'{e} comum o uso h\'{i}brido destes com o prop\'{o}sito de melhorar uma abordagem espec\'{i}fica \cite{Gendreau2010}. As formas h\'{i}bridas
+geralmente t\^{e}m como forma a combina\c{c}\~{a}o de um m\'{e}todo de busca global acompanhado por um m\'{e}todo de busca local \cite{Chen2011}.
+
+Realizar uma revis\~{a}o sistem\'{a}tica e extensiva dos m\'{e}todos de resolu\c{c}\~{a}o atualmente empregados n\~{a}o \'{e} o fim deste
+trabalho; contudo, a partir da an\'{a}lise das heur\'{i}sticas e metaheur\'{i}sticas empregadas e citadas na literatura, os m\'{e}todos de
+resolu\c{c}\~{a}o analisados a seguir s\~{a}o aqueles citados como m\'{e}todos heur\'{i}sticos e metaheur\'{i}sticos, foco primordial do presente
+trabalho.
+
+\subsection{M\'{e}todos heur\'{i}sticos e metaheur\'{i}sticos}
+
+Existem atualmente v\'{a}rias abordagens heur\'{i}sticas e metaheur\'{i}sticas com o intuito de apresentar solu\c{c}\~{o}es para o problema de
+escalonamento job-shop \cite{Chen2011}. Algumas heur\'{i}sticas e metaheur\'{i}sticas not\'{a}veis s\~{a}o: algoritmos gen\'{e}ticos
+\cite{Goncalves2002} \cite{Ferrolho2007} \cite{Huang2010} \cite{Liu2011} \cite{Ma2010} \cite{Manikas2009} \cite{Jinghua2010} \cite{Rondon2009}
+\cite{Xiaomei2010} \cite{Yin2007} \cite{Zhang2010b} \cite{Zhang2010}, algoritmos mem\'{e}ticos \cite{Gao2011}, \textit{particle swarm
+optimization} \cite{Zhang2009} \cite{Lin2010}, \textit{simulated annealing} \cite{Lin2010}, col\^{o}nia de formiga (\textit{ant colony optmization})
+\cite{Liouane2007} \cite{Rondon2009} \cite{Xing2010}, \textit{variable neighborhood search} \cite{Adibi2010} \cite{Roshanaei2009} e busca tabu
+(\textit{tabu search}) \cite{Saidi2007} \cite{Zhang2010}. Atualmente, \'{e} not\'{a}vel a tend\^{e}ncia de uso h\'{i}brido dessas heur\'{i}sticas
+e metaheur\'{i}sticas \cite{Gendreau2010} com o intuito de explorar as vantagens e minimizar as desvantagens de cada m\'{e}todo \cite{Chen2011}.
+
+O uso de m\'{e}todos heur\'{i}sticos e metaheur\'{i}sticos, tamb\'{e}m denominados m\'{e}todos aproximados \cite{Rondon2009}, em contrapartida aos
+m\'{e}todos exatos (ou m\'{e}todos de otimiza\c{c}\~{a}o cl\'{a}ssicos, como \textit{branch-and-bound} \cite{French1982} \cite{Artigues2009},
+\textit{cutting-plane} e programa\c{c}\~{a}o inteira \cite{French1982}) tem como motivador a qualidade das solu\c{c}\~{o}es obtidas, embora n\~{a}o
+garantidamente \'{o}timas. Portanto, s\~{a}o algoritmos relativamente efetivos, al\'{e}m de serem solu\c{c}\~{o}es eficientes, quando comparado
+aos m\'{e}todos exatos \cite{Chen2011}. Os m\'{e}todos exatos s\~{a}o ineficientes, embora efetivos, na resolu\c{c}\~{a}o de inst\^{a}ncias de
+problemas com dimens\~{a}o consider\'{a}vel (por exemplo, $15 \times 15$ ou 15 tarefas e 15 m\'{a}quinas) \cite{Chen2011}.
+
+Os m\'{e}todos aproximados s\~{a}o geralmente classificados como t\'{e}cnicas construtivas ou de busca local \cite{Rondon2009}. Aqueles t\^{e}m o
+prop\'{o}sito de obter uma solu\c{c}\~{a}o final a partir de um espa\c{c}o de solu\c{c}\~{a}o vazio e, iterativamente, melhorar essa
+solu\c{c}\~{a}o inicial (ou solu\c{c}\~{o}es iniciais, no contexto das abordagens populacionais). A busca local tem como prop\'{o}sito melhorar
+uma solu\c{c}\~{a}o completa inicial na tentativa de obter uma solu\c{c}\~{a}o ainda melhor. A performance e qualidade dos m\'{e}todos
+aproximados \'{e} geralmente analisada a partir dos resultados obtidos experimentalmente \cite{DeJong2006} \cite{Rondon2009}.
+
+\subsection{Padr\~{o}es identificados em solu\c{c}\~{o}es}
+
+Alguns padr\~{o}es na constru\c{c}\~{a}o de solu\c{c}\~{o}es heur\'{i}sticas e metaheur\'{i}sticas foram identificados a partir das an\'{a}lises
+feitas com os artigos selecionados:
+
+\begin{enumerate}
+
+\item Ainda que existam tentativas de propor novas formas de representa\c{c}\~{a}o das solu\c{c}\~{o}es que os m\'{e}todos metaheur\'{i}sticos
+trabalhar\~{a}o, como uma codifica\c{c}\~{a}o cromoss\^{o}mica tridimensional ou matricial para algoritmos gen\'{e}ticos \cite{Jinghua2010}
+\cite{Yin2007} \cite{Zhang2010b}, obt\'{e}m-se resultados de qualidade evidente, eficiente e relativamente efetiva com uma representa\c{c}\~{a}o
+cromoss\^{o}mica a partir de chaves aleat\'{o}rias, ou ostensivamente conhecidas como \textit{random-keys} \cite{Adibi2010} \cite{Goncalves2002}
+\cite{Roshanaei2009} \cite{Lin2010}. A principal vantagem da representa\c{c}\~{a}o por chaves aleat\'{o}rias \'{e} que todas as
+solu\c{c}\~{o}es--indiv\'{i}duos, do m\'{e}todo metaheur\'{i}stico populacional (algoritmo gen\'{e}tico, por exemplo), s\~{a}o indiv\'{i}duos
+v\'{a}lidos em todas as aplica\c{c}\~{o}es dos operadores de recombina\c{c}\~{a}o e muta\c{c}\~{a}o; nenhum esfor\c{c}o adicional \'{e}
+necess\'{a}rio para tornar uma solu\c{c}\~{a}o-indiv\'{i}duo v\'{a}lida \cite{Goncalves2002}. Conquanto exista o esfor\c{c}o computacional extra
+para decodificar a representa\c{c}\~{a}o da solu\c{c}\~{a}o para uma agenda (no caso do problema de escalonamento job-shop), com determinada ordem
+de processamento das opera\c{c}\~{o}es das tarefas. Essa representa\c{c}\~{a}o, ou codifica\c{c}\~{a}o da solu\c{c}\~{a}o, tem sido utilizada sob
+o t\'{i}tulo de ``representa\c{c}\~{a}o baseada em opera\c{c}\~{a}o'' (\textit{operation-based representation; a set of ordered operations;
+operation order representation}) justamente por centrar-se na ordem de processamento das opera\c{c}\~{o}es para cada tarefa da oficina
+\cite{Roshanaei2009} \cite{Xiaomei2010} \cite{Zhang2009} \cite{Saidi2007} \cite{Rondon2009}.
+
+\item O uso de opera\c{c}\~{o}es de permuta\c{c}\~{a}o como operador de busca local ou como operador de muta\c{c}\~{a}o em algoritmos
+gen\'{e}ticos, ou demais solu\c{c}\~{o}es metaheur\'{i}sticas, \'{e} relativamente comum nas solu\c{c}\~{o}es analisadas \cite{Lin2010}
+\cite{Zhang2010} \cite{Xiaomei2010} \cite{Wang2010} \cite{Manikas2009} \cite{Zhang2009} \cite{Adibi2010} \cite{Roshanaei2009}. Os operadores de
+permuta\c{c}\~{a}o s\~{a}o utilizados por tratar-se de um problema combinatorial e seu uso \'{e} suscitado pela representa\c{c}\~{a}o usualmente
+escolhida. Contudo, \'{e} relativamente comum que algumas solu\c{c}\~{o}es optem por algoritmos de constru\c{c}\~{a}o de agendas
+(\textit{constructive algoritms}) como operador de busca local \cite{Goncalves2002}; ou mesmo como um m\'{e}todo isolado de resolu\c{c}\~{a}o, embora
+relativamente ineficaz \cite{French1982}. Os operadores de permuta\c{c}\~{a}o encontrados s\~{a}o:
+\begin{inparaenum}[\itshape a\upshape)]
+\item inser\c{c}\~{a}o;
+\item invers\~{a}o (geralmente de elementos adjacentes);
+\item permuta\c{c}\~{a}o ou troca de elementos em posi\c{c}\~{o}es distintas; e
+\item movimento de longa dist\^{a}ncia (mover uma sequ\^{e}ncia de elementos a uma determinada posi\c{c}\~{a}o ou dire\c{c}\~{a}o).
+\end{inparaenum}
+Esses operadores s\~{a}o encontrados com nomes distintos em alguns artigos, mas pela defini\c{c}\~{a}o de suas opera\c{c}\~{o}es \'{e}
+poss\'{i}vel determinar qual operador est\'{a} sendo utilizado.
+
+\item M\'{e}todos metaheur\'{i}sticos em suas vers\~{o}es can\^{o}nicas s\~{a}o raramente utilizados como solu\c{c}\~{a}o de qualidade para problemas
+de escalonamento job-shop --- com base nas solu\c{c}\~{o}es analisadas atrav\'{e}s dos artigos selecionados. As vers\~{o}es can\^{o}nicas de
+m\'{e}todos metaheur\'{i}sticos s\~{a}o geralmente utilizadas como m\'{e}todo comparativo para os m\'{e}todos h\'{i}bridos, estabelecendo-se uma
+base de compara\c{c}\~{a}o para as solu\c{c}\~{o}es que s\~{a}o propostas como extens\~{o}es, ou h\'{i}bridas.
+
+\item Conquanto algumas solu\c{c}\~{o}es sejam avaliadas a partir de inst\^{a}ncias do problema de escalonamento job-shop constru\'{i}das
+especificamente para a solu\c{c}\~{a}o proposta, ou obtidas de oficinas reais \cite{Xing2010} \cite{Liouane2007} \cite{Zhang2009} \cite{Saidi2007}
+\cite{Roshanaei2009} \cite{Zhang2010b} \cite{Yin2007} \cite{Manikas2009} \cite{Ma2010}, as 82 inst\^{a}ncias dispon\'{i}veis na OR-Library
+\cite{OrLibrary} e as 80 inst\^{a}ncias de Taillard \cite{Taillard1993} s\~{a}o frequentemente utilizadas como meios para estabelecer-se a qualidade
+da solu\c{c}\~{a}o proposta frente aos resultados obtidos por outras solu\c{c}\~{o}es \cite{Rego2009} \cite{Pardalos2006} \cite{Kammer2011}
+\cite{Ferrolho2007} \cite{Huang2010} \cite{Xiaomei2010} \cite{Zhang2010} \cite{Lin2010} \cite{Goncalves2002}. O uso de inst\^{a}ncias reconhecidas
+pela literatura garante que novas solu\c{c}\~{o}es propostas sejam comparadas com outras solu\c{c}\~{o}es j\'{a} estabelecidas.
+
+\end{enumerate}
+
+\chapter{Princ\'{i}pios de solu\c{c}\~{a}o metaheur\'{i}stica evolucion\'{a}ria}
+\label{meta}
+
+Problemas em otimiza\c{c}\~{a}o s\~{a}o uma classe de problemas computacionais n\~{a}o facilmente trat\'{a}veis, de forma que
+v\'{a}rias solu\c{c}\~{o}es baseadas em metaheur\'{i}sticas foram criadas com o fim de melhor solucion\'{a}-las \cite{Gendreau2010}, quando
+aplic\'{a}vel. Uma das metaheur\'{i}sticas mais utilizadas como meio para solucionar problemas em otimiza\c{c}\~{a}o s\~{a}o os algoritmos
+gen\'{e}ticos; seja em sua forma can\^{o}nica, desenvolvida por Holland \cite{Holland1992} a partir de trabalhos iniciais de outros autores
+\cite{Engelbrecht2007}, ou em solu\c{c}\~{o}es h\'{i}bridas e conceitualmente modificadas \cite{Gendreau2010}. A solu\c{c}\~{a}o algor\'{i}tmica
+apresentada neste trabalho tem por base os algoritmos gen\'{e}ticos, al\'{e}m de conceitos encontrados em outros algoritmos evolucion\'{a}rios.
+Al\'{e}m disso, a solu\c{c}\~{a}o proposta \'{e} conflitada com a vers\~{a}o can\^{o}nica dos algoritmos gen\'{e}ticos encontrada na literatura,
+com alguns conceitos modificados \cite{DeJong2006} \cite{Engelbrecht2007}, como a representa\c{c}\~{a}o e aplicabilidade dos operadores de
+variabilidade.
+
+Ao lado da programa\c{c}\~{a}o evolucion\'{a}ria e das estrat\'{e}gias evolutivas, os algoritmos gen\'{e}ticos fazem parte um conceito ainda
+maior: algoritmos evolucion\'{a}rios \cite{DeJong2006}. Embora tenham uma origem temporal em comum, inicialmente os algoritmos evolucion\'{a}rios
+tentavam solucionar classes de problemas espec\'{i}ficos; portanto, algumas diverg\^{e}ncias conceituais, mesmo que m\'{i}nimas, eram comuns
+quando os algoritmos evolucion\'{a}rios eram aplicados \cite{DeJong2006}. Com o advento do termo algoritmos evolucion\'{a}rios e do arcabou\c{c}o
+propiciado pela intelig\^{e}ncia computacional, as formas h\'{i}bridas dos algoritmos evolucion\'{a}rios passaram a coexistir \`{a}s vers\~{o}es
+can\^{o}nicas daqueles algoritmos \cite{DeJong2006}. Portanto, embora a solu\c{c}\~{a}o proposta neste trabalho seja baseada em algoritmos
+gen\'{e}ticos, conceitos dos demais algoritmos evolucion\'{a}rios, em especial das estrat\'{e}gias evolutivas, s\~{a}o levados em
+considera\c{c}\~{a}o ao propor uma nova solu\c{c}\~{a}o algor\'{i}tmica.
+
+As solu\c{c}\~{o}es baseadas em algoritmos evolucion\'{a}rios se distinguem das demais solu\c{c}\~{o}es metaheur\'{i}sticas por serem algoritmos
+baseados na representa\c{c}\~{a}o da solu\c{c}\~{a}o do problema como um indiv\'{i}duo (solu\c{c}\~{a}o--indiv\'{i}duo) e por influenciar-se de
+conceitos biol\'{o}gicos como evolu\c{c}\~{a}o, aptid\~{a}o, recombina\c{c}\~{a}o e muta\c{c}\~{a}o gen\'{e}tica e desenvolvimento geracional de
+uma popula\c{c}\~{a}o.
+
+\section{Algoritmos gen\'{e}ticos}
+
+A partir de uma popula\c{c}\~{a}o de indiv\'{i}duos--solu\c{c}\~{o}es aleatoriamente criada, na qual cada indiv\'{i}duo \'{e} representado por
+uma cadeia de \textit{bits}, os algoritmos gen\'{e}ticos em sua vers\~{a}o can\^{o}nica desenvolvem a seguinte traget\'{o}ria evolutiva sobre uma
+popula\c{c}\~{a}o:
+\begin{enumerate}
+\item s\~{a}o selecionados indiv\'{i}duos--solu\c{c}\~{o}es da popula\c{c}\~{a}o corrente --- atrav\'{e}s de um mecanismo de sele\c{c}\~{a}o de
+indiv\'{i}duos que leve em considera\c{c}\~{a}o a aptid\~{a}o (\textit{fitness}) dos indiv\'{i}duos daquela popula\c{c}\~{a}o --- para gerar novos
+descendentes;
+\item novos indiv\'{i}duos s\~{a}o gerados a partir de um mecanismo de recombina\c{c}\~{a}o gen\'{e}tica (\textit{crossover});
+\item o novo indiv\'{i}duo gerado \'{e} mutado a partir de um mecanismo de muta\c{c}\~{a}o;
+\item a popula\c{c}\~{a}o corrente \'{e} substitu\'{i}da pelos descendentes gerados, dando origem a uma nova gera\c{c}\~{a}o.
+\end{enumerate}
+
+Essa trajet\'{o}ria evolutiva geralmente \'{e} mantida at\'{e} que um n\'{u}mero limite de gera\c{c}\~{o}es seja alcan\c{c}adas, embora outras
+abordagens podem ser determinadas, como um limite temporal, ou mesmo como aquela popula\c{c}\~{a}o evolui temporalmente --- se h\'{a} ganho
+ou n\~{a}o a cada ciclo geracional. Um meio de mensura\c{c}\~{a}o da aptid\~{a}o dos indiv\'{i}duos deve ser provido ao algoritmo, de forma que
+o algoritmo consiga estabelecer alguns par\^{a}metros de an\'{a}lise e compara\c{c}\~{a}o dos indiv\'{i}duos a cada gera\c{c}\~{a}o. Esse meio
+de mensura\c{c}\~{a}o da aptid\~{a}o \'{e} geralmente obtido a partir da defini\c{c}\~{a}o do problema a ser tratado.
+
+Assim, os algoritmos gen\'{e}ticos, como uma solu\c{c}\~{a}o metaheur\'{i}stica, tem como finalidade ser uma solu\c{c}\~{a}o para problemas de
+otimiza\c{c}\~{a}o de f\'{a}cil implementa\c{c}\~{a}o e utiliza\c{c}\~{a}o: a partir de uma representa\c{c}\~{a}o bin\'{a}ria das solu\c{c}\~{o}es
+e de um meio de mensura\c{c}\~{a}o da aptid\~{a}o dos indiv\'{i}duos --- uma forma de se estabelecer a qualidade daquela
+solu\c{c}\~{a}o--indiv\'{i}duo em quest\~{a}o ---, o algoritmo gen\'{e}tico constr\'{o}i um conjunto de solu\c{c}\~{o}es a fim de obter novos
+indiv\'{i}duos (solu\c{c}\~{o}es), percorrendo um determinado espa\c{c}o de busca, a partir da representa\c{c}\~{a}o dos indiv\'{i}duos daquela
+popula\c{c}\~{a}o.
+
+\section{Estrat\'{e}gias evolutivas}
+
+Diferentemente dos algoritmos gen\'{e}ticos que surgiram como uma solu\c{c}\~{a}o metaheur\'{i}stica para diversos problemas de otimiza\c{c}\~{a}o
+--- bastava prover ao algoritmo uma forma de mapear a representa\c{c}\~{a}o do indiv\'{i}duo de uma solu\c{c}\~{a}o para um problema espec\'{i}fico
+para uma representa\c{c}\~{a}o em cadeia bin\'{a}ria; e uma fun\c{c}\~{a}o de mensura\c{c}\~{a}o da qualidade/aptid\~{a}o daquele indiv\'{i}duo
+(\textit{fitness}) ---, as estrat\'{e}gias evolutivas surgiram como uma metaheur\'{i}stica espec\'{i}fica para solucionar problemas de
+otimiza\c{c}\~{a}o de vari\'{a}veis cont\'{i}nuas \cite{DeJong2006}. Indiv\'{i}duos s\~{a}o representados atrav\'{e}s de vetores de valores reais,
+nos quais cada dimens\~{a}o armazena o valor de uma das vari\'{a}veis a serem otimizadas. Algoritmos gen\'{e}ticos, em seus conceitos e
+considera\c{c}\~{o}es can\^{o}nicos, t\^{e}m suas defici\^{e}ncias ao tratar de otimiza\c{c}\~{a}o de n\'{u}meros reais, j\'{a} que, na
+representa\c{c}\~{a}o dos indiv\'{i}duos, sempre limita-se a capacidade representativa do espa\c{c}o de busca.
+
+Outras diferen\c{c}as conceituais s\~{a}o not\'{a}veis \cite{DeJong2006}:
+\begin{inparaenum}[\itshape 1\upshape)]
+\item o mecanismo ou operador de variabilidade das estrat\'{e}gias evolutivas baseava-se na reprodu\c{c}\~{a}o assexuada; a cada gera\c{c}\~{a}o
+novos indiv\'{i}duos eram gerados a partir de muta\c{c}\~{o}es, obrigatoriamente. Diferentemente dos algoritmos gen\'{e}ticos, que tinham um
+mecanismo de reprodu\c{c}a\~{o} sexuado (recombina\c{c}\~{a}o) e um mecanismo secund\'{a}rio de muta\c{c}\~{a}o (conceitualmente assexuado).
+Ambos os mec\^{a}nismos de variabilidade dos algoritmos gen\'{e}ticos s\~{a}o tratados como aplic\'{a}veis ou n\~{a}o na gera\c{c}\~{a}o de um
+novo indiv\'{i}duo;
+\item h\'{a} um foco importante no controle do \textit{step-size}, ou \`{a} maneira que o algoritmo percorre o espa\c{c}o de busca, se ser\'{a}
+dado passos largos ou curtos nesse espa\c{c}o de busca --- controle feito a partir do operador de variabilidade (muta\c{c}\~{a}o);
+\item de in\'{i}cio as estrat\'{e}gias evolutivas n\~{a}o eram uma metaheur\'{i}stica populacional, mas centrada num \'{u}nico indiv\'{i}duo,
+que dava origem a v\'{a}rios indiv\'{i}duos, mas apenas um, o melhor dentre os indiv\'{i}duos gerados e o pai, era selecionado para continuar
+existindo na pr\'{o}xima gera\c{c}\~{a}o. Posteriormente, verificou-se a import\^{a}ncia do conceito populacional (``busca paralela adaptativa''
+\cite{DeJong2006}).
+\end{inparaenum}
+
+A principal influ\^{e}ncia das estrat\'{e}gias evolutivas na concep\c{c}\~{a}o da solu\c{c}\~{a}o algor\'{i}tmica apresentada neste trabalho
+trata-se na import\^{a}ncia do mecanismo de muta\c{c}\~{a}o dos indiv\'{i}duos gerados; na import\^{a}ncia que existe em sempre pertubar aquelas
+solu\c{c}\~{o}es de forma a gerar novas possibilidades de an\'{a}lise no espa\c{c}o de busca; e na import\^{a}ncia que \'{e} dado ao melhor
+indiv\'{i}duo que j\'{a} existiu dentre as popula\c{c}\~{o}es, conceito empregado nos algoritmos gen\'{e}ticos sob o t\'{i}tulo de ``elitismo''.
+Considera\c{c}\~{o}es a respeito destes conceitos s\~{a}o dados com maiores detalhes quando a solu\c{c}\~{a}o algor\'{i}tmica for apresentada,
+no Cap\'{i}tulo \ref{solucao}.
+
+\section{Hibridiza\c{c}\~{a}o em algoritmos evolucion\'{a}rios}
+
+A origem dos algoritmos evolucion\'{a}rios remonta \`{a} d\'{e}cada de 1960, quando conceitos evolutivos foram implementados em algoritmos como
+forma de solucionar problemas de otimiza\c{c}\~{a}o \cite{DeJong2006}. Cada algoritmo evolucion\'{a}rio surge em um contexto espec\'{i}fico de
+utiliza\c{c}\~{a}o e com caracter\'{i}sticas pr\'{o}prias que os tornaram boas \textit{metasolu\c{c}\~{o}es} para determinadas classes de problemas
+em otimiza\c{c}\~{a}o \cite{DeJong2006} \cite{Gendreau2010}. Assim, nas d\'{e}cadas de 1980 e 1990 surge uma expans\~{a}o do uso destes algoritmos
+para outras classes de problemas, o que nem sempre resultava em solu\c{c}\~{o}es de qualidade. Outrossim, novas abordagens metaheur\'{i}sticas
+tamb\'{e}m surgiram, o que contribuiu para a origem das formas h\'{i}bridas de solu\c{c}\~{a}o metaheur\'{i}sticas \cite{DeJong2006}
+\cite{Gendreau2010}.
+
+As solu\c{c}\~{o}es h\'{i}bridas surgem como uma forma de melhor aproveitar a efici\^{e}ncia e efetividade das metaheur\'{i}sticas, em foco os
+algoritmos evolucion\'{a}rios, como uma forma de melhor balancear as caracter\'{i}sticas de explora\c{c}\~{a}o do espa\c{c}o de busca
+(\textit{exploration}) e realizar melhoras discretas nos indiv\'{i}duos--solu\c{c}\~{o}es desenvolvidos nas solu\c{c}\~{o}es evolucion\'{a}rias
+(\textit{exploitation}) \cite{Camilo2010} \cite{Gendreau2010}. Assim, operadores ou mecanismos de variabilidade s\~{a}o criados e conceitos
+adaptados para melhor aproveitar as caracter\'{i}sticas dos algoritmos evolucion\'{a}rios como solu\c{c}\~{a}o. Exemplos de modifica\c{c}\~{o}es
+s\~{a}o o IGA (\textit{Immune Genetic Algorithm}) \cite{Ma2010}, t\'{e}cnicas de nicho \cite{Camilo2010}, auto-adapta\c{c}\~{a}o \cite{DeJong2006},
+sistemas coevolutivos \cite{DeJong2006}, dentre outros. Como apresentado, grande parte das solu\c{c}\~{o}es metaheur\'{i}sticas analisadas que
+s\~{a}o aplicadas em problemas de escalonamento job-shop s\~{a}o abordagens h\'{i}bridas.
+
+Uma abordagem h\'{i}brida nova \'{e} o algoritmo auxiliar paralelo (AAP) baseado na fertiliza\c{c}\~{a}o in vitro, inicialmente aplicado em
+algoritmos gen\'{e}ticos, a qual ser\'{a} apresentada a seguir. O AAP tem por principal objetivo aproveitar melhor as informa\c{c}\~{o}es
+armazenadas na representa\c{c}\~{a}o gen\'{e}tica dos indiv\'{i}duos--solu\c{c}\~{o}es dos algoritmos evolucion\'{a}rios, notalmente em algoritmos
+gen\'{e}ticos. Esse melhor aproveitamento tem ainda por finalidade realizar um melhor controle de converg\^{e}ncia do algoritmo sem denegrir a
+qualidade final das solu\c{c}\~{o}es obtidas.
+
+\subsection{Algoritmo auxiliar paralelo baseado na fertiliza\c{c}\~{a}o in vitro}
+
+O algoritmo auxiliar paralelo (AAP) baseado na fertiliza\c{c}\~{a}o in vitro tem por base uma considera\c{c}\~{a}o simples: os melhores
+indiv\'{i}duos--solu\c{c}\~{o}es de uma popula\c{c}\~{a}o (melhor em termos de sua aptid\~{a}o frente aos demais indiv\'{i}duos) tem em sua
+estrutura gen\'{e}tica/cromoss\^{o}mica caracter\'{i}sticas que os tornam indiv\'{i}duos de not\'{a}vel qualidade. Assim, com o fim de melhor
+aproveitar estas caracter\'{i}sticas, \'{e} feita uma sele\c{c}\~{a}o desses melhores indiv\'{i}duos e uma recombina\c{c}\~{a}o dentre eles a
+fim de gerar um melhor indiv\'{i}duo. Com forte influ\^{e}ncia dos conceitos biol\'{o}gicos da fertiliza\c{c}\~{a}o in vitro, o AAP seleciona
+os genes dos pais a fim de construir um novo indiv\'{i}duo de qualidade compar\'{a}vel a de seus pais \cite{Camilo2010}.
+
+O AAP tem um fluxograma conceitualmente simples, subdivide-se nas fases de coleta, manipula\c{c}\~{a}o gen\'{e}tica e transfer\^{e}ncia. A
+\textbf{coleta} tem por finalidade selecionar os indiv\'{i}duos de maior qualidade da popula\c{c}\~{a}o corrente de forma a prepar\'{a}-los para
+a fase seguinte, de \textbf{manipula\c{c}\~{a}o gen\'{e}tica}. Nessa fase os melhores indiv\'{i}duos selecionados t\^{e}m suas caracter\'{i}sticas
+gen\'{e}ticas manipuladas de forma a compor um novo indiv\'{i}duo. O novo indiv\'{i}duo gerado \'{e} avaliado frente a todos os demais
+indiv\'{i}duos da popula\c{c}\~{a}o, incluindo seus pais; caso seja um indiv\'{i}duo de maior qualidade, este passa a fazer parte da
+popula\c{c}\~{a}o atrav\'{e}s de uma estrat\'{e}gia de \textbf{transfer\^{e}ncia} \cite{Camilo2010}.
+
+Maiores considera\c{c}\~{o}es a respeito do AAP ser\~{a}o dadas na apresenta\c{c}\~{a}o da solu\c{c}\~{a}o evolucion\'{a}ria desenvolvida neste
+trabalho, Cap\'{i}tulo \ref{solucao}.
+
+\chapter{Algoritmo evolucion\'{a}rio h\'{i}brido baseado na fertiliza\c{c}\~{a}o in vitro}
+\label{solucao}
+
+A partir das caracter\'{i}sticas identificadas da classe de problemas de escalonamento job-shop e com o intuito de obter uma compara\c{c}\~{a}o
+de uma abordagem h\'{i}brida frente a uma abordagem can\^{o}nica, foram desenvolvidas duas propostas de solu\c{c}\~{a}o baseadas em algoritmos
+gen\'{e}ticos:
+\begin{inparaenum}[\itshape a\upshape)]
+\item uma solu\c{c}\~{a}o centrada nos princ\'{i}pios e pressupostos desenvolvidos em torno dos algoritmos gen\'{e}ticos, que t\^{e}m se mostrado
+aceitos pela comunidade especializada, notavelmente aqueles relacionados \`{a} computa\c{c}\~{a}o evolucion\'{a}ria \cite{DeJong2006}; e
+\item uma solu\c{c}\~{a}o h\'{i}brida, atrav\'{e}s de um algoritmo auxiliar paralelo inspirado na fertiliza\c{c}\~{a}o in vitro \cite{Camilo2011},
+denominado algoritmo evolucion\'{a}rio h\'{i}brido baseado na fertiliza\c{c}\~{a}o in vitro como solu\c{c}\~{a}o de problemas de escalonamento
+job-shop (IVF/EV-JB).
+\end{inparaenum}
+Ambas as solu\c{c}\~{o}es foram comparadas com configura\c{c}\~{o}es distintas em termos de operadores de sele\c{c}\~{a}o, operadores de
+recombina\c{c}\~{a}o e a aplica\c{c}\~{a}o arbitr\'{a}ria de um m\'{e}todo de busca local, obtendo-se assim 27 casos de experimentos.
+
+A solu\c{c}\~{a}o can\^{o}nica foi constru\'{i}da conforme as descri\c{c}\~{o}es feita por De Jong em \textit{Evolutionary computation: a unified
+approach} \cite{DeJong2006}, contudo sem perder as refer\^{e}ncias iniciais de Holland em \textit{Adaptation in Natural and Artificial Systems}
+\cite{Holland1992}. De Jong defende uma abordagem mais flex\'{i}vel dos algoritmos evolucion\'{a}rios, ainda que seja levado em considera\c{c}\~{a}o
+os paradigmas can\^{o}nicos destes algoritmos e a import\^{a}ncia de cada aspecto defendido pelos algoritmos evolucion\'{a}rios. A solu\c{c}\~{a}o
+proposta por neste trabalho, portanto, a partir dos algoritmos gen\'{e}ticos, est\'{a} em conson\^{a}ncia com o que \'{e} esperado desta classe
+de algoritmos: a partir de um conjunto de indiv\'{i}duos--solu\c{c}\~{o}es aleatoriamente constru\'{i}dos, \'{e} feita uma recombina\c{c}\~{a}o
+destes indiv\'{i}duos, como um importante mecanismo de variabilidade, e muta\c{c}\~{o}es s\~{a}o realizadas com o prop\'{o}sito de obter-se uma
+explora\c{c}\~{a}o agressiva do espa\c{c}o de busca, conforme delineado no Algoritmo \ref{algoritmo1}.
+
+\medskip
+\begin{center}
+\begin{minipage}{0.92\textwidth}
+\begin{algorithm2e}[H]
+  \dontprintsemicolon
+  \linesnumbered
+  \SetLine
+  \BlankLine
+  \Entrada{Popula\c{c}\~{a}o de tamanho $\mu$ aleatoriamente constru\'{i}da}
+  \BlankLine
+  $contador\_gerac\tilde{o}es \leftarrow 0$\;
+  \Repeat{$contador\_gerac\tilde{o}es < m\acute{a}ximo\_gerac\tilde{o}es$}{
+    Seleciona $\rho = \mu / 2$ pais para reprodu\c{c}\~{a}o\;
+    \For{$i \rightarrow 0$ \KwTo $\rho$}{
+      $descendente \leftarrow$ Recombina\c{c}\~{a}o do pai $2 * i$ com o pai $2 * i + 1$\;
+      Muta\c{c}\~{a}o realizada sobre $descendente$ (busca local)\;
+      Adi\c{c}\~{a}o de $descendente$ a um conjunto $\lambda$ de descendentes\;
+    }
+    O conjunto $\lambda$ de descendentes gerados substitui a gera\c{c}\~{a}o parental e passa a ser a popula\c{c}\~{a}o corrente\;
+    Elitismo: o pior indiv\'{i}duo dentre os descendentes gerados \'{e} substitu\'{i}do pelo melhor indiv\'{i}duo da gera\c{c}\~{a}o parental\;
+    $contador\_gerac\tilde{o}es \leftarrow contador\_gerac\tilde{o}es + 1$\;
+  }
+\caption{Solu\c{c}\~{a}o can\^{o}nica (\textit{GA/EV-JB})}
+\label{algoritmo1}
+\end{algorithm2e}
+\end{minipage}
+\end{center}
+
+Os algoritmos gen\'{e}ticos, conforme apresentado anteriormente, assumem um mecanismo de controle dos operadores de recombina\c{c}\~{a}o e de
+muta\c{c}\~{a}o atrav\'{e}s da probabilidade de acontecer ou n\~{a}o estes mecanismos; ou seja, h\'{a} um controle na aplica\c{c}\~{a}o ou n\~{a}o
+destes operadores sobre os indiv\'{i}duos--solu\c{c}\~{o}es da popula\c{c}\~{a}o. A solu\c{c}\~{a}o inicialmente proposta foi constru\'{i}da com
+estes princ\'{i}pios; contudo, durante a fase de afina\c{c}\~{a}o da solu\c{c}\~{a}o, verificou-se a perda da qualidade das solu\c{c}\~{o}es
+obtidas quando os operadores de variabilidade eram estabelecidos sobre a popula\c{c}\~{a}o a partir de probabilidades. Assim, para efeito do
+presente trabalho, a probabilidade de ocorrer a recombina\c{c}\~{a}o de dois ind\'{i}viduos e a muta\c{c}\~{a}o de um novo indiv\'{i}duo gerado
+\'{e} de 100\%. Al\'{e}m destes mecanismos de variabilidade, o conceito de elitismo est\'{a} presente nas duas solu\c{c}\~{o}es consideradas:
+o pior indiv\'{i}duo dentre os descendentes gerados \'{e} substitu\'{i}do pelo melhor indiv\'{i}duo da gera\c{c}\~{a}o parental. Desta forma 
+garante-se que n\~{a}o haver\'{a} a perda de indiv\'{i}duos--solu\c{c}\~{o}es de qualidade a cada gera\c{c}\~{a}o.
+
+\medskip
+\begin{center}
+\begin{minipage}{0.92\textwidth}
+\begin{algorithm2e}[H]
+  \dontprintsemicolon
+  \linesnumbered
+  \SetLine
+  \BlankLine
+  \Entrada{Popula\c{c}\~{a}o de tamanho $\mu$ aleatoriamente constru\'{i}da}
+  \BlankLine
+  $contador\_gerac\tilde{o}es \leftarrow 0$\;
+  \Repeat{$contador\_gerac\tilde{o}es < m\acute{a}ximo\_gerac\tilde{o}es$}{
+    $superpais \leftarrow$ Os melhores $\rho' = \mu * 25\%$ indiv\'{i}duos da gera\c{c}\~{a}o corrente\;
+    $embri\tilde{a}o \leftarrow$ Manipula\c{c}\~{a}o gen\'{e}tica dos $superpais$\;
+    Seleciona $\rho = \mu / 2$ pais para reprodu\c{c}\~{a}o\;
+    \For{$i \rightarrow 0$ \KwTo $\rho$}{
+      $descendente \leftarrow$ Recombina\c{c}\~{a}o do pai $2 * i$ com o pai $2 * i + 1$\;
+      Muta\c{c}\~{a}o realizada sobre $descendente$ (busca local)\;
+      Adi\c{c}\~{a}o de $descendente$ a um conjunto $\lambda$ de descendentes\;
+    }
+    O conjunto $\lambda$ de descendentes gerados substitui a gera\c{c}\~{a}o parental e passa a ser a popula\c{c}\~{a}o corrente\;
+    Elitismo: o pior indiv\'{i}duo dentre os descendentes gerados \'{e} substitu\'{i}do pelo melhor indiv\'{i}duo da gera\c{c}\~{a}o parental\;
+    Transfer\^{e}ncia do $embri\tilde{a}o$ para a popula\c{c}\~{a}o de novos indiv\'{i}duos\;
+    $contador\_gerac\tilde{o}es \leftarrow contador\_gerac\tilde{o}es + 1$\;
+  }
+\caption{Solu\c{c}\~{a}o h\'{i}brida (\textit{IVF/EV-JB})}
+\label{algoritmo2}
+\end{algorithm2e}
+\end{minipage}
+\end{center}
+
+A abordagem h\'{i}brida, conforme delineado no Algoritmo \ref{algoritmo2}, obtida a partir de um algoritmo auxiliar paralelo (AAP) baseado na
+fertiliza\c{c}\~{a}o in vitro \cite{Camilo2011}, tem por base uma extens\~{a}o que tem por prop\'{o}sito propiciar \`{a} solu\c{c}\~{a}o
+evolucion\'{a}ria mecanismos que garantam a qualidade gen\'{e}tica dos indiv\'{i}duos, atrav\'{e}s da promo\c{c}\~{a}o destas caracter\'{i}sticas,
+e ter um maior controle da converg\^{e}ncia do algoritmo, tornando-a mais r\'{a}pida e de qualidade, sem denegrir os resultados que possam ser
+obtidos por essa solu\c{c}\~{a}o \cite{Camilo2011} \cite{Camilo2010}.
+
+O AAP ocorre, conceitualmente, de forma paralela ao fluxo principal dos algoritmos gen\'{e}ticos, na fase de estabelecimento de uma nova
+gera\c{c}\~{a}o populacional. O AAP dividi-se em tr\^{e}s fases distintas:
+\begin{inparaenum}[\itshape 1\upshape)]
+\item \textbf{coleta} --- esta fase tem por prop\'{o}sito selecionar os melhores indiv\'{i}duos da popula\c{c}\~{a}o, j\'{a} que esta abordagem
+algor\'{i}tmica assume que os melhores indiv\'{i}duos da popula\c{c}\~{a}o apresentam, geneticamente, as melhores caracter\'{i}sticas daquele
+conjunto de indiv\'{i}duos--solu\c{c}\~{o}es. Nos experimentos desenvolvidos, os 25\% melhores indiv\'{i}duos da popula\c{c}\~{a}o s\~{a}o
+coletados nessa fase;
+\item \textbf{manipula\c{c}\~{a}o gen\'{e}tica} --- a partir dos indiv\'{i}duos previamente coletados \'{e} feita uma manipula\c{c}\~{a}o
+gen\'{e}tica sobre estes de forma a gerar novos indiv\'{i}duos atrav\'{e}s da avalia\c{c}\~{a}o, altera\c{c}\~{a}o e recombina\c{c}\~{a}o
+daqueles. Os novos indiv\'{i}duos s\~{a}o gerados a partir de um superpai e os demais indiv\'{i}duos da coleta;
+\item \textbf{transfer\^{e}ncia} --- caso o processo de manipula\c{c}\~{a}o gen\'{e}tica gere melhores indiv\'{i}duos do que o melhor indiv\'{i}duo
+corrente, esses s\~{a}o transferidos para a nova gera\c{c}\~{a}o populacional \cite{Camilo2011}.
+\end{inparaenum}
+A estrat\'{e}gia de transfer\^{e}ncia utilizada \'{e} a substitui\c{c}\~{a}o do pior indiv\'{i}duo da gera\c{c}\~{a}o parental, conforme delineado
+no Algoritmo \ref{algoritmo2}.
+
+Os operadores de sele\c{c}\~{a}o utilizados s\~{a}o o ranqueamento linear \cite{DeJong2006}, o torneio \cite{Engelbrecht2007} \cite{Miller1995}
+e a sele\c{c}\~{a}o proporcional \`{a} aptid\~{a}o dos indiv\'{i}duos da popula\c{c}\~{a}o (\textit{fitness proportional selection})
+\cite{DeJong2006}. Os operadores de recombina\c{c}\~{a}o individualmente aplicados e analisados foram a recombina\c{c}\~{a}o de $1$-- e
+$n$--pontos \cite{DeJong2006} e a recombina\c{c}\~{a}o uniforme (\textit{parameterized uniform crossover}) \cite{DeJong2006} \cite{Goncalves2002}.
+
+Os operadores de muta\c{c}\~{a}o utilizados s\~{a}o dois operadores que s\~{a}o usualmente utilizados em problemas combinatorias e que j\'{a}
+foram testados por outros textos relacionados a problemas de escalonamento job-shop. Os operadores de muta\c{c}\~{a}o s\~{a}o inicialmente
+testados separadamente em 18 casos de experimentos (1--18) e posteriormente usados em conjunto nos 9 casos de experimentos finais (19--27).
+O operador de permuta\c{c}\~{a}o \cite{DeJong2006} \cite{Lin2010} realiza modifica\c{c}\~{o}es na representa\c{c}\~{a}o dos indiv\'{i}duos,
+de forma a pertubar as representa\c{c}\~{o}es destes indiv\'{i}duos obtendo-se varia\c{c}\~{o}es que contribuam para uma melhor prospec\c{c}\~{a}o do
+espa\c{c}o de busca, em conformidade com o que \'{e} reconhecido pela literatura como um operador de muta\c{c}\~{a}o \cite{DeJong2006}.
+
+\medskip
+\begin{center}
+\begin{minipage}{0.92\textwidth}
+\begin{algorithm2e}[H]
+  \dontprintsemicolon
+  \linesnumbered
+  \SetLine
+  \BlankLine
+  \Entrada{indiv\'{i}duo a ser mutado}
+  \BlankLine
+  $n\acute{u}mero\_aleat\acute{o}rio \leftarrow distribuic\tilde{a}o\_normal(0, 100)$\;
+  \eIf{$n\acute{u}mero\_aleat\acute{o}rio \leq Prob_{Exchange}$}{
+    Operador de troca ($indiv\acute{i}duo$)\;
+  }{
+    \eIf{$Prob_{Exchange} < n\acute{u}mero\_aleat\acute{o}rio \leq Prob_{Exchange} + Prob_{Insertion}$}{
+      Operador de inser\c{c}\~{a}o ($indiv\acute{i}duo$)\;
+    }{
+      \eIf{$Prob_{Exchange} + Prob_{Insertion} < n\acute{u}mero\_aleat\acute{o}rio \leq Prob_{Exchange} + Prob_{Insertion} + Prob_{Invertion}$}{
+        Operador de invers\~{a}o ($indiv\acute{i}duo$)\;
+      }{
+        Operador de deslocamento ($indiv\acute{i}duo$)\;
+      }
+    }
+  }
+\caption{M\'{e}todo de busca local ou muta\c{c}\~{a}o atrav\'{e}s de permuta\c{c}\~{o}es}
+\label{algoritmo3}
+\end{algorithm2e}
+\end{minipage}
+\end{center}
+
+O operador de permuta\c{c}\~{a}o, conforme descrito no Algoritmo \ref{algoritmo3}, realiza no m\'{a}ximo um tipo de modifica\c{c}\~{a}o no
+indiv\'{i}duo:
+\begin{inparaenum}[\itshape a\upshape)]
+\item a \textbf{opera\c{c}\~{a}o de troca} (\textit{exchange}) --- a partir de dois valores, $i$ e $j$, em um vetor com $n \times m$ posi\c{c}\~{o}es
+($0 < i < j \leq n \times m$), os valores nas posi\c{c}\~{o}es $i$ e $j$ s\~{a}o trocados entre si;
+\item a \textbf{opera\c{c}\~{a}o de inser\c{c}\~{a}o} (\textit{insertion}) --- a partir de dois valores, $i$ e $j$, em um vetor com $n \times m$
+posi\c{c}\~{o}es ($0 < i < j \leq n \times m$), o valor na posi\c{c}\~{a}o $i$ \'{e} inserido na posi\c{c}\~{a}o $j$, deslocando os valores nas
+posi\c{c}\~{o}es menores ou iguais a $j$ para a esquerda, de forma a possibilitar a inser\c{c}\~{a}o do valor em $i$ sem perder nenhum valor do vetor;
+\item a \textbf{opera\c{c}\~{a}o de invers\~{a}o} (\textit{invertion}) --- a partir de dois valores, $i$ e $j$, em um vetor $S$ com $n \times m$
+posi\c{c}\~{o}es ($0 < i < j \leq n \times m$), o segmento de valores entre as posi\c{c}\~{o}es $i$ e $j$ s\~{a}o invertidos de forma que o vetor
+inicial $S = \langle..., s_{i}, s_{i+1}, ..., s_{j-1}, s_{j}, ...\rangle$ \'{e} transformado no vetor
+$S' = \langle..., s_{j}, s_{j-1}, ..., s_{i+1}, s_{i}, ...\rangle$;
+\item a \textbf{opera\c{c}\~{a}o de deslocamento} (\textit{shifting}) --- a partir de tr\^{e}s valores, $i$, $j$ e $k$, em um vetor
+com $n \times m$ posi\c{c}\~{o}es ($0 < i < j \leq n \times m$; $k < i$ ou $k > j$ e $0 < k < n \times m$), o segmento de valores entre as
+posi\c{c}\~{o}es $i$ e $j$ s\~{a}o deslocados \`{a} posi\c{c}\~{a}o $k$ do vetor.
+\end{inparaenum}
+Esse operador de permuta\c{c}\~{a}o foi constru\'{i}do com base em artigos encontrados na literatura e com a experi\^{e}ncia ben\'{e}fica obtida
+por solu\c{c}\~{a}o espec\'{i}fica baseada em \textit{particle swarm optimization} \cite{Lin2010}. Os valores das probabilidades determinados
+para an\'{a}lise da efetividade da solu\c{c}\~{a}o proposta s\~{a}o: $Prob_{Exchange} = 35\%$, $Prob_{Insertion} = 35\%$, $Prob_{Invertion} = 10\%$ e
+$Prob_{Shifting} = 20\%$. Estes valores foram determinados experimentalmente, com base nas escolhas feitas em artigo espec\'{i}fico \cite{Lin2010}.
+
+O segundo operador de muta\c{c}\~{a}o utilizado \'{e} o operador de gera\c{c}\~{a}o aleat\'{o}ria \cite{Goncalves2002}. O prop\'{o}sito desse operador
+\'{e} substituir 20\% dos piores indiv\'{i}duos da popula\c{c}\~{a}o por novos indiv\'{i}duos constru\'{i}dos aleatoriamente a partir de uma
+distribui\c{c}\~{a}o normal. Assim, obtemos novos valores aos alelos dos indiv\'{i}duos, j\'{a} que, conforme descrito a seguir, os indiv\'{i}duos
+s\~{a}o representados como cadeias de n\'{u}meros reais.
+
+\section{Representa\c{c}\~{a}o dos indiv\'{i}duos--solu\c{c}\~{o}es}
+
+Os indiv\'{i}duos--solu\c{c}\~{o}es s\~{a}o representados utilizando a representa\c{c}\~{a}o \textit{random keys} \cite{Bean1993} \cite{Bean1994}
+\cite{Snyder2006}, geralmente utilizada para esse tipo de problema por ser uma representa\c{c}\~{a}o simples, quando comparada a outras
+representa\c{c}\~{o}es, como a matricial/tridimensional \cite{Zhang2010b} \cite{Yin2007}, e efetiva, por deixar a solu\c{c}\~{a}o algor\'{i}tmica
+livre de algumas preocupa\c{c}\~{o}es \`{a} mais, como a constru\c{c}\~{a}o de operadores de recombina\c{c}\~{a}o e muta\c{c}\~{a}o que sempre
+gerem indiv\'{i}duos v\'{a}lidos.
+
+A representa\c{c}\~{a}o do indiv\'{i}duo atrav\'{e}s das \textit{random keys} \'{e} feita a partir de um vetor de $n \times m$ posi\c{c}\~{o}es
+--- $n$ denota o n\'{u}mero de tarefas e $m$ o n\'{u}mero de m\'{a}quinas. Cada dimens\~{a}o do vetor \'{e} iniciada com valores reais a partir
+de uma distribui\c{c}\~{a}o normal $N(0, n \times m)$. Essa representa\c{c}\~{a}o \'{e} centrada nas opera\c{c}\~{o}es: o vetor como solu\c{c}\~{a}o
+descreve a ordem a qual as opera\c{c}\~{o}es na oficina ser\~{a}o processadas. A fim de descobrir cada uma das opera\c{c}\~{o}es a partir da
+representa\c{c}\~{a}o inicial, em valores reais, s\~{a}o feitas as seguintes opera\c{c}\~{o}es --- a t\'{i}tulo de exemplifica\c{c}\~{a}o, tomemos
+como exemplo o vetor de 8 posi\c{c}\~{o}es, com $n = 2$ e $m = 4$, $\langle0.2, 0.5, 1.8, 6.7, 3.3, 2.4, 3.5, 2.4\rangle$:
+\begin{inparaenum}[\itshape 1\upshape)]
+\item a partir do vetor inicialmente constru\'{i}do atrav\'{e}s da distribui\c{c}\~{a}o normal, \'{e} feito um ranqueamento dos valores de cada
+dimens\~{a}o, de forma a ordenar as dimens\~{o}es do vetor em rela\c{c}\~{a}o \`{a}s demais dimens\~{o}es. Ent\~{a}o, no vetor de 8 posi\c{c}\~{o}es
+tomado como exemplo, o ranqueamento de cada dimens\~{a}o resultaria em um vetor com a seguinte configura\c{c}\~{a}o
+$\langle1, 2, 3, 8, 6, 4, 7, 5\rangle$;
+\item ap\'{o}s o ranqueamento das dimens\~{o}es do vetor \'{e} necess\'{a}rio identificar cada uma das tarefas que o vetor--solu\c{c}\~{a}o est\'{a}
+referenciando e estabelecer a ordem de processamento de cada uma das opera\c{c}\~{o}es. Para a dimens\~{a}o $i$ do vetor $S$ ranqueado, temos
+$S'_{i} = (S_{i}$ \textit{mod} $n) + 1$, $S'$ o vetor final com a sequ\^{e}ncia de processamento das opera\c{c}\~{o}es. No vetor tomado como exemplo
+ter\'{i}amos, para $n = 2$, a seguinte configura\c{c}\~{a}o final: $\langle2, 1, 2, 1, 1, 1, 2, 2\rangle$;
+\item por fim, a partir da sequ\^{e}ncia de processamento das opera\c{c}\~{o}es, obtemos o vetor 
+$\langle o_{2,1}, o_{1,1}, o_{2,2}, o_{1,2}, o_{1,3}, o_{1,4}, o_{2,3}, o_{2,4}\rangle$, com $o_{i,k}$ a opera\c{c}\~{a}o da tarefa $i$ na
+$k$-\'{e}sima m\'{a}quina de sua configura\c{c}\~{a}o tecnol\'{o}gica --- se a tarefa 2 fosse inicialmente processada na m\'{a}quina 4, $o_{2,1}$
+refere-se \`{a} opera\c{c}\~{a}o da tarefa 2 na m\'{a}quina 4.
+\end{inparaenum}
+
+\subsection{Popula\c{c}\~{a}o inicial}
+\label{inicial}
+
+Como \'{e} de costume em solu\c{c}\~{o}es baseadas em algoritmos evolucion\'{a}rios \cite{DeJong2006} \cite{Goncalves2002}, os
+indiv\'{i}duos--solu\c{c}\~{o}es da popula\c{c}\~{a}o inicial s\~{a}o criados a partir de distribui\c{c}\~{o}es normais. Cada dimens\~{a}o do
+vetor--indiv\'{i}duo \'{e} iniciada com o valor da distribui\c{c}\~{a}o $N(0, n \times m)$, sendo $n$ o n\'{u}mero de tarefas e $m$ o n\'{u}mero
+de m\'{a}quinas da oficina. O tamanho da popula\c{c}\~{a}o ($\mu$) tamb\'{e}m \'{e} influenciado pelas configura\c{c}\~{o}es da oficina (problema)
+em quest\~{a}o: $\mu = 2 \times n \times m$.
+
+\section{Operadores de variabilidade e seus efeitos sobre a solu\c{c}\~{a}o evolucion\'{a}ria}
+
+Considera\c{c}\~{o}es a respeito da influ\^{e}ncia dos operadores de variabilidade em algoritmos evolucion\'{a}rios s\~{a}o reconhecidos e estudados
+na literatura \cite{DeJong2006} \cite{Miller1995}. No presente trabalho, al\'{e}m da an\'{a}lise do comportamento do algoritmo h\'{i}brido frente
+a abordagem can\^{o}nica, foi feita uma an\'{a}lise dos efeitos que os operadores de variabilidade utilizados causaram sobre a efetividade da
+solu\c{c}\~{a}o proposta.
+
+Os operadores de variabilidade dividem-se em operadores de recombina\c{c}\~{a}o, os quais, a partir de um ou mais indiv\'{i}duos, geram um novo
+indiv\'{i}duo; e o operadores de muta\c{c}\~{a}o, que a partir de um indiv\'{i}duo gerado por recombina\c{c}\~{a}o obt\'{e}m-se um indiv\'{i}duo
+com caracter\'{i}sticas novas naquela popula\c{c}\~{a}o, como ser\'{a} explicado a seguir.
+
+\subsection{Operadores de recombina\c{c}\~{a}o}
+Os operadores de recombina\c{c}\~{a}o utilizados s\~{a}o aqueles usualmente encontrados em solu\c{c}\~{o}es baseadas nos algoritmos gen\'{e}ticos.
+Conquanto a representa\c{c}\~{a}o dos indiv\'{i}duos--solu\c{c}\~{o}es seja feita a partir de um vetor de n\'{u}meros reais (\textit{random-keys}),
+conceitualmente a recombina\c{c}\~{a}o permanece id\^{e}ntica a uma solu\c{c}\~{a}o baseada em indiv\'{i}duos representados atrav\'{e}s de cadeias
+bin\'{a}rias.
+
+\begin{description}
+\item[recombina\c{c}\~{a}o de $1$--ponto] a partir de dois indiv\'{i}duos \'{e} gerado um novo indiv\'{i}duo. Com esse fim, \'{e} feita a
+recombina\c{c}\~{a}o dos genes dos dois indiv\'{i}duos, doravante denominados pais. Inicialmente \'{e} feita a escolha aleat\'{o}ria de um
+ponto de corte atrav\'{e}s de uma distribui\c{c}\~{a}o discreta a fim de escolher qual ponto de corte determinar\'{a} a composi\c{c}\~{a}o
+do novo indiv\'{i}duo. Seja $p$ e $m$ os vetores--pais e $f$ o vetor--filho, o novo indiv\'{i}duo a ser gerado, e $i$ o ponto de corte
+($|p| = |m| = |f| = n, 0 \leq i < n$), o vetor--filho $f$ ser\'{a} composto da seguinte forma:
+$f = \langle p_{0}, ..., p_{i-1}, m_{i}, m_{i+1}, ..., m_{n} \rangle$;
+\item[recombina\c{c}\~{a}o de $n$--pontos] de forma semelhante \`{a} recombina\c{c}\~{a}o de $1$--ponto, a recombina\c{c}\~{a}o de $n$--pontos
+determina $n$ pontos distintos como pontos de corte para compor o novo indiv\'{i}duo. Ap\'{o}s an\'{a}lises dos efeitos dos valores de $n$,
+a solu\c{c}\~{a}o final tem um valor de $n = 4$, portanto fixo. O termo correto, assim, seria recombina\c{c}\~{a}o de $4$-pontos;
+\item[recombina\c{c}\~{a}o uniforme] a recombina\c{c}\~{a}o uniforme funciona de forma distinta; n\~{a}o s\~{a}o estabelecidos pontos de
+corte. Ainda assim,  a partir de dois indiv\'{i}duos \'{e} gerado um novo indiv\'{i}duo. Para compor esse novo indiv\'{i}duo, cada gene do
+vetor--indiv\'{i}duo deve ser escolhido arbitrariamente entre os vetores--pais; essa escolha \'{e} feita a partir do lan\c{c}ado de uma moeda
+``viciada'': \'{e} feita uma distrui\c{c}\~{a}o normal, $m \leftarrow N(0, 100)$. Caso $m < 70$, \'{e} cara, o contr\'{a}rio \'{e} coroa.
+Assim, para cada gene, determina-se cara-ou-coroa, gene no pai ou gene da m\~{a}e.
+\end{description}
+
+\subsection{Operadores de muta\c{c}\~{a}o}
+Como a representa\c{c}\~{a}o dos indiv\'{i}duos--solu\c{c}\~{o}es \'{e} feita a partir de vetores de n\'{u}meros reais, os operadores de
+muta\c{c}\~{a}o usualmente utilizados em algoritmos gen\'{e}ticos n\~{a}o s\~{a}o utilizados na solu\c{c}\~{a}o algor\'{i}tmica constru\'{i}da.
+Os operadores de muta\c{c}\~{a}o utilizados s\~{a}o baseados em experi\^{e}ncias de qualidade encontradas na literatura \cite{Goncalves2002}
+\cite{Lin2010}.
+
+\begin{description}
+\item[permuta\c{c}\~{a}o] conforme delineado anteriormente, esse operador de muta\c{c}\~{a}o tem por finalidade reorganizar as dimens\~{o}es do
+vetor de forma aleat\'{o}ria, pertubando os novos indiv\'{i}duos--solu\c{c}\~{o}es gerados. Essa pertuba\c{c}\~{a}o em n\'{i}vel genot\'{i}pico
+\'{e} revertido em n\'{i}vel fenot\'{i}pico para uma pertuba\c{c}\~{a}o na ordem de processamento das opera\c{c}\~{o}es das tarefas;
+\item[gera\c{c}\~{a}o aleat\'{o}ria] esse operador tem por influ\^{e}ncia as estrat\'{e}gias evolutivas \cite{Goncalves2002} e tem por finalidade
+prover \`{a} popula\c{c}\~{a}o de indiv\'{i}duos--solu\c{c}\~{o}es novos valores genot\'{i}picos, o que acarretar\'{a} em pertuba\c{c}\~{o}es em
+n\'{i}vel fenot\'{i}pico. Os 20\% piores indiv\'{i}duos da popula\c{c}\~{a}o s\~{a}o substitu\'{i}dos por novos indiv\'{i}duos aleatoriamente
+criados, de forma an\'{a}loga \`{a} popula\c{c}\~{a}o inicial (Se\c{c}\~{a}o \ref{inicial}).
+\end{description}
+
+\section{Operadores de sele\c{c}\~{a}o}
+
+Os operadores de variabilidade t\^{e}m sua influ\^{e}ncia na forma como novos indiv\'{i}duos ser\~{a}o gerados e como o espa\c{c}o de busca do
+problema de otimiza\c{c}\~{a}o ser\'{a} percorrido, a partir das escolhas feitas pela representa\c{c}\~{a}o dos indiv\'{i}duos--solu\c{c}\~{o}es
+e como os operadores de variabilidade s\~{a}o capazes de evoluir/transformar essas representa\c{c}\~{o}es. Por outro lado, os operadores de
+sele\c{c}\~{a}o determinam as escolhas a longo prazo que o algoritmo far\'{a} de quais caracter\'{i}sticas--indiv\'{i}duos permanecer\~{a}o
+naquela popula\c{c}\~{a}o a cada gera\c{c}\~{a}o. Portanto, a intera\c{c}\~{a}o entre os operadores de variabilidade e os operadores de
+sele\c{c}\~{a}o s\~{a}o fatores importantes na an\'{a}lise da efetividade de uma solu\c{c}\~{a}o baseada em algoritmos evolucion\'{a}rios.
+
+Para efeito de an\'{a}lises foram utilizados tr\^{e}s operadores de sele\c{c}\~{a}o distintos \cite{DeJong2006} \cite{Engelbrecht2007}:
+\begin{description}
+\item[sele\c{c}\~{a}o por ranqueamento linear] operador de sele\c{c}\~{a}o mais simples e com maior press\~{a}o seletiva, a sele\c{c}\~{a}o
+por ranqueamento linear organiza os indiv\'{i}duos--solu\c{c}\~{o}es dos melhores aos piores; os melhores indiv\'{i}duos s\~{a}o sempre
+escolhidos em detrimento dos piores indiv\'{i}duos da popula\c{c}\~{a}o;
+\item[sele\c{c}\~{a}o proporcional \`{a} aptid\~{a}o] a sele\c{c}\~{a}o proporcional \`{a} aptid\~{a}o (\textit{fitness}) tem press\~{a}o
+seletiva m\'{e}dia e garante a todos os indiv\'{i}duos a oportunidade de serem selecionados. Inicialmente \'{e} feito o somat\'{o}rio da
+aptid\~{a}o dos indiv\'{i}duos da popula\c{c}\~{a}o: seja $n$ o tamanho da popula\c{c}\~{a}o, $f_{i}$ a aptid\~{a}o do indiv\'{i}duo
+$i$, $1 \leq i \leq n$; o somat\'{o}rio da aptid\~{a}o dos indiv\'{i}udos da popula\c{c}\~{a}o $S_{f} = \sum^{n}_{k=1}f_{k}$. Em seguida
+\'{e} feita uma distribui\c{c}\~{a}o normal $d \leftarrow N(0, S_{f})$ para determinar qual indiv\'{i}duo ser\'{a} selecionado. Por fim,
+\'{e} feita uma roleta para determinar qual indiv\'{i}duo ser\'{a} selecionado, conforme algoritmo \ref{roleta}:
+
+
+\medskip
+\begin{center}
+\begin{minipage}{0.92\textwidth}
+\begin{algorithm2e}[H]
+  \dontprintsemicolon
+  \linesnumbered
+  \SetLine
+  \BlankLine
+  \Entrada{Popula\c{c}\~{a}o de $\mu$ indiv\'{i}duos; e valor $d$ de escolha da roleta}
+  \Saida{$I_{i}$, o indiv\'{i}duo $i$ da popula\c{c}\~{a}o}
+  \BlankLine
+  $i \leftarrow 1$, denota o indiv\'{i}duo $i$ da popula\c{c}\~{a}o, $1 \leq i \leq \mu$\;
+  $soma \leftarrow f_{i}$\;
+  \While{$soma < d$}{
+    $i \leftarrow i + 1$, passa para o pr\'{o}ximo indiv\'{i}duo\;
+    $soma \leftarrow soma + f_{i}$\;
+  }
+  Retorna $I_{i}$, o indiv\'{i}duo $i$ da popula\c{c}\~{a}o\;
+\caption{Roleta}
+\label{roleta}
+\end{algorithm2e}
+\end{minipage}
+\end{center}
+
+\item[sele\c{c}\~{a}o por torneio] a sele\c{c}\~{a}o por torneio classifica $n$ indiv\'{i}duos da popula\c{c}\~{a}o,
+aleatoriamente, para participar do torneio e escolhe um dentre os escolhidos. Para efeito de an\'{a}lises e ap\'{o}s alguns testes para
+afina\c{c}\~{a}o da solu\c{c}\~{a}o, o valor de $n$ foi fixado em $5$.
+\end{description}
+
+\chapter{Resultados obtidos}
+\label{resultados}
+
+Com o fim de analisar a solu\c{c}\~{a}o algor\'{i}tmica proposta, foram criados 27 casos de experimentos realizados sobre 18 inst\^{a}ncias
+da OR-Library \cite{OrLibrary}. Cada inst\^{a}ncia foi exercitada 20 vezes em cada uma das solu\c{c}\~{o}es propostas, em cada um dos 27
+casos de experimentos. A execu\c{c}\~{a}o dos casos de experimentos foi feita sobre um Intel Core 2 Duo de 2GHz, 3GB de RAM e sistema
+operacional GNU/Linux Ubuntu 11.10, Kernel Linux 3.0.0-14-generic. A implementa\c{c}\~{a}o das solu\c{c}\~{o}es foi feita em linguagem
+\textit{C} --- um framework para execu\c{c}\~{a}o autom\'{a}tica dos casos de experimentos foi escrito em \textit{Python}. Conquanto a
+OR-Library forne\c{c}a 82 inst\^{a}ncias de problemas de escalonamento job-shop, n\~{a}o necessariamente a literatura realiza o exerc\'{i}cio
+de todas estas inst\^{a}ncias \cite{Goncalves2002} \cite{Lin2010} \cite{Gao2011} \cite{Rego2009}.
+
+Os 27 casos de experimentos s\~{a}o organizados conforme delineado na tabela \ref{experimentos}. Nessa, \textit{1PXO} e \textit{NPXO}
+referem-se, respectivamente, a recombina\c{c}\~{a}o de $1$ e $n$--pontos; \textit{UXO} refere-se \`{a} recombina\c{c}\~{a}o uniforme;
+\textit{MP} refere-se a muta\c{c}\~{a}o por permuta\c{c}\~{o}es; \textit{GA} refere-se \`{a} gera\c{c}\~{a}o aleat\'{o}ria de descendentes;
+\textit{RANK}, \textit{FP} e \textit{T} referem-se, respectivamente, \`{a} sele\c{c}\~{a}o por ranqueamento linear, proporcional \`{a}
+aptid\~{a}o e por torneio; e \textit{EXP} refere-se ao n\'{u}mero do experimento. Em seguida s\~{a}o apresentadas as 27 tabelas com os
+resultados obtidos para cada experimento.
+
+Cada tabela com os resultados (da tabela \ref{experimento1} \`{a} tabela \ref{experimento27}) apresenta, para cada algoritmo desenvolvido,
+o melhor resultado obtido nas 20 execu\c{c}\~{o}es, a m\'{e}dia dos melhores valores obtidos nas 20 execu\c{c}\~{o}es, o pior resultado
+obtido nas 20 execu\c{c}\~{o}es e a m\'{e}dia populacional de todos os indiv\'{i}duos que foram criados nas 20 execu\c{c}\~{o}es.
+\textit{GA/EV-JB} refere-se \`{a} solu\c{c}\~{a}o algor\'{i}tmica baseada na vers\~{a}o can\^{o}nica dos algoritmos gen\'{e}ticos e
+\textit{IVF/EV-JB} refere-se \`{a} solu\c{c}\~{a}o h\'{i}brida, objeto de desenvolvimento e an\'{a}lise no presente trabalho --- conforme
+descrito no Cap\'{i}tulo \ref{solucao}. \textit{BKS} (\textit{best known solution}) refere-se \`{a} melhor solu\c{c}\~{a}o reconhecida pela
+literatura para aquela inst\^{a}ncia \cite{Gao2011} \cite{Lin2010} \cite{Goncalves2002}. O tamanho ou dimens\~{a}o da inst\^{a}ncia \'{e}
+determinado pelo n\'{u}mero $n$ de tarefas e o n\'{u}mero $m$ de m\'{a}quinas.
+
+\newcommand{\x}{$\bullet$}
+\begin{table*}[hp]
+\caption{Configura\c{c}\~{a}o dos casos de experimentos}
+\centering
+\label{experimentos}
+\begin{tabular}{ccccccccc}
+\toprule
+\multicolumn{8}{c}{Configura\c{c}\~{o}es} \\
+\cmidrule(c){1-8}
+ 1PXO & NPXO & UXO &  MP  &  GA  & RANK &  FP  &  T  & EXP \\
+\midrule
+ \x   &      &     &  \x  &      &  \x  &      &     &  1  \\
+      &  \x  &     &  \x  &      &  \x  &      &     &  2  \\
+      &      & \x  &  \x  &      &  \x  &      &     &  3  \\
+ \x   &      &     &  \x  &      &      &  \x  &     &  4  \\
+      &  \x  &     &  \x  &      &      &  \x  &     &  5  \\
+      &      & \x  &  \x  &      &      &  \x  &     &  6  \\
+ \x   &      &     &  \x  &      &      &      & \x  &  7  \\
+      &  \x  &     &  \x  &      &      &      & \x  &  8  \\
+      &      & \x  &  \x  &      &      &      & \x  &  9  \\
+ \x   &      &     &      &  \x  &  \x  &      &     &  10 \\
+      &  \x  &     &      &  \x  &  \x  &      &     &  11 \\
+      &      & \x  &      &  \x  &  \x  &      &     &  12 \\
+ \x   &      &     &      &  \x  &      &  \x  &     &  13 \\
+      &  \x  &     &      &  \x  &      &  \x  &     &  14 \\
+      &      & \x  &      &  \x  &      &  \x  &     &  15 \\
+ \x   &      &     &      &  \x  &      &      & \x  &  16 \\
+      &  \x  &     &      &  \x  &      &      & \x  &  17 \\
+      &      & \x  &      &  \x  &      &      & \x  &  18 \\
+ \x   &      &     &  \x  &  \x  &  \x  &      &     &  19 \\
+      &  \x  &     &  \x  &  \x  &  \x  &      &     &  20 \\
+      &      & \x  &  \x  &  \x  &  \x  &      &     &  21 \\
+ \x   &      &     &  \x  &  \x  &      &  \x  &     &  22 \\
+      &  \x  &     &  \x  &  \x  &      &  \x  &     &  23 \\
+      &      & \x  &  \x  &  \x  &      &  \x  &     &  24 \\
+ \x   &      &     &  \x  &  \x  &      &      & \x  &  25 \\
+      &  \x  &     &  \x  &  \x  &      &      & \x  &  26 \\
+      &      & \x  &  \x  &  \x  &      &      & \x  &  27 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\input{./tables/experiment_table01.tex}
+\cleardoublepage
+\input{./tables/experiment_table02.tex}
+\cleardoublepage
+\input{./tables/experiment_table03.tex}
+\cleardoublepage
+\input{./tables/experiment_table04.tex}
+\cleardoublepage
+\input{./tables/experiment_table05.tex}
+\cleardoublepage
+\input{./tables/experiment_table06.tex}
+\cleardoublepage
+\input{./tables/experiment_table07.tex}
+\cleardoublepage
+\input{./tables/experiment_table08.tex}
+\cleardoublepage
+\input{./tables/experiment_table09.tex}
+\cleardoublepage
+\input{./tables/experiment_table10.tex}
+\cleardoublepage
+\input{./tables/experiment_table11.tex}
+\cleardoublepage
+\input{./tables/experiment_table12.tex}
+\cleardoublepage
+\input{./tables/experiment_table13.tex}
+\cleardoublepage
+\input{./tables/experiment_table14.tex}
+\cleardoublepage
+\input{./tables/experiment_table15.tex}
+\cleardoublepage
+\input{./tables/experiment_table16.tex}
+\cleardoublepage
+\input{./tables/experiment_table17.tex}
+\cleardoublepage
+\input{./tables/experiment_table18.tex}
+\cleardoublepage
+\input{./tables/experiment_table19.tex}
+\cleardoublepage
+\input{./tables/experiment_table20.tex}
+\cleardoublepage
+\input{./tables/experiment_table21.tex}
+\cleardoublepage
+\input{./tables/experiment_table22.tex}
+\cleardoublepage
+\input{./tables/experiment_table23.tex}
+\cleardoublepage
+\input{./tables/experiment_table24.tex}
+\cleardoublepage
+\input{./tables/experiment_table25.tex}
+\cleardoublepage
+\input{./tables/experiment_table26.tex}
+\cleardoublepage
+\input{./tables/experiment_table27.tex}
+\cleardoublepage
+
+\section{Efetividade da solu\c{c}\~{a}o}
+
+Pelos 27 casos de experimentos \'{e} poss\'{i}vel avaliar que ambas as solu\c{c}\~{o}es desenvolvidas s\~{a}o solu\c{c}\~{o}es de qualidade por
+apresentarem respostas pr\'{o}ximas ou semelhantes \`{a}quelas encontradas pela literatura. Embora em alguns casos de experimento as solu\c{c}\~{o}es
+n\~{a}o forne\c{c}am a melhor solu\c{c}\~{a}o conhecida (\textit{BKS}), ainda assim obtemos uma resposta relevante. Nos experimentos 1 (tabela
+\ref{experimento1}), 2 (tabela \ref{experimento2}), 3 (tabela \ref{experimento3}) e 19 (tabela \ref{experimento19}) obtemos respostas pr\'{o}ximas
+ou semelhantes \`{a} melhor solu\c{c}\~{a}o conhecida em mais de 85\% das inst\^{a}ncias exercitadas. Nos experimentos 6 (tabela \ref{experimento6}),
+7 (tabela \ref{experimento7}), 8 (tabela \ref{experimento8}), 9 (tabela \ref{experimento9}), 10 (tabela \ref{experimento10}), 13 (tabela
+\ref{experimento13}), 22 (tabela \ref{experimento22}), 24 (tabela \ref{experimento24}), 25 (tabela \ref{experimento25}), 26 (tabela
+\ref{experimento26}) e 27 (tabela \ref{experimento27}) o IVF/EV-JB obt\'{e}m ao menos 80\% melhores resultados frente ao GA/EV-JB. Nos experimentos
+20 (tabela \ref{experimento20}) e 21 (tabela \ref{experimento21}) h\'{a} uma perda na qualidade das solu\c{c}\~{o}es encontradas pelo IVF/EV-JB
+frente ao GA/EV-JB. Nos experimentos 11 (tabela \ref{experimento11}), 12 (tabela \ref{experimento12}), 14 (tabela \ref{experimento14}), 15 (tabela
+\ref{experimento15}), 16 (tabela \ref{experimento16}), 17 (tabela \ref{experimento17}), 18 (tabela \ref{experimento18}) e 23 (tabela
+\ref{experimento23}) o IVF/EV-JB perde grande parte da sua efetividade e obt\'{e}m ao menos 55\% melhores resultados frente ao GA/EV-JB.
+
+Analisando os piores resultados desenvolvidos em cada solu\c{c}\~{a}o, o IVF/EV-JB se mostra uma solu\c{c}\~{a}o inicialmente gulosa, por ter os
+menores valores de pior indiv\'{i}duo gerado nas execu\c{c}\~{o}es; contudo, esse comportamento n\~{a}o demonstra ser prop\'{i}cio a tornar a
+solu\c{c}\~{a}o vulner\'{a}vel em \'{o}timos locais. A m\'{e}dia populacional do IVF/EV-JB juntamente os valores de pior indiv\'{i}duo corroboram
+com a motiva\c{c}\~{a}o do algoritmo auxiliar paralelo (AAP) em manter qualidades genot\'{i}picas na popula\c{c}\~{a}o e prover resultados de
+qualidade.
+
+\section{Influ\^{e}ncia dos operadores de variabilidade e de sele\c{c}\~{a}o sobre a efetividade da solu\c{c}\~{a}o}
+
+Pelos resultados obtidos n\~{a}o \'{e} poss\'{i}vel identificar quais s\~{a}o as reais influ\^{e}ncias dos operadores de variabilidade e
+sele\c{c}\~{a}o sobre a efetividade da solu\c{c}\~{a}o. Contudo, \'{e} poss\'{i}vel aferir que as melhores configura\c{c}\~{o}es das solu\c{c}\~{o}es
+propostas foram as configura\c{c}\~{o}es dos experimentos 1 (tabela \ref{experimento1}), 2 (tabela \ref{experimento2}), 3 (tabela \ref{experimento3}),
+25 (tabela \ref{experimento25}), 26 (tabela \ref{experimento26}) e 27 (tabela \ref{experimento27}); as piores configura\c{c}\~{o}es est\~{a}o nos
+experimentos 16 (tabela \ref{experimento16}), 17 (tabela \ref{experimento17}) e 18 (tabela \ref{experimento18}).
+
+Pelos resultados n\~{a}o \'{e} poss\'{i}vel aferir qual \'{e} o melhor ou pior operador de variabilidade ou de sele\c{c}\~{a}o, mas qual a
+configura\c{c}\~{a}o \'{e} mais prop\'{i}cia a gerar resultados de qualidade, em conson\^{a}ncia com os desenvolvimentos da literatura a respeito dos
+algoritmos evolucion\'{a}rios e como uma solu\c{c}\~{a}o metaheur\'{i}stica nestes par\^{a}metros deve ser projetada \cite{DeJong2006}. \'{E}
+poss\'{i}vel identificar que a sele\c{c}\~{a}o por ranqueamento linear (com alta press\~{a}o seletiva \cite{DeJong2006} \cite{Engelbrecht2007})
+prov\^{e} resultados de qualidade quando combinada \`{a} muta\c{c}\~{a}o por permuta\c{c}\~{a}o; e tamb\'{e}m poss\'{i}vel verificar a partir dos
+experimentos que a sele\c{c}\~{a}o por torneio (com m\'{e}dia press\~{a}o seletiva \cite{DeJong2006} \cite{Engelbrecht2007}) prov\^{e} resultados
+de qualidade quando combinada \`{a} muta\c{c}\~{a}o por permuta\c{c}\~{a}o juntamente com a gera\c{c}\~{a}o aleat\'{o}ria de indiv\'{i}duos.
+
+Alguns autores defendem que mecanismos de sele\c{c}\~{a}o de alta press\~{a}o seletiva devem ser combinados com mecanismos que geram grande
+variabilidade a fim de obter-se resultados de qualidade \cite{DeJong2006}. Por esta considera\c{c}\~{a}o, ser\'{a} v\'{a}lido afirmar que o mecanismo
+de muta\c{c}\~{a}o por permuta\c{c}\~{a}o \'{e} um operador de variabilidade que gera grande variabilidade em n\'{i}vel fenot\'{i}pico, tornando
+os indiv\'{i}duos--solu\c{c}\~{o}es aptos a sofrer maior press\~{a}o seletiva. A gera\c{c}\~{a}o aleat\'{o}ria de indiv\'{i}duos, conforme
+demonstrados nos experimentos 25 (tabela \ref{experimento25}), 26 (tabela \ref{experimento26}) e 27 (tabela \ref{experimento27}), aparentemente
+diminui os efeitos da muta\c{c}\~{a}o por permuta\c{c}\~{a}o e tornam os indiv\'{i}duos--solu\c{c}\~{o}es aptos a sofrer uma menor press\~{a}o
+seletiva.
+
+\chapter{Conclus\~{a}o}
+\label{conclusao}
+
+A partir de uma classe de problemas de otimiza\c{c}\~{a}o --- problemas de escalonamento job-shop ---, foi realizada a an\'{a}lise do algoritmo
+auxiliar paralelo (AAP) sobre uma solu\c{c}\~{a}o baseada em algoritmos gen\'{e}ticos, mas com influ\^{e}ncias de outras abordagens
+evolucion\'{a}rias. Al\'{e}m desta an\'{a}lise central, foi tamb\'{e}m realizada uma an\'{a}lise dos efeitos que operadores de sele\c{c}\~{a}o
+e de variabilidade (recombina\c{c}\~{a}o e muta\c{c}\~{a}o) influem sobre as solu\c{c}\~{o}es--respostas obtidas por estes algoritmos.
+
+Foi poss\'{i}vel constastar a relativa efetividade e efici\^{e}ncia das solu\c{c}\~{o}es constru\'{i}das a partir de 27 casos de experimentos,
+o que contribui para enaltecer a import\^{a}ncia das metaheur\'{i}sticas, sobretudo dos algoritmos evolucion\'{a}rios, como m\'{e}todos de
+solu\c{c}\~{a}o para problemas em otimiza\c{c}\~{a}o. Os casos de experimentos constatam que a partir de configura\c{c}\~{o}es, an\'{a}lises e
+ajustes obt\^{e}m-se resultados de qualidade com algoritmos conceitualmente simples e de f\'{a}cil aplicabilidade, mesmo em classes de problemas
+de dif\'{i}cil modelagem matem\'{a}tica, como \'{e} o caso dos problemas de escalonamento job-shop \cite{French1982}.
+
+O AAP se consolida como uma proposta de melhoria n\~{a}o s\'{o} em algoritmos gen\'{e}ticos, mas, tamb\'{e}m, em outras classes de algoritmos
+evolucion\'{a}rios. Obteve-se uma resposta positiva do AAP frente \`{a} sua contrapartida nos experimentos. Al\'{e}m disso, constatou-se a
+import\^{a}ncia da escolha dos mecanismos de variabilidade e de sela\c{c}\~{a}o em uma solu\c{c}\~{a}o baseada em algoritmos evolucion\'{a}rios.
+
+\section{Trabalhos futuros}
+
+O presente trabalho realizou a aplica\c{c}\~{a}o de uma extens\~{a}o dos algoritmos gen\'{e}ticos --- a saber, o algoritmo auxiliar
+paralelo (AAP) baseado na fertiliza\c{c}\~{a}o in vitro --- como solu\c{c}\~{a}o para problemas de escalonamento job-shop. Em seguida,
+foi feito um comparativo com uma vers\~{a}o dita can\^{o}nica com a finalidade de evidenciar os efeitos do AAP sobre a solu\c{c}\~{a}o
+metaheur\'{i}stica e suas influ\^{e}ncias nas solu\c{c}\~{o}es obtidas.
+
+Possibilidades de expans\~{a}o do presente trabalho seria aplicar o AAP em outras classes de algoritmos evolucion\'{a}rios, como as estrat\'{e}gias
+evolutivas, ou em outras abordagens metaheur\'{i}sticas baseadas num conjunto de solu\c{c}\~{o}es--indiv\'{i}duos, ou popula\c{c}\~{o}es de
+indiv\'{i}duos (``busca adaptativa paralela'', como \textit{particle swarm optimization}). O AAP tem por base conceitos simples, como um indiv\'{i}duo
+representado genot\'{i}pica ou fenotipicamente; mecanismos de gera\c{c}\~{a}o de novas solu\c{c}\~{o}es--indiv\'{i}duos e de variabilidade destas
+solu\c{c}\~{o}es. Portanto, a aplicabilidade do AAP em outras classes de algoritmos evolucion\'{a}rios garante-se pois este \'{e} de f\'{a}cil
+implementa\c{c}\~{a}o, necessitando apenas de conceitos inerentes aos algoritmos evolucion\'{a}rios.
+
+Outra expans\~{a}o poss\'{i}vel \'{e} realizar um comparativo mais ostensivo do AAP frente a outras abordagens h\'{i}bridas, como os
+\textit{immune genetic algorithms}.
+
+\cleardoublepage
+\nocite{*}
+\arial
+\bibliography{../bibliograph}
+
+\apendices
+
+\end{document}
+

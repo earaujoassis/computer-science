@@ -1,0 +1,12 @@
+ref-texts/
+*.aux
+*.bbl
+*.blg
+*.loa
+*.log
+*.lot
+*.nav
+*.out
+*.snm
+*.toc
+*.py

@@ -1,0 +1,251 @@
+{
+  "times" : 20,
+  "instances_folder" : "/home/earaujo/personal/coding/metaheuristics/scheduling/jobshop/exercises/config",
+  "output_folder" : "/home/earaujo/personal/coding/metaheuristics/scheduling/jobshop/exercises/results",
+  "experiments" : [
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp00",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "onepoint",
+      "selection" : "ranking",
+      "mutation" : "permutation"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp01",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "npoint",
+      "selection" : "ranking",
+      "mutation" : "permutation"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp02",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "uniform",
+      "selection" : "ranking",
+      "mutation" : "permutation"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp03",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "onepoint",
+      "selection" : "proportional",
+      "mutation" : "permutation"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp04",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "npoint",
+      "selection" : "proportional",
+      "mutation" : "permutation"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp05",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "uniform",
+      "selection" : "proportional",
+      "mutation" : "permutation"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp06",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "onepoint",
+      "selection" : "tournament",
+      "mutation" : "permutation"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp07",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "npoint",
+      "selection" : "tournament",
+      "mutation" : "permutation"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp08",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "uniform",
+      "selection" : "tournament",
+      "mutation" : "permutation"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp09",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "onepoint",
+      "selection" : "ranking",
+      "mutation" : "regenerated"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp10",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "npoint",
+      "selection" : "ranking",
+      "mutation" : "regenerated"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp11",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "uniform",
+      "selection" : "ranking",
+      "mutation" : "regenerated"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp12",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "onepoint",
+      "selection" : "proportional",
+      "mutation" : "regenerated"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp13",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "npoint",
+      "selection" : "proportional",
+      "mutation" : "regenerated"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp14",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "uniform",
+      "selection" : "proportional",
+      "mutation" : "regenerated"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp15",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "onepoint",
+      "selection" : "tournament",
+      "mutation" : "regenerated"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp16",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "npoint",
+      "selection" : "tournament",
+      "mutation" : "regenerated"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp17",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "uniform",
+      "selection" : "tournament",
+      "mutation" : "regenerated"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp18",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "onepoint",
+      "selection" : "ranking",
+      "mutation" : "both"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp19",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "npoint",
+      "selection" : "ranking",
+      "mutation" : "both"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp20",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "uniform",
+      "selection" : "ranking",
+      "mutation" : "both"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp21",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "onepoint",
+      "selection" : "proportional",
+      "mutation" : "both"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp22",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "npoint",
+      "selection" : "proportional",
+      "mutation" : "both"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp23",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "uniform",
+      "selection" : "proportional",
+      "mutation" : "both"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp24",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "onepoint",
+      "selection" : "tournament",
+      "mutation" : "both"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp25",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "npoint",
+      "selection" : "tournament",
+      "mutation" : "both"
+    },
+    {
+      "instances" : "or-library.txt",
+      "folder_name" : "exp26",
+      "file_prefix" : "or-library-test",
+      "algorithms" : [ "ivf", "ga" ],
+      "recombination" : "uniform",
+      "selection" : "tournament",
+      "mutation" : "both"
+    }
+  ]
+}
+

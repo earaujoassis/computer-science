@@ -1,0 +1,10 @@
+Crossover: Parameterized Uniform Crossover (100%), Probability of tossing heads is equal to 70%
+Mutation: Permutation Mutation (100%) and Regenerated Individuals Mutation (100%) (bottom 20%)
+Selection: Linear Ranking
+Exchange Probability: 35%
+Insertion Probability: 35%
+Invertion Probability: 10%
+Shifting Probability: 20%
+IVF-GA Number of Points: between 20% and 30% of chromosome size
+IVF-GA Substitution: worst individual
+IVF-GA Cutoffs established for each cycle (fertilization cycle)
