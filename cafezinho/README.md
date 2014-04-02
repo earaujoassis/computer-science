@@ -1,24 +1,44 @@
-cafezinho
-=========
+# Cafezinho
 
 A smaller and minimalist fork of the C programming language. Cafezinho (noun)
-is portuguese for small cup of coffee.
+is Portuguese for a small cup of coffee.
 
 ## Compile
 
-The statement `make build` creates the compiler (cafezinho) at the source
-folder root. It needs Flex 2.5.x and Bison 2.7.x. Tested under Unix-like
-systems only.
+   ```sh
+   $ make build
+   ```
+
+It creates the compiler (cafezinho) at the source folder root. Tested under
+Unix-like systems only.
+
+### Dependencies
+
+ * Flex 2.5.x
+ * Bison 2.7.x
 
 ## Test
 
-The statement `make test` run a test case for some source-code placed at test/
-folder. It needs Python 2.7+ to run the test case; it wasn't tested under 
-Python 3.x. There's a descriptor file for the tests in tests/descriptor.json.
+   ```sh
+   $ make test
+   ```
+
+It runs a test case for some source-code placed at test/folder. There's a
+descriptor file for the tests in tests/descriptor.json.
+
+### Dependencies
+
+ * Python 2.7.x (not tested in Python 3.x)
 
 ## Regenerate source folder
 
-The statement `make clean` removes the files created from Flex and Bison and
-also removes the compiler (cafezinho) binary.
+   ```sh
+   $ make clean
+   ```
 
-Copyright &copy; 2013 Ewerton Assis (earaujoassis at gmail dot com).
+It removes the files created from Flex and Bison and also removes the compiler
+(cafezinho) binary.
+
+## License
+
+[MIT License](http://ewerton-araujo.mit-license.org/) &copy; 2013-2014 Ewerton Assis

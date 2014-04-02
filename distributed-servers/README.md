@@ -1,4 +1,6 @@
-# Common Registration Based Communication Protocol (CRBCP)
+# CRBCP v1.0
+
+## Common Registration Based Communication Protocol
 
 WARNING: THIS PROJECT IS INTENDED TO DEVELOP CONCEPTS IN COMPUTER NETWORKING AND DISTRIBUTED SYSTEMS. IT IS NOT INTENDED FOR REAL WORLD USE.
 
@@ -14,7 +16,7 @@ The sections below will present some concepts and deeper considerations about th
 
 An obvious motivation is a means of masking TCP/IP (host, port) tuple, majorly necessary to establish a communication process. A communicant entity registers its name in a registry host, and then it may exchange messages to every known communicants in that "communication section". If someone "unknown" sends a message to any communicant in a section, the later may drop the message; it only establishes a communication process to another communicant in a section.
 
-An other motivation, related to the later one, is a way to establish a communication process only knowing the "proper name" of another communicant. There's no need for host and port values.
+Another motivation, related to the later one, is a way to establish a communication process only knowing the "proper name" of another communicant. There's no need for host and port values.
 
 ## CRBCP bundles; or CRBCP messages and attributes
 
@@ -99,3 +101,7 @@ The Status-codes are three digits values, organized as follow: 1xx relates to re
 401  Bad CRBC message (Method: General)<br>
 402  Unknown name destination (Method: Unknown)<br>
 403  That's not me (non-repudiation) (Method: Unknown)
+
+## License
+
+Apache License, Version 2.0. Copyright 2011-2014 &copy; Ewerton Assis.

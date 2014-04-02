@@ -1,7 +1,6 @@
-Linux Files
-===========
+# Linux Files
 
-Files tool written for Unix-like systems.
+> File tools written for Unix-like systems.
 
 ## Compile
 
@@ -19,4 +18,6 @@ The command `make clean` removes the binaries (it purges the source folder).
 
 Just execute `lfiles -h`, `finfo -h`, or `shrink -h` to see instructions. `lfiles` has three major functions: a histogram for files size (the user sets each histogram class); a function that searches every file in the filesystem with two hard links; and a function that lists every file for a set of folders. `shrink` just shrinks a file using a signal byte: for every four or more occurrencies of that signal, it shrinks it to just one. `finfo` prints information about a file-name. `htree` counts, recursively, how many regular files, directories, and symbolic links a given directory has.
 
-Copyright &copy; 2013 Ewerton Assis (earaujoassis at gmail dot com).
+## License
+
+[MIT License](http://ewerton-araujo.mit-license.org/) &copy; 2013-2014 Ewerton Assis
