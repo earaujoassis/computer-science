@@ -1,6 +1,7 @@
-computer-science
-================
+# Computer Science
 
-Computer science projects.
+> Computer Science projects
 
-Copyright &copy; 2013 Ewerton Assis (earaujoassis at gmail dot com).
+## License
+
+Each subproject has its own LICENSE file; otherwise [MIT License](http://ewerton-araujo.mit-license.org/) &copy; Ewerton Assis
