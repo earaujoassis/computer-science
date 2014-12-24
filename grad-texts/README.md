@@ -9,4 +9,4 @@ derivadas 3.0 Unported (CC BY-NC-ND 3.0). Para maiores detalhes quanto √† licen√
 
 [CC BY-NC-ND 3.0](http://creativecommons.org/licenses/by-nc-nd/3.0) &copy; 2013-2014 Ewerton Assis
 
-[MIT License](http://ewerton-araujo.mit-license.org/) &copy; 2013-2014 Ewerton Assis
+[MIT License](http://earaujoassis.mit-license.org/) &copy; 2013-2014 Ewerton Assis

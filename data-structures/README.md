@@ -4,4 +4,4 @@
 
 ## License
 
-[MIT License](http://ewerton-araujo.mit-license.org/) &copy; 2013-2014 Ewerton Assis
+[MIT License](http://earaujoassis.mit-license.org/) &copy; Ewerton Assis

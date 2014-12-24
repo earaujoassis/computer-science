@@ -20,4 +20,4 @@ Just execute `lfiles -h`, `finfo -h`, or `shrink -h` to see instructions. `lfile
 
 ## License
 
-[MIT License](http://ewerton-araujo.mit-license.org/) &copy; 2013-2014 Ewerton Assis
+[MIT License](http://earaujoassis.mit-license.org/) &copy; 2013-2014 Ewerton Assis
