@@ -115,7 +115,7 @@ generate_histogram (const size_t bytes_class,
       sprintf (current_dir, "%s/", folder_root);
       current_dir_alloc_flag = 1;
     }
-  else  
+  else
     current_dir = (char *) folder_root;
   pDir = opendir (current_dir);
   if (pDir == NULL)
@@ -225,7 +225,7 @@ list_directories (int argc_begin,
       closedir (pDir);
       fprintf (stdout, "total files: %d\n", total_files);
       if (i != argc_final - 1) printf ("\n");
-    }  
+    }
   return 0;
 }
 

@@ -1,0 +1,53 @@
+#!/usr/bin/env python2.7
+# -*- coding: utf-8 -*-
+
+# Copyright 2011 Éwerton Assis
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import os, sys, signal, importlib
+path = os.path.join(os.path.realpath(globals()["__file__"]), '../../')
+sys.path.append(os.path.realpath(path))
+
+from crawler.providers import UrlProviderClient
+from crawler import CrawlerThread
+
+MAX_THREADS = 100
+
+def main():
+    thread_list = list()
+    url_provider = UrlProviderClient()
+    url_provider.create('http://en.wikipedia.org/wiki/Main_Page')
+    for index in range(MAX_THREADS):
+        crawler = CrawlerThread(url_provider)
+        thread_list.append(crawler)
+
+    def stop_servers(signum, frame):
+        for crawler in thread_list:
+            if crawler.is_alive():
+                crawler.stop()
+                crawler.join(0.0)
+            del crawler
+        sys.stdout.write("\nCrawler exiting\n")
+        os.kill(os.getpid(), signal.SIGKILL)
+    signal.signal(signal.SIGQUIT, stop_servers)
+    signal.signal(signal.SIGINT, stop_servers)
+
+    for thread in thread_list:
+        thread.start()
+    for thread in thread_list:
+        thread.join()
+
+if __name__ == '__main__':
+    main()
+

@@ -23,7 +23,7 @@
 void yyerror (const char *);
 void yyerror (const char *, int);
 
-enum DataType 
+enum DataType
 {
   INT_T = 0x0,
   CHAR_T = 0x1,
@@ -290,7 +290,7 @@ class BlockStructure
     bool has_return;
     DataType return_type;
     bool return_error;
-  public: 
+  public:
     BlockStructure () : has_return (false), return_error (false) { }
     bool hasReturn () { return has_return; }
     DataType getReturnType () { return return_type; }
@@ -298,7 +298,7 @@ class BlockStructure
 };
 
 class Block : public Command, public BlockStructure
-{  
+{
   public:
     Block (DeclVarList *var_decl, ListCommand *statements = NULL)
       {
@@ -404,7 +404,7 @@ class ConstExpr : public Expr
                 case 't': return '\t';
                 case 'a': return '\a';
                 case 'r': return '\r';
-                case 'b': return '\b'; 
+                case 'b': return '\b';
                 case 'f': return '\f';
                 case '\\': return '\\';
               }
@@ -441,7 +441,7 @@ class DeclId : public ASTNode
         if (var_symbol_tab.find (*var_name) != var_symbol_tab.end ()
             && var_symbol_tab[*var_name].top ().second == scope_level)
           {
-            std::string message = "Redeclaração: " + *var_name + "."; 
+            std::string message = "Redeclaração: " + *var_name + ".";
             yyerror (message.c_str (), code_location);
           }
         if (var_size != NULL)
@@ -532,7 +532,7 @@ class If : public Command, public BlockStructure
     If (ASTNode *expr, ASTNode *statement, ASTNode *else_block = NULL)
       {
         child.resize (3);
-        child[0] = expr; 
+        child[0] = expr;
         child[1] = statement;
         child[2] = else_block;
       }
@@ -662,7 +662,7 @@ class TerExpr : public Expr
     TerExpr (ASTNode *expr, ASTNode *left_statement, ASTNode *right_statement)
       {
         child.resize (3);
-        child[0] = expr; 
+        child[0] = expr;
         child[1] = left_statement;
         child[2] = right_statement;
       }
@@ -753,7 +753,7 @@ class UnExpr : public Expr
 };
 
 class Param : public ASTNode
-{ 
+{
   protected:
     DataType param_type;
     std::string *param_name;
@@ -849,7 +849,7 @@ class DeclFunc : public ASTNode
             std::string message = "Nome de função já associado a variável: " + *func_name + ".";
             yyerror (message.c_str (), code_location);
           }
-      
+
         if (func_symbol_tab.find (*func_name) != func_symbol_tab.end ())
           {
             std::string message = "Redeclaração de função: " + *func_name + ".";
@@ -864,7 +864,7 @@ class DeclFunc : public ASTNode
         scope_level--;
         Block* block = static_cast<Block*>(child[1]);
         block->walk (depth + 1);
-      
+
         if (block->hasReturn ())
           {
             if (block->hasError())
@@ -969,4 +969,3 @@ class FuncId : public Expr
 };
 
 #endif
-  

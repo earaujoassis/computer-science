@@ -16,14 +16,18 @@
 
 __all__ = ("BadDatagramError", "InvalidField", "NonEstablished")
 
+
 class BadDatagramError(ValueError):
-  pass
+    pass
+
 
 class InvalidField(ValueError):
-  pass
+    pass
+
 
 class NonEstablished(EnvironmentError):
-  pass
+    pass
+
 
 class NameChangingPostEstablishment(Warning):
-  pass
+    pass

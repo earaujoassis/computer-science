@@ -1,43 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <documento>
-	<titulo>Heurísticas e metaheurísticas aplicadas ao Problema de Escalonamento Job-Shop: Um algoritmo evolucionário híbrido baseado na
-fertilização in vitro para solucionar problemas de escalonamento job-shop</titulo>
-	<autores>
-		<autor>Éwerton Carlos de Araújo Assis</autor>
-	</autores>
-	<palavras-chaves>
-		<palavra-chave>Otimização combinatória</palavra-chave>
-		<palavra-chave>Problema de escalonamento job-shop</palavra-chave>
-		<palavra-chave>Heurísticas</palavra-chave>
-		<palavra-chave>Metaheurísticas</palavra-chave>
+  <titulo>Heurísticas e metaheurísticas aplicadas ao Problema de Escalonamento Job-Shop: Um algoritmo
+evolucionário híbrido baseado nafertilização in vitro para solucionar problemas de escalonamento
+job-shop</titulo>
+  <autores>
+    <autor>Éwerton Carlos de Araújo Assis</autor>
+  </autores>
+  <palavras-chaves>
+    <palavra-chave>Otimização combinatória</palavra-chave>
+    <palavra-chave>Problema de escalonamento job-shop</palavra-chave>
+    <palavra-chave>Heurísticas</palavra-chave>
+    <palavra-chave>Metaheurísticas</palavra-chave>
     <palavra-chave>Algoritmos genéticos</palavra-chave>
     <palavra-chave>Algoritmo evolucionário</palavra-chave>
     <palavra-chave>Computação evolucionária</palavra-chave>
-	</palavras-chaves>
-	<resumo>Existem diversas soluções, heurísticas e metaheurísticas, para o problema de escalonamento job-shop. O presente trabalho tem por
-objetivo analisar algumas destas soluções encontradas na literatura, com foco primordial nas metaheurísticas e nos padrões
-encontrados nessas soluções. O objetivo não é realizar uma revisão de todas as soluções que foram desenvolvidas, mas as
-soluções recentes e que são preponderantemente referenciadas pela literatura por sua qualidade ou conceitos inovadores apresentados.
-A partir das análises feitas, propõem-se analisar os efeitos de uma nova solução metaheurística, um algoritmo evolucionário
-híbrido baseado na fertilização in vitro, também aplicado na mesma classe de problemas. A eficiência e efetividade do
-algoritmo desenvolvido é analisada sobre instâncias geralmente utilizadas pela literatura &mdash; instâncias disponibilizadas pela OR-Library.
-A solução evolucionária híbrida baseada na fertilização in vitro apresenta resultados de qualidade, comparáveis aos
-resultados obtidos por outras soluções encontradas na literatura. Alguns operadores de seleção e de variabilidade utilizados em
-soluções evolucionárias são analizados e obtém-se uma análise comparativa de configurações distintas, corroborando
-com o que é defendido pela literatura sobre a importância da escolha dos mecânismos de seleção e de variabilidade. A partir de
-27 configurações distintas, 18 instâncias da OR-Library são exercitadas, obtendo-se um comparativo da solução
-evolucionária híbrida frente a uma solução evolucionária baseada em conceitos canônicos.</resumo>
-	<contribuicoes>Celso Gonçalves Camilo Júnior</contribuicoes>
-	<data>
-		<dia>19</dia>
-		<mes>12</mes>
-		<ano>2011</ano>
-	</data>
-	<tipo>Monografia</tipo>
-	<formato>PDF</formato>
-	<identificador></identificador>
-	<url></url>
-	<idioma>Português</idioma>
-	<direitos>Este trabalho pode ser usado irrestritamente, desde que sejam dados os devidos créditos aos seus autores</direitos>
+  </palavras-chaves>
+  <resumo>Existem diversas soluções, heurísticas e metaheurísticas, para o problema de escalonamento
+job-shop. O presente trabalho tem por objetivo analisar algumas destas soluções encontradas na literatura,
+com foco primordial nas metaheurísticas e nos padrões encontrados nessas soluções. O objetivo não é
+realizar uma revisão de todas as soluções que foram desenvolvidas, mas as soluções recentes e que são
+preponderantemente referenciadas pela literatura por sua qualidade ou conceitos inovadores apresentados.
+A partir das análises feitas, propõem-se analisar os efeitos de uma nova solução metaheurística, um
+algoritmo evolucionário híbrido baseado na fertilização in vitro, também aplicado na mesma classe de
+problemas. A eficiência e efetividade do algoritmo desenvolvido é analisada sobre instâncias geralmente
+utilizadas pela literatura &mdash; instâncias disponibilizadas pela OR-Library. A solução evolucionária
+híbrida baseada na fertilização in vitro apresenta resultados de qualidade, comparáveis aos resultados
+obtidos por outras soluções encontradas na literatura. Alguns operadores de seleção e de variabilidade
+utilizados em soluções evolucionárias são analizados e obtém-se uma análise comparativa de configurações
+distintas, corroborando com o que é defendido pela literatura sobre a importância da escolha dos mecânismos
+de seleção e de variabilidade. A partir de 27 configurações distintas, 18 instâncias da OR-Library são
+exercitadas, obtendo-se um comparativo da solução evolucionária híbrida frente a uma solução evolucionária
+baseada em conceitos canônicos.</resumo>
+  <contribuicoes>Celso Gonçalves Camilo Júnior</contribuicoes>
+  <data>
+    <dia>19</dia>
+    <mes>12</mes>
+    <ano>2011</ano>
+  </data>
+  <tipo>Monografia</tipo>
+  <formato>PDF</formato>
+  <identificador></identificador>
+  <url></url>
+  <idioma>Português</idioma>
+  <direitos>Este trabalho pode ser usado irrestritamente, desde que sejam dados os devidos créditos aos
+seus autores</direitos>
 </documento>
 

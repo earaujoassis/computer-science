@@ -1,5 +1,4 @@
-bin/
-cls/
-src/clang/
+bin
+cls
 *.pyc
 *.class

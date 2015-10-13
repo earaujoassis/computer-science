@@ -1,7 +1,7 @@
 # Cafezinho
 
-A smaller and minimalist fork of the C programming language. Cafezinho (noun)
-is Portuguese for a small cup of coffee.
+> A smaller and minimalist fork of the C programming language. Cafezinho (noun)
+> is Portuguese for a small cup of coffee.
 
 ## Compile
 

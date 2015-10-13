@@ -75,7 +75,7 @@ Programa:
 ;
 
 DeclFuncVar:
-  Tipo ID DeclVar ';' DeclFuncVar { 
+  Tipo ID DeclVar ';' DeclFuncVar {
     $$ = $5;
     static_cast<DeclVar*> ($3)->setDataType ($1);
     $3->add (new DeclId ($2));
@@ -345,7 +345,7 @@ AddExpr:
 ;
 
 MulExpr:
-  MulExpr '*' UnExpr { 
+  MulExpr '*' UnExpr {
     $$ = new BinExpr (TIMES, $1, $3);
     $$->set_location (yylineno);
   }

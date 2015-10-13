@@ -2,7 +2,7 @@
 
 int x, y, z, v;
 programa {
-  z = y = x = 50; 
+  z = y = x = 50;
   escreva x;
   escreva " ";
   escreva y;

@@ -11,7 +11,7 @@ programa {
   enquanto (n < 0) execute {
     escreva "digite um numero";
     novalinha;
-    leia n;    
+    leia n;
   }
   escreva "O fatorial de ";
   escreva n;
