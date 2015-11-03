@@ -5,9 +5,9 @@
 
 ## Compile
 
-   ```sh
-   $ make build
-   ```
+```sh
+$ make build
+```
 
 It creates the compiler (cafezinho) at the source folder root. Tested under
 Unix-like systems only.
@@ -19,9 +19,9 @@ Unix-like systems only.
 
 ## Test
 
-   ```sh
-   $ make test
-   ```
+```sh
+$ make test
+```
 
 It runs a test case for some source-code placed at test/folder. There's a
 descriptor file for the tests in tests/descriptor.json.
@@ -32,9 +32,9 @@ descriptor file for the tests in tests/descriptor.json.
 
 ## Regenerate source folder
 
-   ```sh
-   $ make clean
-   ```
+```sh
+$ make clean
+```
 
 It removes the files created from Flex and Bison and also removes the compiler
 (cafezinho) binary.

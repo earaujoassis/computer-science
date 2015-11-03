@@ -1,4 +1,4 @@
-# Linux Files
+# Unix Files
 
 > File tools written for Unix-like systems.
 
