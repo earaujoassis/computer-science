@@ -158,4 +158,4 @@ that prevents a successful functioning of the protocol; and 5xx are user-defined
 
 ## License
 
-Apache License, Version 2.0. Copyright 2011-2014 &copy; Ewerton Assis.
+Apache License, Version 2.0. Copyright 2011-2017 &copy; Ewerton Assis.

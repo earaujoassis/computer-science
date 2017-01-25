@@ -26,4 +26,4 @@ recursively, how many regular files, directories, and symbolic links a given dir
 
 ## License
 
-[MIT License](http://earaujoassis.mit-license.org/) &copy; 2013-2015 Ewerton Assis
+[MIT License](http://earaujoassis.mit-license.org/) &copy; 2013-2017 Ewerton Assis

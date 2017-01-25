@@ -1,4 +1,3 @@
-
 # Monografia e apresentação de monografia
 
 Os textos presentes nesta subpasta são referentes aos trabalhos desenvolvidos na minha graduação em
@@ -8,6 +7,6 @@ Ciência da Computação, na Universidade Federal de Goiás. Estes textos estão
 
 # License
 
-[CC BY-NC-ND 3.0](http://creativecommons.org/licenses/by-nc-nd/3.0) &copy; 2013-2015 Ewerton Assis
+[CC BY-NC-ND 3.0](http://creativecommons.org/licenses/by-nc-nd/3.0) &copy; 2013-2017 Ewerton Assis
 
-[MIT License](http://earaujoassis.mit-license.org/) &copy; 2013-2015 Ewerton Assis
+[MIT License](http://earaujoassis.mit-license.org/) &copy; 2013-2017 Ewerton Assis
