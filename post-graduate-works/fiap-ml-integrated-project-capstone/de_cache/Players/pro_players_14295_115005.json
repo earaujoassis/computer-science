@@ -1,0 +1,222 @@
+{
+	"matchid": 14295,
+	"team": 2,
+	"teamid": 110588,
+	"playerid": 8337,
+	"steam": "STEAM_1:0:69789613",
+	"name": "deM0;*",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-02-11T20:53:00.773Z"
+	],
+	"connected": true
+}
+{
+	"matchid": 14295,
+	"team": 2,
+	"teamid": 110588,
+	"playerid": 14780,
+	"steam": "STEAM_1:1:16901316",
+	"name": "cqntrl '",
+	"position": 1,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-02-11T20:57:01.161Z",
+		"2019-02-11T21:38:41.920Z",
+		"2019-02-11T21:39:18.689Z",
+		"2019-02-11T21:40:37.321Z",
+		"2019-02-11T21:46:07.526Z",
+		"2019-02-11T21:48:11.234Z"
+	],
+	"connected": true,
+	"disconnected": [
+		"2019-02-11T21:37:58.422Z",
+		"2019-02-11T21:38:45.009Z",
+		"2019-02-11T21:39:22.385Z",
+		"2019-02-11T21:40:40.882Z",
+		"2019-02-11T21:46:43.829Z"
+	]
+}
+{
+	"matchid": 14295,
+	"team": 1,
+	"teamid": 7177,
+	"playerid": 12362,
+	"steam": "STEAM_1:0:13736549",
+	"name": "KENSHEX",
+	"position": 6,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-02-11T20:52:44.334Z"
+	],
+	"connected": true
+}
+{
+	"matchid": 14295,
+	"team": 0,
+	"teamid": 0,
+	"playerid": 764578,
+	"steam": "STEAM_1:1:237028185",
+	"name": "Observer",
+	"position": 1,
+	"level": -1,
+	"medal": 2,
+	"connect": [
+		"2019-02-11T20:48:53.663Z",
+		"2019-02-11T20:50:35.866Z"
+	],
+	"connected": true,
+	"disconnected": [
+		"2019-02-11T20:49:00.196Z"
+	]
+}
+{
+	"matchid": 14295,
+	"team": 2,
+	"teamid": 110588,
+	"playerid": 21944,
+	"steam": "STEAM_1:0:102269",
+	"name": "psy",
+	"position": 5,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-02-11T20:58:08.062Z"
+	],
+	"connected": true
+}
+{
+	"matchid": 14295,
+	"team": 1,
+	"teamid": 7177,
+	"playerid": 177080,
+	"steam": "STEAM_1:0:15972520",
+	"name": "and",
+	"position": 7,
+	"level": 19,
+	"medal": 2,
+	"connect": [
+		"2019-02-11T20:51:11.905Z"
+	],
+	"connected": true
+}
+{
+	"matchid": 14295,
+	"team": 2,
+	"teamid": 110588,
+	"playerid": 95168,
+	"steam": "STEAM_1:0:113010017",
+	"name": "soni",
+	"position": 4,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-02-11T20:56:18.819Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-02-11T22:15:40.492Z"
+	]
+}
+{
+	"matchid": 14295,
+	"team": 1,
+	"teamid": 7177,
+	"playerid": 133415,
+	"steam": "STEAM_1:1:17311137",
+	"name": "danoco",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-02-11T20:47:10.631Z",
+		"2019-02-11T21:02:25.057Z"
+	],
+	"connected": true,
+	"disconnected": [
+		"2019-02-11T20:56:43.246Z"
+	]
+}
+{
+	"matchid": 14295,
+	"team": 2,
+	"teamid": 110588,
+	"playerid": 10819,
+	"steam": "STEAM_1:0:4864513",
+	"name": "SpyDaemoN Peruvian Skill",
+	"position": 6,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-02-11T20:58:09.605Z"
+	],
+	"connected": true
+}
+{
+	"matchid": 14295,
+	"team": 1,
+	"teamid": 7177,
+	"playerid": 24134,
+	"steam": "STEAM_1:0:17317279",
+	"name": "dukka",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-02-11T20:47:14.985Z"
+	],
+	"connected": true
+}
+{
+	"matchid": 14295,
+	"team": 2,
+	"teamid": 110588,
+	"playerid": 1896,
+	"steam": "STEAM_1:0:18986839",
+	"name": "DiMASrW",
+	"position": 3,
+	"level": 20,
+	"medal": 2
+}
+{
+	"matchid": 14295,
+	"team": 1,
+	"teamid": 7177,
+	"playerid": 28534,
+	"steam": "STEAM_1:1:126935941",
+	"name": "skuld-'",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-02-11T20:45:10.521Z",
+		"2019-02-11T20:45:31.662Z",
+		"2019-02-11T20:46:58.220Z",
+		"2019-02-11T21:04:33.106Z"
+	],
+	"connected": true,
+	"disconnected": [
+		"2019-02-11T20:45:25.891Z",
+		"2019-02-11T20:45:37.691Z",
+		"2019-02-11T21:02:52.431Z"
+	]
+}
+{
+	"matchid": 14295,
+	"team": 1,
+	"teamid": 7177,
+	"playerid": 107771,
+	"steam": "STEAM_1:0:173656431",
+	"name": "RMN",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-02-11T20:47:05.522Z"
+	],
+	"connected": true
+}

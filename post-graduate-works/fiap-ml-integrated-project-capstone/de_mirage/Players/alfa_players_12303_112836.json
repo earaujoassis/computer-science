@@ -1,0 +1,235 @@
+{
+	"matchid": 12303,
+	"team": 1,
+	"teamid": 98165,
+	"playerid": 459900,
+	"steam": "STEAM_1:0:77598843",
+	"name": "SW.RYKU",
+	"position": 6,
+	"level": 9,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T22:57:36.335Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:48:28.391Z"
+	]
+}
+{
+	"matchid": 12303,
+	"team": 2,
+	"teamid": 116212,
+	"playerid": 726319,
+	"steam": "STEAM_1:0:426177486",
+	"name": "Ronin",
+	"position": 8,
+	"level": 5,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T22:59:43.733Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:48:22.564Z"
+	]
+}
+{
+	"matchid": 12303,
+	"team": 1,
+	"teamid": 98165,
+	"playerid": 458926,
+	"steam": "STEAM_1:0:93141690",
+	"name": "SW.Darking",
+	"position": 4,
+	"level": 11,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T22:58:03.164Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:48:37.957Z"
+	]
+}
+{
+	"matchid": 12303,
+	"team": 2,
+	"teamid": 116212,
+	"playerid": 623250,
+	"steam": "STEAM_1:0:419686569",
+	"name": ".Prof",
+	"position": 7,
+	"level": 2,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T22:57:45.924Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:48:13.258Z"
+	]
+}
+{
+	"matchid": 12303,
+	"team": 1,
+	"teamid": 98165,
+	"playerid": 349881,
+	"steam": "STEAM_1:0:171404741",
+	"name": "SW.storable[A]",
+	"position": 5,
+	"level": 11,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T22:58:43.593Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:48:26.625Z"
+	]
+}
+{
+	"matchid": 12303,
+	"team": 2,
+	"teamid": 116212,
+	"playerid": 506109,
+	"steam": "STEAM_1:1:127783163",
+	"name": "[...]",
+	"position": 6,
+	"level": 7,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T23:02:47.738Z",
+		"2019-01-22T23:03:13.397Z",
+		"2019-01-22T23:03:57.405Z",
+		"2019-01-22T23:12:56.877Z",
+		"2019-01-22T23:37:41.175Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:03:06.858Z",
+		"2019-01-22T23:03:21.094Z",
+		"2019-01-22T23:04:08.882Z",
+		"2019-01-22T23:37:27.501Z",
+		"2019-01-22T23:48:20.894Z"
+	]
+}
+{
+	"matchid": 12303,
+	"team": 1,
+	"teamid": 98165,
+	"playerid": 489918,
+	"steam": "STEAM_1:1:230092608",
+	"name": "SW.APR1",
+	"position": 7,
+	"level": 8,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T22:59:02.734Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:48:29.393Z"
+	]
+}
+{
+	"matchid": 12303,
+	"team": 2,
+	"teamid": 116212,
+	"playerid": 623749,
+	"steam": "STEAM_1:0:419693230",
+	"name": "MBelo",
+	"position": 3,
+	"level": 7,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T22:57:59.866Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:48:10.346Z"
+	]
+}
+{
+	"matchid": 12303,
+	"team": 1,
+	"teamid": 98165,
+	"playerid": 602481,
+	"steam": "STEAM_1:1:419716849",
+	"name": "SW.MilkAndSugar",
+	"position": 3,
+	"level": 7,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T22:57:29.569Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:48:18.899Z"
+	]
+}
+{
+	"matchid": 12303,
+	"team": 2,
+	"teamid": 116212,
+	"playerid": 623722,
+	"steam": "STEAM_1:0:182029840",
+	"name": "Skech Art",
+	"position": 4,
+	"level": 5,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T22:57:35.257Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:48:16.483Z"
+	]
+}
+{
+	"matchid": 12303,
+	"team": 1,
+	"teamid": 98165,
+	"playerid": 687036,
+	"steam": "STEAM_1:1:196114002",
+	"name": "SW.SoSna -qq-",
+	"position": 3,
+	"level": 7,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T22:57:47.866Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:48:55.781Z"
+	]
+}
+{
+	"matchid": 12303,
+	"team": 2,
+	"teamid": 116212,
+	"playerid": 782541,
+	"steam": "STEAM_1:0:436455789",
+	"name": "C4ruzo",
+	"position": 3,
+	"level": 9,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T23:00:02.280Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:48:09.733Z"
+	]
+}
+{
+	"matchid": 12303,
+	"team": 1,
+	"teamid": 98165,
+	"playerid": 42821,
+	"steam": "STEAM_1:1:105103768",
+	"name": "tavo",
+	"position": 3,
+	"level": 11,
+	"medal": 2
+}
