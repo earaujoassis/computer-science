@@ -1,7 +1,6 @@
 # Computer Science
 
-> Computer Science projects developed during the graduate degree (Master of Science degree) in
-Computer Science at Universidade Federal do ABC
+> Projects developed while studying at the MBA in Artificial Intelligence & Machine Learning at FIAP
 
 ## License
 

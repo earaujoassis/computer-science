@@ -1,7 +1,7 @@
 # Computer Science
 
 > Computer Science projects developed during the undergraduate degree (Bachelor's degree) in
-Computer Science at the Federal University of Goias (Universidade Federal de Goiás)
+Computer Science at Universidade Federal de Goiás
 
 ## License
 
