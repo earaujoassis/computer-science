@@ -1,0 +1,212 @@
+{
+	"matchid": 15432,
+	"team": 2,
+	"teamid": 116212,
+	"playerid": 726319,
+	"steam": "STEAM_1:0:426177486",
+	"name": "RoniN",
+	"position": 8,
+	"level": 6,
+	"medal": 2,
+	"connect": [
+		"2019-02-23T17:00:17.040Z"
+	],
+	"connected": true
+}
+{
+	"matchid": 15432,
+	"team": 2,
+	"teamid": 116212,
+	"playerid": 623250,
+	"steam": "STEAM_1:0:419686569",
+	"name": ".Prof",
+	"position": 4,
+	"level": 5,
+	"medal": 2,
+	"connect": [
+		"2019-02-23T17:13:23.737Z",
+		"2019-02-23T17:17:20.494Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-02-23T17:17:19.467Z",
+		"2019-02-23T17:51:38.437Z"
+	]
+}
+{
+	"matchid": 15432,
+	"team": 2,
+	"teamid": 116212,
+	"playerid": 506109,
+	"steam": "STEAM_1:1:127783163",
+	"name": "EliNego",
+	"position": 3,
+	"level": 9,
+	"medal": 2,
+	"connect": [
+		"2019-02-23T17:04:35.861Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-02-23T17:51:17.350Z"
+	]
+}
+{
+	"matchid": 15432,
+	"team": 2,
+	"teamid": 116212,
+	"playerid": 623749,
+	"steam": "STEAM_1:0:419693230",
+	"name": "MBelo",
+	"position": 3,
+	"level": 8,
+	"medal": 2,
+	"connect": [
+		"2019-02-23T17:09:02.026Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-02-23T17:51:44.684Z"
+	]
+}
+{
+	"matchid": 15432,
+	"team": 2,
+	"teamid": 116212,
+	"playerid": 623722,
+	"steam": "STEAM_1:0:182029840",
+	"name": "tutabelo",
+	"position": 4,
+	"level": 6,
+	"medal": 2
+}
+{
+	"matchid": 15432,
+	"team": 2,
+	"teamid": 116212,
+	"playerid": 341787,
+	"steam": "STEAM_1:1:125871366",
+	"name": "fluxo",
+	"position": 3,
+	"level": 9,
+	"medal": 2,
+	"connect": [
+		"2019-02-23T17:01:53.258Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-02-23T17:51:20.713Z"
+	]
+}
+{
+	"matchid": 15432,
+	"team": 1,
+	"teamid": 110830,
+	"playerid": 844689,
+	"steam": "STEAM_1:1:6016948",
+	"name": "cleeyTon1",
+	"position": 6,
+	"level": 9,
+	"medal": 2,
+	"connect": [
+		"2019-02-23T17:00:30.922Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-02-23T17:51:24.269Z"
+	]
+}
+{
+	"matchid": 15432,
+	"team": 1,
+	"teamid": 110830,
+	"playerid": 876408,
+	"steam": "STEAM_1:0:455798402",
+	"name": "leoziN-",
+	"position": 2,
+	"level": 11,
+	"medal": 2,
+	"connect": [
+		"2019-02-23T17:00:57.428Z",
+		"2019-02-23T17:03:03.767Z",
+		"2019-02-23T17:06:24.541Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-02-23T17:02:47.438Z",
+		"2019-02-23T17:03:11.490Z",
+		"2019-02-23T17:51:22.063Z"
+	]
+}
+{
+	"matchid": 15432,
+	"team": 1,
+	"teamid": 110830,
+	"playerid": 414536,
+	"steam": "STEAM_1:0:79216287",
+	"name": "LeoGN",
+	"position": 4,
+	"level": 11,
+	"medal": 2,
+	"connect": [
+		"2019-02-23T17:00:28.165Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-02-23T17:51:47.589Z"
+	]
+}
+{
+	"matchid": 15432,
+	"team": 1,
+	"teamid": 110830,
+	"playerid": 303927,
+	"steam": "STEAM_1:1:201308719",
+	"name": "PDNZINN @pedrorm_",
+	"position": 1,
+	"level": 10,
+	"medal": 2,
+	"connect": [
+		"2019-02-23T17:17:37.689Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-02-23T17:51:38.077Z"
+	]
+}
+{
+	"matchid": 15432,
+	"team": 1,
+	"teamid": 110830,
+	"playerid": 456138,
+	"steam": "STEAM_1:1:224011872",
+	"name": "Wiin",
+	"position": 7,
+	"level": 13,
+	"medal": 2,
+	"connect": [
+		"2019-02-23T17:00:16.117Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-02-23T17:13:09.108Z"
+	]
+}
+{
+	"matchid": 15432,
+	"team": 1,
+	"teamid": 110830,
+	"playerid": 280362,
+	"steam": "STEAM_1:1:188696114",
+	"name": "Polukito1",
+	"position": 3,
+	"level": 11,
+	"medal": 2,
+	"connect": [
+		"2019-02-23T17:00:20.774Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-02-23T17:51:20.609Z"
+	]
+}

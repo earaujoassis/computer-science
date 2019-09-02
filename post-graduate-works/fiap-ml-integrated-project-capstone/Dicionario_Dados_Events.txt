@@ -1,0 +1,37 @@
+    "event": o que acontece ( exemplo atacado, evento de granada, implantar bomba:plantedthebomb, defusedthebomb, roundendscore)
+	"matchid": id da partida
+	"round": número do round
+	"attackerId": id do player que fez a ação
+	"attackerTeam": o time do grupo que fez a ação (T- terrorista / CT - Contra Terrorista)
+	"victimId": id do jogador que sofreu a ação
+	"victimTeam": time do jogador que sofreu a ação (T- terrorista / CT - Contra Terrorista)
+	"attackerX": Coordenada da posição da ação do atacante ou quem realizou a ação
+	"attackerY": Coordenada da posição da ação do atacante ou quem realizou a ação
+	"attackerZ": Coordenada da posição da ação do atacante ou quem realizou a ação
+	"victimX": Coordenada da posição da vitima que sofreu a ação
+	"victimY": Coordenada da posição da vitima que sofreu a ação
+	"victimZ": Coordenada da posição da vitima que sofreu a ação
+	"weapon": Arma utilizada na ação
+	"damage": dano na vida da vitima
+	"damageArmor": dano no colete (se houver)
+	"health": vida do jogador (vítima)
+	"armor": vida do colete do jogador (vitima)
+	"hitgroup": tipo do dano (normalmente genérico)
+	"datetime": data e hora da ação
+	"penetrated": tiro que atravessou objeto ou obstaculo e atingiu uma vitima
+	"headshot": tiro na cabeça ou não
+	"type": tipo da granada do evento
+	
+	
+
+Exemplo de evento parcial de round (score do round)	
+	
+	"event": "roundendscore",
+	"matchid": 12089,
+	"round": 7,
+	"team1": 3,
+	"team2": 4,
+	"win": 1,
+	"team": "C",
+	"mode": "Bomb_Defused",
+	"datetime": "2019-01-21T21:52:38.281Z"

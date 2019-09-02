@@ -1,0 +1,209 @@
+{
+	"matchid": 12279,
+	"team": 1,
+	"teamid": 96330,
+	"playerid": 544225,
+	"steam": "STEAM_1:0:240623640",
+	"name": "GHITTO",
+	"position": 6,
+	"level": 11,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T19:59:39.869Z",
+		"2019-01-22T20:04:29.470Z",
+		"2019-01-22T20:08:17.142Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T20:04:28.741Z",
+		"2019-01-22T20:07:04.172Z",
+		"2019-01-22T20:59:04.545Z"
+	]
+}
+{
+	"matchid": 12279,
+	"team": 2,
+	"teamid": 108579,
+	"playerid": 195096,
+	"steam": "STEAM_1:0:186483824",
+	"name": "rDkk",
+	"position": 4,
+	"level": 6,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T19:59:08.860Z",
+		"2019-01-22T19:59:52.069Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T19:59:38.978Z",
+		"2019-01-22T20:58:55.872Z"
+	]
+}
+{
+	"matchid": 12279,
+	"team": 1,
+	"teamid": 96330,
+	"playerid": 459159,
+	"steam": "STEAM_1:0:217229548",
+	"name": "MedeirosR",
+	"position": 2,
+	"level": 8,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T20:00:40.202Z",
+		"2019-01-22T20:04:23.579Z",
+		"2019-01-22T20:06:57.547Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T20:03:58.176Z",
+		"2019-01-22T20:05:53.988Z",
+		"2019-01-22T20:58:58.336Z"
+	]
+}
+{
+	"matchid": 12279,
+	"team": 2,
+	"teamid": 108579,
+	"playerid": 836129,
+	"steam": "STEAM_1:0:450885122",
+	"name": "f0rest",
+	"position": 1,
+	"level": 8,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T19:59:15.282Z",
+		"2019-01-22T20:15:20.717Z",
+		"2019-01-22T20:18:49.656Z",
+		"2019-01-22T20:25:38.964Z",
+		"2019-01-22T20:59:05.905Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T20:14:50.228Z",
+		"2019-01-22T20:17:02.955Z",
+		"2019-01-22T20:25:35.364Z",
+		"2019-01-22T20:58:22.743Z",
+		"2019-01-22T20:59:55.298Z"
+	]
+}
+{
+	"matchid": 12279,
+	"team": 1,
+	"teamid": 96330,
+	"playerid": 264848,
+	"steam": "STEAM_1:1:195394708",
+	"name": "#FER O FERMEIRO #FORCACHAPE",
+	"position": 5,
+	"level": 11,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T20:03:32.132Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T20:59:09.442Z"
+	]
+}
+{
+	"matchid": 12279,
+	"team": 2,
+	"teamid": 108579,
+	"playerid": 773109,
+	"steam": "STEAM_1:1:192536877",
+	"name": "BigZera",
+	"position": 5,
+	"level": 8,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T19:59:43.448Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T20:58:56.556Z"
+	]
+}
+{
+	"matchid": 12279,
+	"team": 1,
+	"teamid": 96330,
+	"playerid": 539375,
+	"steam": "STEAM_1:0:233260003",
+	"name": "nrszin1",
+	"position": 5,
+	"level": 9,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T19:59:37.095Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T20:59:05.320Z"
+	]
+}
+{
+	"matchid": 12279,
+	"team": 2,
+	"teamid": 108579,
+	"playerid": 575882,
+	"steam": "STEAM_1:0:227892447",
+	"name": "lipera*",
+	"position": 2,
+	"level": 6,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T20:00:14.723Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T20:58:57.172Z"
+	]
+}
+{
+	"matchid": 12279,
+	"team": 1,
+	"teamid": 96330,
+	"playerid": 210522,
+	"steam": "STEAM_1:0:187639479",
+	"name": "Campeiro",
+	"position": 1,
+	"level": 10,
+	"medal": 2
+}
+{
+	"matchid": 12279,
+	"team": 2,
+	"teamid": 108579,
+	"playerid": 85089,
+	"steam": "STEAM_1:1:110018220",
+	"name": "EFS*",
+	"position": 3,
+	"level": 3,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T19:59:32.056Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T20:21:39.109Z"
+	]
+}
+{
+	"matchid": 12279,
+	"team": 1,
+	"teamid": 96330,
+	"playerid": 851807,
+	"steam": "STEAM_1:1:453263042",
+	"name": "Far GOD",
+	"position": 4,
+	"level": 10,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T20:00:04.741Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T20:58:59.532Z"
+	]
+}

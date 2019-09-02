@@ -1,0 +1,12 @@
+    "matchid":  id da partida
+	"team": id do time dentro da partida
+	"teamid": id do time geral
+	"playerid": id do jogador
+	"steam": id da steam (plataforma de conexão)
+	"name": Nickname do jogador
+	"position": código da classificação para cadastro na plataforma (atribuido pelo próprio jogador)
+	"level": nível na plataforma da GammersClub
+	"medal": id da Medalha da plataforma GammersClub
+	"connect": eventos de conexão do jogador no servidor 
+	"connected": Status de conexão atual
+	"disconnected": eventos de desconexão com servidor

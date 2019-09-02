@@ -1,0 +1,237 @@
+{
+	"matchid": 12323,
+	"team": 1,
+	"teamid": 110648,
+	"playerid": 635134,
+	"steam": "STEAM_1:1:148732128",
+	"name": "JcK",
+	"position": 2,
+	"level": 8,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T23:16:56.222Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:59:17.981Z"
+	]
+}
+{
+	"matchid": 12323,
+	"team": 2,
+	"teamid": 114457,
+	"playerid": 707655,
+	"steam": "STEAM_1:1:55342716",
+	"name": "GrOoVe",
+	"position": 3,
+	"level": 7,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T23:14:08.166Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:59:25.103Z"
+	]
+}
+{
+	"matchid": 12323,
+	"team": 2,
+	"teamid": 114457,
+	"playerid": 465852,
+	"steam": "STEAM_1:0:149085920",
+	"name": "pH.",
+	"position": 6,
+	"level": 10,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T23:14:23.944Z",
+		"2019-01-22T23:15:30.366Z",
+		"2019-01-22T23:18:42.195Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:14:43.059Z",
+		"2019-01-22T23:15:37.524Z",
+		"2019-01-22T23:59:14.446Z"
+	]
+}
+{
+	"matchid": 12323,
+	"team": 1,
+	"teamid": 110648,
+	"playerid": 134260,
+	"steam": "STEAM_1:0:105381423",
+	"name": "Milk",
+	"position": 5,
+	"level": 9,
+	"medal": 2
+}
+{
+	"matchid": 12323,
+	"team": 2,
+	"teamid": 114457,
+	"playerid": 702732,
+	"steam": "STEAM_1:1:55786319",
+	"name": "NoOnePH",
+	"position": 5,
+	"level": 7,
+	"medal": 2
+}
+{
+	"matchid": 12323,
+	"team": 1,
+	"teamid": 110648,
+	"playerid": 752238,
+	"steam": "STEAM_1:1:439023641",
+	"name": "F.3",
+	"position": 6,
+	"level": 9,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T23:14:07.897Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:59:32.200Z"
+	]
+}
+{
+	"matchid": 12323,
+	"team": 2,
+	"teamid": 114457,
+	"playerid": 506135,
+	"steam": "STEAM_1:1:87372628",
+	"name": "KIKOOO",
+	"position": 1,
+	"level": 8,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T23:14:09.267Z",
+		"2019-01-22T23:14:51.699Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:14:23.218Z",
+		"2019-01-22T23:59:16.309Z"
+	]
+}
+{
+	"matchid": 12323,
+	"team": 1,
+	"teamid": 110648,
+	"playerid": 567492,
+	"steam": "STEAM_1:0:246515730",
+	"name": "tOnzeRa",
+	"position": 1,
+	"level": 11,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T23:17:40.161Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:59:20.145Z"
+	]
+}
+{
+	"matchid": 12323,
+	"team": 2,
+	"teamid": 114457,
+	"playerid": 796632,
+	"steam": "STEAM_1:0:73699405",
+	"name": "O Pai",
+	"position": 3,
+	"level": 4,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T23:13:53.944Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:59:30.073Z"
+	]
+}
+{
+	"matchid": 12323,
+	"team": 1,
+	"teamid": 110648,
+	"playerid": 785255,
+	"steam": "STEAM_1:1:444105070",
+	"name": "Crst1an",
+	"position": 4,
+	"level": 10,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T23:13:54.758Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:59:19.580Z"
+	]
+}
+{
+	"matchid": 12323,
+	"team": 2,
+	"teamid": 114457,
+	"playerid": 724706,
+	"steam": "STEAM_1:0:58911905",
+	"name": "Banzai",
+	"position": 3,
+	"level": 9,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T23:14:01.739Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:59:18.566Z"
+	]
+}
+{
+	"matchid": 12323,
+	"team": 1,
+	"teamid": 110648,
+	"playerid": 171396,
+	"steam": "STEAM_1:1:183706519",
+	"name": "SantoKristo",
+	"position": 4,
+	"level": 11,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T23:21:54.433Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:59:53.607Z"
+	]
+}
+{
+	"matchid": 12323,
+	"team": 2,
+	"teamid": 114457,
+	"playerid": 750951,
+	"steam": "STEAM_1:1:31685578",
+	"name": "caietaS",
+	"position": 7,
+	"level": 4,
+	"medal": 2,
+	"connect": [
+		"2019-01-22T23:27:41.758Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-01-22T23:59:20.754Z"
+	]
+}
+{
+	"matchid": 12323,
+	"team": 2,
+	"teamid": 114457,
+	"playerid": 797156,
+	"steam": "STEAM_1:0:444556222",
+	"name": "MatriX",
+	"position": 3,
+	"level": 20,
+	"medal": 2
+}

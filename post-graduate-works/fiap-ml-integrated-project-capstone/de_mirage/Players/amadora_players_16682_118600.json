@@ -1,0 +1,247 @@
+{
+	"matchid": 16682,
+	"team": 1,
+	"teamid": 117819,
+	"playerid": 34863,
+	"steam": "STEAM_1:0:141669455",
+	"name": "sX Cenorada",
+	"position": 7,
+	"level": 19,
+	"medal": 2,
+	"connect": [
+		"2019-03-10T18:44:39.253Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-10T19:26:12.243Z"
+	]
+}
+{
+	"matchid": 16682,
+	"team": 1,
+	"teamid": 117819,
+	"playerid": 166911,
+	"steam": "STEAM_1:1:26657847",
+	"name": "twitch.tv/fpsWise",
+	"position": 8,
+	"level": 13,
+	"medal": 2
+}
+{
+	"matchid": 16682,
+	"team": 2,
+	"teamid": 117122,
+	"playerid": 369069,
+	"steam": "STEAM_1:1:66454397",
+	"name": "Tchorizo",
+	"position": 7,
+	"level": 11,
+	"medal": 2,
+	"connect": [
+		"2019-03-10T18:43:39.369Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-10T19:26:12.832Z"
+	]
+}
+{
+	"matchid": 16682,
+	"team": 1,
+	"teamid": 117819,
+	"playerid": 25946,
+	"steam": "STEAM_1:0:38819876",
+	"name": "rajada",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-03-10T18:43:33.278Z",
+		"2019-03-10T18:46:41.314Z"
+	],
+	"connected": true,
+	"disconnected": [
+		"2019-03-10T18:44:34.689Z"
+	]
+}
+{
+	"matchid": 16682,
+	"team": 2,
+	"teamid": 117122,
+	"playerid": 444118,
+	"steam": "STEAM_1:0:197333804",
+	"name": "MISS CLICK",
+	"position": 8,
+	"level": 6,
+	"medal": 2
+}
+{
+	"matchid": 16682,
+	"team": 1,
+	"teamid": 117819,
+	"playerid": 118921,
+	"steam": "STEAM_1:0:26207737",
+	"name": "wnpeaze",
+	"position": 8,
+	"level": -16,
+	"medal": 2
+}
+{
+	"matchid": 16682,
+	"team": 2,
+	"teamid": 117122,
+	"playerid": 2162,
+	"steam": "STEAM_1:0:25779328",
+	"name": "hey you",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-03-10T18:45:40.621Z"
+	],
+	"connected": true
+}
+{
+	"matchid": 16682,
+	"team": 1,
+	"teamid": 117819,
+	"playerid": 11029,
+	"steam": "STEAM_1:1:90577653",
+	"name": "duzera ha aimbat",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-03-10T18:44:19.980Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-10T19:26:07.287Z"
+	]
+}
+{
+	"matchid": 16682,
+	"team": 2,
+	"teamid": 117122,
+	"playerid": 10876,
+	"steam": "STEAM_1:0:26137809",
+	"name": "LIL FXPE6i",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-03-10T18:44:37.791Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-10T19:26:07.463Z"
+	]
+}
+{
+	"matchid": 16682,
+	"team": 1,
+	"teamid": 117819,
+	"playerid": 7323,
+	"steam": "STEAM_1:1:81248941",
+	"name": "n334r",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-03-10T18:42:51.733Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-10T19:26:08.106Z"
+	]
+}
+{
+	"matchid": 16682,
+	"team": 2,
+	"teamid": 117122,
+	"playerid": 444788,
+	"steam": "STEAM_1:0:221594604",
+	"name": "RYU$AN-",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-03-10T18:45:00.070Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-10T19:26:08.653Z"
+	]
+}
+{
+	"matchid": 16682,
+	"team": 1,
+	"teamid": 117819,
+	"playerid": 699997,
+	"steam": "STEAM_1:1:431784368",
+	"name": "Lehmann",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-03-10T18:43:38.099Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-10T19:26:11.034Z"
+	]
+}
+{
+	"matchid": 16682,
+	"team": 2,
+	"teamid": 117122,
+	"playerid": 25088,
+	"steam": "STEAM_1:0:27238500",
+	"name": "cpx",
+	"position": 6,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-03-10T18:43:04.558Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-10T19:26:11.489Z"
+	]
+}
+{
+	"matchid": 16682,
+	"team": 1,
+	"teamid": 117819,
+	"playerid": 180968,
+	"steam": "STEAM_1:1:165948226",
+	"name": "nakaaaaa",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-03-10T18:43:05.042Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-10T19:26:10.731Z"
+	]
+}
+{
+	"matchid": 16682,
+	"team": 2,
+	"teamid": 117122,
+	"playerid": 13634,
+	"steam": "STEAM_1:1:1444736",
+	"name": "paredao",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-03-10T18:43:48.118Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-10T19:26:10.918Z"
+	]
+}

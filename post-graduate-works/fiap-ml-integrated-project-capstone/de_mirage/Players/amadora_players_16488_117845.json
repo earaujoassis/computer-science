@@ -1,0 +1,244 @@
+{
+	"matchid": 16488,
+	"team": 2,
+	"teamid": 118557,
+	"playerid": 42478,
+	"steam": "STEAM_1:0:93766640",
+	"name": "mARTYj",
+	"position": 5,
+	"level": 18,
+	"medal": 2,
+	"connect": [
+		"2019-03-09T19:08:19.897Z",
+		"2019-03-09T19:12:42.899Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-09T19:11:59.699Z",
+		"2019-03-09T20:08:12.589Z"
+	]
+}
+{
+	"matchid": 16488,
+	"team": 2,
+	"teamid": 118557,
+	"playerid": 457807,
+	"steam": "STEAM_1:0:146114185",
+	"name": "Jack Herer",
+	"position": 1,
+	"level": 19,
+	"medal": 2,
+	"connect": [
+		"2019-03-09T19:12:46.198Z",
+		"2019-03-09T19:15:00.499Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-09T19:13:35.794Z",
+		"2019-03-09T20:08:02.562Z"
+	]
+}
+{
+	"matchid": 16488,
+	"team": 1,
+	"teamid": 117819,
+	"playerid": 34863,
+	"steam": "STEAM_1:0:141669455",
+	"name": "sX Cenorada",
+	"position": 7,
+	"level": 19,
+	"medal": 2,
+	"connect": [
+		"2019-03-09T19:04:42.426Z",
+		"2019-03-09T19:05:53.881Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-09T19:05:11.968Z",
+		"2019-03-09T20:08:26.254Z"
+	]
+}
+{
+	"matchid": 16488,
+	"team": 2,
+	"teamid": 118557,
+	"playerid": 164136,
+	"steam": "STEAM_1:1:39169202",
+	"name": "RaK",
+	"position": 4,
+	"level": 18,
+	"medal": 2,
+	"connect": [
+		"2019-03-09T19:04:52.826Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-09T20:08:06.534Z"
+	]
+}
+{
+	"matchid": 16488,
+	"team": 1,
+	"teamid": 117819,
+	"playerid": 166911,
+	"steam": "STEAM_1:1:26657847",
+	"name": "twitch.tv/fpsWise",
+	"position": 8,
+	"level": 13,
+	"medal": 2
+}
+{
+	"matchid": 16488,
+	"team": 2,
+	"teamid": 118557,
+	"playerid": 123740,
+	"steam": "STEAM_1:0:159794519",
+	"name": "MAS1",
+	"position": 6,
+	"level": 18,
+	"medal": 2,
+	"connect": [
+		"2019-03-09T19:05:55.834Z",
+		"2019-03-09T19:44:32.377Z",
+		"2019-03-09T19:54:49.626Z",
+		"2019-03-09T20:02:21.182Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-09T19:40:14.891Z",
+		"2019-03-09T19:54:01.497Z",
+		"2019-03-09T19:58:29.411Z",
+		"2019-03-09T20:05:28.765Z"
+	]
+}
+{
+	"matchid": 16488,
+	"team": 1,
+	"teamid": 117819,
+	"playerid": 118921,
+	"steam": "STEAM_1:0:26207737",
+	"name": "wnpeaze",
+	"position": 8,
+	"level": -16,
+	"medal": 2
+}
+{
+	"matchid": 16488,
+	"team": 2,
+	"teamid": 118557,
+	"playerid": 92231,
+	"steam": "STEAM_1:1:56249449",
+	"name": "NicolinoR",
+	"position": 3,
+	"level": 16,
+	"medal": 2,
+	"connect": [
+		"2019-03-09T19:10:02.021Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-09T20:08:14.776Z"
+	]
+}
+{
+	"matchid": 16488,
+	"team": 1,
+	"teamid": 117819,
+	"playerid": 25946,
+	"steam": "STEAM_1:0:38819876",
+	"name": "rajada",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-03-09T19:07:51.118Z"
+	],
+	"connected": true
+}
+{
+	"matchid": 16488,
+	"team": 1,
+	"teamid": 117819,
+	"playerid": 1114,
+	"steam": "STEAM_1:0:44373369",
+	"name": "guig0",
+	"position": 3,
+	"level": 19,
+	"medal": 2
+}
+{
+	"matchid": 16488,
+	"team": 1,
+	"teamid": 117819,
+	"playerid": 699997,
+	"steam": "STEAM_1:1:431784368",
+	"name": "Lehmann",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-03-09T19:04:28.904Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-09T20:08:23.471Z"
+	]
+}
+{
+	"matchid": 16488,
+	"team": 1,
+	"teamid": 117819,
+	"playerid": 180968,
+	"steam": "STEAM_1:1:165948226",
+	"name": "nakaaaaa",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-03-09T19:04:32.981Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-09T20:08:19.936Z"
+	]
+}
+{
+	"matchid": 16488,
+	"team": 1,
+	"teamid": 117819,
+	"playerid": 11029,
+	"steam": "STEAM_1:1:90577653",
+	"name": "duzera ha aimbat",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-03-09T19:04:49.607Z",
+		"2019-03-09T19:32:01.095Z",
+		"2019-03-09T19:38:32.098Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-09T19:30:37.689Z",
+		"2019-03-09T19:35:50.685Z",
+		"2019-03-09T20:08:11.954Z"
+	]
+}
+{
+	"matchid": 16488,
+	"team": 1,
+	"teamid": 117819,
+	"playerid": 7323,
+	"steam": "STEAM_1:1:81248941",
+	"name": "nia",
+	"position": 3,
+	"level": 20,
+	"medal": 2,
+	"connect": [
+		"2019-03-09T19:04:25.378Z"
+	],
+	"connected": false,
+	"disconnected": [
+		"2019-03-09T20:08:13.456Z"
+	]
+}
