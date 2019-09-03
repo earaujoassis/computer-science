@@ -1,6 +1,6 @@
 # Computer Science
 
-> Computer Science projects
+> Computer Science projects & research
 
 ## License
 
