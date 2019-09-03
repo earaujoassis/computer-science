@@ -1,0 +1,60 @@
+body {
+  font: 400 18pt/1.8em "Open Sans", serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font: 600 40pt/1.8em "Vollkorn", serif;
+  line-height: 1.2;
+}
+
+a {
+  color: #333;
+  transition: color 0.5s;
+  text-decoration: none;
+  border-bottom: 1px solid;
+}
+
+a:hover {
+  /*color: #4d4d4d;*/
+  color: #ff5458;
+  transition: color 0.5s;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1260px;
+  padding: 0 1.0875rem 1.45rem;
+}
+
+.container.root {
+  min-height: calc(95vh - 280px);
+}
+
+.inline-list {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.inline-list > li {
+  display: inline-block;
+}
+
+.inline-list > li ~ li {
+  margin-left: 22px;
+}
+
+.entry p {
+  margin: 0 0 0.25rem;
+}
+
+@media (max-width: 600px) {
+  .inline-list > li {
+    display: block;
+  }
+
+  .inline-list > li ~ li {
+    margin-left: 0;
+   }
+}
