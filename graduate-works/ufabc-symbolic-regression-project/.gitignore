@@ -1,0 +1,11 @@
+.DS_Store
+.ipynb_checkpoints
+__pycache__
+venv
+datasets/*
+!datasets/.gitkeep
+eqs/*
+outputs/*
+results/*
+vendor/*
+!vendor/.gitkeep
