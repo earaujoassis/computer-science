@@ -2,7 +2,6 @@
 
 mkdir -p ./results
 mkdir -p ./results/gplearn
-mkdir -p ./results/gplearn_optuna
 
 for srsd_category in easy medium hard; do
     RESULT_DIR=./results/gplearn/srsd-feynman_${srsd_category}
@@ -15,6 +14,6 @@ for srsd_category in easy medium hard; do
         TRAIN_FILE=${PARENT_DIR}/train/${FILE_NAME}
         VAL_FILE=${PARENT_DIR}/val/${FILE_NAME}
         TEST_FILE=${PARENT_DIR}/test/${FILE_NAME}
-        python ./runners/solution_gplearn.py --train ${TRAIN_FILE} --val ${VAL_FILE} --test ${TEST_FILE} --config ./configs/config.gplearn.yaml --out ${RESULT_DIR}/${FILE_NAME}
+        python ./runners/solution_gplearn.py --config ./configs/config.gplearn.yaml --train ${TRAIN_FILE} --val ${VAL_FILE} --test ${TEST_FILE} --out ${RESULT_DIR}/${FILE_NAME}.csv
     done
 done

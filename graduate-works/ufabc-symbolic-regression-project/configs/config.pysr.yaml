@@ -1,11 +1,11 @@
 fit:
-  procs: 5
+# procs: None
   populations: 10
   population_size: 40
-  ncyclesperiteration: 500
-  niterations: 50000
-  timeout_in_seconds: 82800
-  maxsize: 50
+  ncycles_per_iteration: 500
+  niterations: 1000
+  timeout_in_seconds: 3600 # 1 hour
+  maxsize: 25
   binary_operators: ['*', '+', '-', '/']
   unary_operators: ['sin', 'cos', 'exp', 'log']
   nested_constraints:
@@ -19,9 +19,10 @@ fit:
       exp: 0
     log:
       log: 0
-  progress: False
+  progress: True
   weight_randomize: 0.1
   precision: 32
   warm_start: False
   turbo: True
   update: False
+  verbosity: 0
