@@ -12,6 +12,6 @@ for srsd_category in easy medium hard; do
         PARENT_DIR=$(dirname $(dirname $filepath))
         FILE_NAME=$(basename $filepath)
         TRAIN_FILE=${PARENT_DIR}/train/${FILE_NAME}
-        python ./runners/solution_tir.py --config ./configs/config.pysr.yaml --train ${TRAIN_FILE}
+        python ./runners/solution_tir.py --config ./configs/config.pysr.yaml --train ${TRAIN_FILE} --out ${RESULT_DIR}/${FILE_NAME}
     done
 done
