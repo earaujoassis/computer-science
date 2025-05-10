@@ -6,6 +6,7 @@ cycler==0.12.1
 filelock==3.18.0
 fonttools==4.57.0
 gplearn==0.4.2
+honcho==2.0.0
 joblib==1.4.2
 juliacall==0.9.24
 juliapkg==0.1.16
@@ -22,7 +23,6 @@ pillow==11.2.1
 pyparsing==3.2.3
 pysr==1.5.5
 python-dateutil==2.9.0.post0
-pyTIR @ file:///Users/earaujoassis/Projects/computer-science/graduate-works/ufabc-symbolic-regression-project/vendor/tir/python
 pytz==2025.2
 PyYAML==6.0.2
 scikit-learn==1.6.1
@@ -31,6 +31,7 @@ semver==3.0.4
 setuptools==80.1.0
 six==1.17.0
 SQLAlchemy==2.0.40
+supervisor==4.2.5
 sympy==1.14.0
 threadpoolctl==3.6.0
 tqdm==4.67.1
