@@ -1,4 +1,4 @@
-#!/usr/bin bash
+#!/usr/bin/env bash
 
 sudo apt-get install libssl-dev openssl
 wget https://www.python.org/ftp/python/3.12.10/Python-3.12.10.tgz
