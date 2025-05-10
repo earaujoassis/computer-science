@@ -1,5 +1,5 @@
 model:
-  output_dir: './gplearn_w_optuna/'
+  output_dir: './results/gplearn_optuna/'
   optuna:
     optimize:
       n_trials: 100
