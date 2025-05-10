@@ -16,8 +16,8 @@ from gplearn.functions import make_function
 from gplearn.genetic import SymbolicRegressor
 
 EXTRA_FUNC_DICT = {
-    'exp': make_function(np.exp, 'exp', 1),
-    'pow': make_function(np.power, 'pow', 2)
+    'exp': make_function(function=np.exp, name='exp', arity=1),
+    'pow': make_function(function=np.power, name='pow', arity=2)
 }
 
 STR2SYMPY = {
@@ -173,7 +173,7 @@ def main(args):
     print(args)
     with open(args.config, 'r') as fp:
         config = yaml.load(fp, Loader=yaml.FullLoader)
-    
+
     model_config = config['model']
     if not args.test_only:
         if 'optuna' in model_config:
@@ -183,7 +183,7 @@ def main(args):
     else:
         with open(os.path.join(model_config['output_dir'], args.out), 'rb') as fp:
             model = pickle.load(fp)
-        
+
     test_samples, test_targets = load_dataset(args.test)
     evaluate(model, test_samples, test_targets, eval_type='Test')
 
