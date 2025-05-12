@@ -1,0 +1,8 @@
+model:
+  kwargs:
+    function_set: ['add', 'mul', 'div', 'sqrt', 'sin', 'cos', 'tan', 'log']
+    verbose: 0
+    n_jobs: -1
+    population_size: 1000
+    generations: 100
+    metric: 'mse'

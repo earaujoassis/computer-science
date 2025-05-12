@@ -1,0 +1,2 @@
+18.016377057921744, x2 * ((0.0017843829 / (x6 * x6)) / (x5 / exp(cos(log(x1)) + sin(log(x3) + log(x4))))), validation
+21.155639139888255, x2 * ((0.0017843829 / (x6 * x6)) / (x5 / exp(cos(log(x1)) + sin(log(x3) + log(x4))))), test

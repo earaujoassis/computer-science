@@ -1,0 +1,2 @@
+9.502452517854633e-08, add(mul(X1, X0), mul(mul(X0, X1), sin(sin(cos(0.986))))), validation
+9.502452517854385e-08, add(mul(X1, X0), mul(mul(X0, X1), sin(sin(cos(0.986))))), test

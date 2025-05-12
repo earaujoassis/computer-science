@@ -1,0 +1,2 @@
+0.003204528397094104, div(div(sin(X0), sin(sqrt(X1))), sqrt(X1)), validation
+0.0031260364848212496, div(div(sin(X0), sin(sqrt(X1))), sqrt(X1)), test

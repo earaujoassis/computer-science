@@ -1,0 +1,2 @@
+10.394762940971123, add(mul(X5, X4), mul(cos(log(0.823)), mul(X3, X2))), validation
+136.16934519398222, add(mul(X5, X4), mul(cos(log(0.823)), mul(X3, X2))), test

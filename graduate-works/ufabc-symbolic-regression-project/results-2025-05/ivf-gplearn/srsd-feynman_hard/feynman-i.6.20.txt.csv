@@ -1,0 +1,2 @@
+inf, div(sqrt(div(-0.283, X0)), add(add(sqrt(X0), add(X1, X1)), sqrt(X0))), validation
+inf, div(sqrt(div(-0.283, X0)), add(add(sqrt(X0), add(X1, X1)), sqrt(X0))), test

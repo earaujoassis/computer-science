@@ -1,0 +1,2 @@
+2.3686264652656496e-32, mul(X0, mul(sqrt(X2), mul(sqrt(X2), mul(X1, sin(X3))))), validation
+2.534693262302917e-32, mul(X0, mul(sqrt(X2), mul(sqrt(X2), mul(X1, sin(X3))))), test

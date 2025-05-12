@@ -1,0 +1,2 @@
+1.505381058631703e-32, div(div(X0, sqrt(X1)), sqrt(X1)), validation
+1.5740774807831209e-32, div(div(X0, sqrt(X1)), sqrt(X1)), test

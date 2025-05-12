@@ -1,0 +1,2 @@
+59.8929846067915, mul(add(add(div(X1, sqrt(sqrt(div(X2, X0)))), mul(add(add(div(X1, sqrt(sqrt(mul(div(X2, X0), 0.323)))), mul(sqrt(mul(sqrt(mul(div(X2, X0), 0.323)), 0.323)), X3)), mul(sqrt(sqrt(div(X2, X0))), X3)), 0.323)), mul(sqrt(sqrt(div(X2, X0))), X3)), 0.323), validation
+581.6588980006809, mul(add(add(div(X1, sqrt(sqrt(div(X2, X0)))), mul(add(add(div(X1, sqrt(sqrt(mul(div(X2, X0), 0.323)))), mul(sqrt(mul(sqrt(mul(div(X2, X0), 0.323)), 0.323)), X3)), mul(sqrt(sqrt(div(X2, X0))), X3)), 0.323)), mul(sqrt(sqrt(div(X2, X0))), X3)), 0.323), test
