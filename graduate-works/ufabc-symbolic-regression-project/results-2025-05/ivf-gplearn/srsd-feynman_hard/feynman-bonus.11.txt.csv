@@ -1,0 +1,2 @@
+4.697536162381261e-32, mul(X2, mul(X2, X0)), validation
+4.761334831990652e-32, mul(X2, mul(X2, X0)), test

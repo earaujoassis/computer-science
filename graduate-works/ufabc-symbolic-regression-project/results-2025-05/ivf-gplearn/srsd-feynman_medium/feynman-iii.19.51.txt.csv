@@ -1,0 +1,2 @@
+1.0000000000026694, tan(add(div(X1, sqrt(cos(log(cos(X2))))), cos(sqrt(mul(log(add(cos(-0.945), cos(X0))), add(mul(X0, div(X2, div(mul(sqrt(div(0.417, cos(X1))), sqrt(X0)), tan(X0)))), tan(X1))))))), validation
+1.000000000004595, tan(add(div(X1, sqrt(cos(log(cos(X2))))), cos(sqrt(mul(log(add(cos(-0.945), cos(X0))), add(mul(X0, div(X2, div(mul(sqrt(div(0.417, cos(X1))), sqrt(X0)), tan(X0)))), tan(X1))))))), test

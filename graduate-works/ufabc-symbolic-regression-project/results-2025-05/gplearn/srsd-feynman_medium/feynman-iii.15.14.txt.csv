@@ -1,0 +1,2 @@
+1.0, sin(log(X0)), validation
+1.0, sin(log(X0)), test

@@ -1,0 +1,2 @@
+0.005877316159811613, div(sqrt(div(X0, tan(X1))), mul(div(log(sin(mul(0.535, -0.533))), div(div(mul(0.089, X0), log(0.585)), mul(add(X1, X1), sqrt(mul(tan(X1), X0))))), sqrt(sqrt(mul(log(0.585), sqrt(sqrt(log(0.585)))))))), validation
+0.006562861963433103, div(sqrt(div(X0, tan(X1))), mul(div(log(sin(mul(0.535, -0.533))), div(div(mul(0.089, X0), log(0.585)), mul(add(X1, X1), sqrt(mul(tan(X1), X0))))), sqrt(sqrt(mul(log(0.585), sqrt(sqrt(log(0.585)))))))), test

@@ -1,0 +1,2 @@
+383.5002310558113, add(mul(mul(sqrt(X3), mul(log(X3), mul(sqrt(X3), add(-0.068, add(-0.068, X0))))), mul(X2, X2)), mul(mul(sqrt(X3), add(-0.068, add(-0.068, X0))), mul(mul(sqrt(X3), X1), mul(log(X3), X1)))), validation
+396.28805690309116, add(mul(mul(sqrt(X3), mul(log(X3), mul(sqrt(X3), add(-0.068, add(-0.068, X0))))), mul(X2, X2)), mul(mul(sqrt(X3), add(-0.068, add(-0.068, X0))), mul(mul(sqrt(X3), X1), mul(log(X3), X1)))), test

@@ -1,0 +1,2 @@
+0.002894615904955077, mul(cos(sqrt(X1)), mul(0.485, X0)), validation
+0.002898902985353594, mul(cos(sqrt(X1)), mul(0.485, X0)), test
