@@ -12,7 +12,9 @@ def get_argparser():
     parser = argparse.ArgumentParser(description='TIR baseline runner')
     parser.add_argument('--config', required=True, help='config file path')
     parser.add_argument('--train', required=True, help='training file path')
-    parser.add_argument('--out', required=True, help='output file name (dir path should be specified in config file)')
+    parser.add_argument('--val', required=True, help='training file path')
+    parser.add_argument('--test', required=True, help='test file path')
+    parser.add_argument('--out', required=True, help='output file name')
     return parser
 
 
@@ -23,27 +25,23 @@ def load_dataset(dataset_file_path, delimiter=' '):
 
 def main(args):
     train_samples, train_targets = load_dataset(os.path.expanduser(args.train))
-    clr = TIRRegressor(100, 100, 1.0, 0.25, exponents=(-3,3), max_time=5, penalty=0.01, alg='GPTIR', error='RMSE')
-    clr.fit(train_samples, train_targets)
-    yhat = clr.predict(train_samples)
+    model = TIRRegressor(1000, 100, 1.0, 0.25, exponents=(-3,3), max_time=5, penalty=0.01, alg='GPTIR', error='RMSE')
+    model.fit(train_samples, train_targets)
     output_filepath = args.out
 
-    mse = np.square(yhat - train_targets).mean()
-    with open(output_filepath, "w") as output_file:
-        print('Fitness should be approx.: ', np.sqrt(mse), file=output_file)
-        print(clr.expr, file=output_file)
-        print(clr.len, file=output_file)
-        for e in clr.front:
-            print(e, file=output_file)
-        print(sympy.sympify(clr.sympy), file=output_file)
+    val_samples, val_targets = load_dataset(args.val)
+    val_preds = model.predict(val_samples)
+    relative_error = (((val_targets - val_preds) / val_targets) ** 2).mean()
+    mse = np.square(val_preds - val_targets).mean()
+    with open(output_filepath, "w") as fp:
+        print(f'{relative_error}, {model.expr}, validation', file=fp)
 
-    clr2 = clr.create_model_from(3)
-    with open(output_filepath, "a") as output_file:
-        print('Tst:', file=output_file)
-        print(clr2.expr, file=output_file)
-        print(clr2.sympy, file=output_file)
-        print(clr2.len, file=output_file)
-        print(np.sqrt(np.square(clr2.predict(train_samples, train_targets)).mean()), file=output_file)
+    test_samples, test_targets = load_dataset(args.test)
+    test_preds = model.predict(test_samples)
+    relative_error = (((val_targets - val_preds) / val_targets) ** 2).mean()
+    mse = np.square(test_preds - test_targets).mean()
+    with open(output_filepath, "w") as fp:
+        print(f'{relative_error}, {model.expr}, test', file=fp)
 
 
 if __name__ == '__main__':
